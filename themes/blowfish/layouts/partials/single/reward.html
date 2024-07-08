@@ -1,0 +1,17 @@
+<div style="padding: 10px 0; margin: 100px auto; width: 100%; font-size:16px; text-align: center;">
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+        <span>{{ T "reward" }}</span></button>
+        <p>{{ T "rewarddisc" }}</p>
+    <div id="QR" style="display: none;">
+        <div id="wechat" style="display: inline-block">
+            <a class="fancybox" rel="group">
+                <img id="wechat_qr" src="/reward/wechatpay.png" alt="WeChat Pay"></a>
+            <p>{{ T "rewardWechat" }}</p>
+        </div>
+        <div id="alipay" style="display: inline-block">
+            <a class="fancybox" rel="group">
+                <img id="alipay_qr" src="/reward/alipay.png" alt="Alipay"></a>
+            <p>{{ T "rewardAlipay" }}</p>
+        </div>
+    </div>
+</div>

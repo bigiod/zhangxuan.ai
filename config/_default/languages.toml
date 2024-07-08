@@ -1,0 +1,52 @@
+[en]
+languageCode = "en"
+languageName = "EN"
+weight = 1
+title = "MetaX"
+
+[en.params]
+  displayName = "English"
+  isoCode = "en"
+  rtl = false
+  dateFormat = "2 January 2006"
+  logo = "img/logo_inverted@0.25x.png.png"
+  secondaryLogo = "img/logo@0.25x.png"
+  description = "MetaX"
+
+
+[en.author]
+  name = "MetaX"
+  image = "img/metax_avatar.jpg"
+  headline = "Prompt Engineering & ENS+IPFS dWebsite Enthusiast"
+  bio = "Prompt Engineering & ENS+IPFS dWebsite Enthusiast"
+  links = [
+    { x-twitter = "https://twitter.com/helloxai" },
+    { github = "https://github.com/bigiod/" },
+  ]
+
+[zh-cn]
+languageCode = "zh-cn"
+languageName = "中文简体"
+weight = 2
+title = "MetaX"
+
+[zh-cn.params]
+  displayName = "中文简体"
+  isoCode = "zh-cn"
+  rtl = false
+  dateFormat = "2006-01-02"
+  logo = "img/logo_inverted@0.25x.png.png"
+  secondaryLogo = "img/logo@0.25x.png"
+  description = "MetaX"
+
+
+ [zh-cn.author]
+  name = "MetaX"
+  image = "img/metax_avatar.jpg"
+  headline = "Prompt Engineering & ENS+IPFS dWebsite Enthusiast"
+  bio = "Prompt Engineering & ENS+IPFS dWebsite Enthusiast"
+  links = [
+    { link = "https://zhangxuan.ai/" },
+    { x-twitter = "https://twitter.com/helloxai" },
+    { github = "https://github.com/itey/" },
+  ]
