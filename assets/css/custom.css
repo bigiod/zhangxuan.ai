@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'CarterOne-Regular';
+    src: url('/fonts/CarterOne-Regular.ttf');
+}
+
+.font-carterone {
+    font-family: 'CarterOne-Regular', sans-serif;
+    font-weight: 100;
+}
