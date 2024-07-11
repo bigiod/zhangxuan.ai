@@ -17,8 +17,8 @@ title = "MetaX"
 [en.author]
   name = "MetaX"
   image = "img/metax_avatar.jpg"
-  headline = "Prompt Engineering & ENS+IPFS dWebsite Enthusiast"
-  bio = "Prompt Engineering & ENS+IPFS dWebsite Enthusiast"
+  headline = "Pioneer of Web3.0 Creator Economy"
+  bio = "Pioneer of Web3.0 Creator Economy"
   links = [
     { x-twitter = "https://twitter.com/helloxai" },
     { github = "https://github.com/bigiod/" },
@@ -43,10 +43,11 @@ title = "MetaX"
  [zh-cn.author]
   name = "MetaX"
   image = "img/metax_avatar.jpg"
-  headline = "Prompt Engineering & ENS+IPFS dWebsite Enthusiast"
-  bio = "Prompt Engineering & ENS+IPFS dWebsite Enthusiast"
+  headline = "Pioneer of Web3.0 Creator Economy"
+  bio = "Pioneer of Web3.0 Creator Economy"
   links = [
     { link = "https://zhangxuan.ai/" },
     { x-twitter = "https://twitter.com/helloxai" },
     { github = "https://github.com/itey/" },
+    { mail = "hktybcc@gmail.com/" },
   ]

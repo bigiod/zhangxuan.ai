@@ -10,3 +10,5 @@ other = "支付宝打赏"
 [rewardWechat]
 other = "微信打赏"
 
+[rewardusdtpay]
+other = "支付USDT数字货币"

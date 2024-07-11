@@ -17,7 +17,7 @@ mainSections = ["posts"]
 
 
 disableImageZoom = false
-disableImageOptimization = false
+disableImageOptimization = true
 disableTextInHeader = true
 
 defaultBackgroundImage = "/img/ripples.svg" # used as default for background images 

@@ -18,18 +18,18 @@ pageRef = "about"
 weight = 10
 
 [[main]]
-name = "文章"
+name = "分享"
 pageRef = "posts"
 weight = 20
 
 [[main]]
 name = "项目"
-pageRef = "posts"
+pageRef = "projects"
 weight = 30
 
 [[main]]
 name = "简历"
-pageRef = "posts"
+pageRef = "resume"
 weight = 40
 
 
@@ -50,12 +50,12 @@ weight = 100
 # the copyright notice. Configure as per the main menu above.
 
 [[footer]]
-name = "Reward"
+name = "赞助"
 pageRef = "reward"
 weight = 10
 
 [[footer]]
-name = "关于MetaX"
+name = "关于"
 pageRef = "about"
 weight = 100
 
