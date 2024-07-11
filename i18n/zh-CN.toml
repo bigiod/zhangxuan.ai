@@ -1,14 +1,15 @@
 [reward]
-other = "谢谢打赏"
+other = "感谢打赏"
 
 [rewarddisc]
 other = "感谢关注和支持，您的赞助将是我前进的动力！"       
 
 [rewardAlipay]
-other = "支付宝打赏"
+other = "支付宝"
 
 [rewardWechat]
-other = "微信打赏"
+other = "微信支付"
 
 [rewardusdtpay]
 other = "支付USDT数字货币"
+ 
