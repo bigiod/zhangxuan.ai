@@ -137,3 +137,37 @@
 td {
     vertical-align: middle !important;
 }
+
+
+#QR {
+    padding-top:20px;
+  }
+  #QR a {
+    border:0
+  }
+  #QR img {
+    width:200px;
+    max-width:100%;
+    display:inline-block;
+    margin:.8em 1em 0 1em
+  }
+  #rewardButton {
+    border:1px solid #ffb560;
+    line-height:36px;
+    text-align:center;
+    width:150px;
+    height:50px;
+    display:block;
+    border-radius:4px;
+    -webkit-transition-duration:.4s;
+    transition-duration:.4s;
+    background-color:#ffb560;
+    color:#ffffff;
+    margin:0 auto;
+    padding:0 25px
+  }
+  #rewardButton:hover {
+    color:#c71414;
+    border-color:#ffb560;
+    outline-style:none
+  }
