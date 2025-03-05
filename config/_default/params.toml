@@ -35,7 +35,7 @@ smartTOCHideUnfocusedChildren = false
   showMenu = true
   showCopyright = true
   showAppearanceSwitcher = true
-  showThemeAttribution = true
+  showThemeAttribution = false
   showScrollToTop = true
 
 [homepage]

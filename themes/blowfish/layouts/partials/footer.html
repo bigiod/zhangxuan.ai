@@ -31,9 +31,10 @@
       {{- else }}
       &copy;
       {{ now.Format "2006" }}
-      {{ .Site.Author.name | markdownify }}
+      {{ .Site.Author.name | markdownify }} · <a href="https://beian.miit.gov.cn/" target="_blank">京ICP备14009107号-2</a>
       {{- end }}
     </p>
+    
     {{ end }}
 
     {{/* Theme attribution */}}
