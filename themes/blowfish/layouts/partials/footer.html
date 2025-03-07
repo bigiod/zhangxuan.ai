@@ -23,7 +23,8 @@
   {{ end }}
   <div class="flex items-center justify-between">
 
-    {{/* Copyright */}}
+
+  {{/* Copyright */}}
     {{ if .Site.Params.footer.showCopyright | default true }}
     <p class="text-sm text-neutral-500 dark:text-neutral-400">
       {{- with replace .Site.Params.copyright "{ year }" now.Year  }}
@@ -35,7 +36,8 @@
       {{- end }}
     </p>
     
-    {{ end }}
+  {{ end }}
+ 
 
     {{/* Theme attribution */}}
     {{ if .Site.Params.footer.showThemeAttribution | default true }}

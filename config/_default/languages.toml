@@ -46,8 +46,12 @@ title = "MetaX"
   headline = "Pioneer of Web3.0 Creator Economy"
   bio = "Pioneer of Web3.0 Creator Economy"
   links = [
-    { link = "https://zhangxuan.ai/" },
-    { x-twitter = "https://twitter.com/helloxai" },
+    { email = "hktybcc@gmail.com/" },
+    { x-twitter = "https://x.com/MetaversePlus" },
+    { linkedin = "https://x.com/aizx" },
+    { youtube = "https://x.com/aizx" },
+    { tiktok = "https://x.com/aizx" },
+    { instagram = "https://www.instagram.com/metaverseplus/" },
     { github = "https://github.com/itey/" },
-    { mail = "hktybcc@gmail.com/" },
+    { goodreads = "https://github.com/itey/" },
   ]

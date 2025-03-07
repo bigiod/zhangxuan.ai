@@ -7,7 +7,7 @@ showTableOfContents: false
 showLikes: false
 
 cascade:
-  showDate: true
+  showDate: false
   showAuthor: false
   invertPagination: true
   showEdit: false

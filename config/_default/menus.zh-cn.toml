@@ -12,15 +12,80 @@
 
 
 
+
 [[main]]
-name = "关于"
-pageRef = "about"
-weight = 10
+  name = "🔥DeepSeek"
+  weight = 10
+
+[[main]]
+  name = "关于DeepSeek"
+  parent = "🔥DeepSeek"
+  pageRef = "deepseek10"
+  weight = 1010
+
+[[main]]
+  name = "SDeepSeek使用指南"
+  parent = "🔥DeepSeek"
+  pageRef = "deepseek20"
+  weight = 1020
+
+[[main]]
+  name = "DeepSeek应用场景"
+  parent = "🔥DeepSeek"
+  pageRef = "deepseek30"
+  weight = 1030
+
+[[main]]
+  name = "DeepSeek资源汇总"
+  parent = "🔥DeepSeek"
+  pageRef = "deepseek40"
+  weight = 1040
+
+[[main]]
+  name = "SDeepSeek技术解析"
+  parent = "🔥DeepSeek"
+  pageRef = "deepseek20"
+  weight = 1050
+
+[[main]]
+  name = "DeepSeek行业资讯"
+  parent = "🔥DeepSeek"
+  pageRef = "deepseek30"
+  weight = 1060
 
 [[main]]
 name = "分享"
-pageRef = "posts"
 weight = 20
+
+[[main]]
+  name = "自媒体内容创作"
+  parent = "分享"
+  pageRef = "zmt"
+  weight = 2010
+
+[[main]]
+  name = "提示词工程"
+  parent = "分享"
+  pageRef = "prompt"
+  weight = 2020
+
+[[main]]
+  name = "AI自动化工作流"
+  parent = "分享"
+  pageRef = "aiflowwork"
+  weight = 2030
+
+[[main]]
+  name = "RSS订阅源"
+  parent = "分享"
+  pageRef = "rss"
+  weight = 2040
+
+[[main]]
+  name = "AI搜索引擎优化SEO"
+  parent = "分享"
+  pageRef = "prompt"
+  weight = 2050
 
 [[main]]
 name = "项目"
@@ -32,16 +97,27 @@ name = "简历"
 pageRef = "resume"
 weight = 40
 
+[[main]]
+name = "关于我"
+pageRef = "about"
+weight = 1
 
 [[main]]
 name = "赞助"
 pageRef = "reward"
 weight = 100
 
-#[[main]]
-#name = "登录"
-#url = "https://8x.world?msopen=/member/sign_in"
-#weight = 110
+[[main]]
+identifier = "twitter"
+pre = "x-twitter"
+url = "https://x.com/MetaversePlus"
+weight = 200
+
+[[main]]
+identifier = "github"
+pre = "github"
+url = "https://github.com/itey/"
+weight = 300
 
 
 

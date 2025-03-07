@@ -1,14 +1,12 @@
 ---
 title: "赞助支持"
 description: "赞助支持"
-
-
 cascade:
-  showDate: true
+  showDate: false
   showAuthor: false
   invertPagination: true
   showEdit: false
-  showReadingTime: true
+  showReadingTime: false
   showSummary: true
   showLikes: false
   showViews: false
