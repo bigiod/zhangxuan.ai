@@ -1,7 +1,7 @@
 ---
 title: "知识分享"
 description: "知识分享"
-cardview: false
+cardview: true
 invertPagination: ture
 showTableOfContents: false
 showDate: false
@@ -16,7 +16,7 @@ cascade:
   invertPagination: true
   showEdit: false
   showReadingTime: true
-  showSummary: true
+  showSummary: false
   showLikes: false
   showViews: false
 ---

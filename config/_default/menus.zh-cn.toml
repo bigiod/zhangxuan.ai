@@ -54,36 +54,36 @@
   weight = 1060
 
 [[main]]
-name = "分享"
+name = "知识分享"
 weight = 20
 
 [[main]]
-  name = "自媒体内容创作"
-  parent = "分享"
+  name = "AI内容创作"
+  parent = "知识分享"
   pageRef = "zmt"
   weight = 2010
 
 [[main]]
   name = "提示词工程"
-  parent = "分享"
+  parent = "知识分享"
   pageRef = "prompt"
   weight = 2020
 
 [[main]]
-  name = "AI自动化工作流"
-  parent = "分享"
+  name = "自动化工作流"
+  parent = "知识分享"
   pageRef = "aiflowwork"
   weight = 2030
 
 [[main]]
   name = "RSS订阅源"
-  parent = "分享"
+  parent = "知识分享"
   pageRef = "rss"
   weight = 2040
 
 [[main]]
-  name = "AI搜索引擎优化SEO"
-  parent = "分享"
+  name = "AI SEO"
+  parent = "知识分享"
   pageRef = "prompt"
   weight = 2050
 
@@ -92,20 +92,20 @@ name = "项目"
 pageRef = "projects"
 weight = 30
 
-[[main]]
-name = "简历"
-pageRef = "resume"
-weight = 40
+# [[main]]
+# name = "简历"
+# pageRef = "resume"
+# weight = 40
 
 [[main]]
 name = "关于我"
 pageRef = "about"
-weight = 1
+weight = 100
 
 [[main]]
 name = "赞助"
 pageRef = "reward"
-weight = 100
+weight = 50
 
 [[main]]
 identifier = "twitter"

@@ -20,13 +20,13 @@ slug: "1000fans"
 如何通过培养1000个铁杆粉丝来建立和巩固个人品牌，强调精准定位与深度互动，助力学员在竞争激烈的市场中脱颖而出，实现品牌价值的持续增长。
 
 
-{{< bilibili BV1LJ4m1u7uL >}}
+{{< bilibili BV14W421978p >}}
 
 ## 嵌入youtube视频
 
 {{< youtube KLuTLF3x9sA >}}
 
-
+![图片展示](/images/feature/Default_Design_a_motivational_and_introspective_cover_image_th_0.jpg)
 
 
 ## 时间线

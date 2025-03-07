@@ -6,10 +6,8 @@
 {{- if not (eq $autoplayRaw "") -}}
     {{- $autoplay := partial "function/convertBoolToNum.html" (dict "value" $autoplayRaw) -}}
     {{- $autoplayPara = printf "&autoplay=%d" $autoplay -}}
-    {{/*  {{- warnf "The 'autoplay' parameter is set." -}}  */}}
 {{- else -}}
     {{- $autoplayPara = "&autoplay=0" -}}
-    {{/*  {{- warnf "The 'autoplay' parameter is not set. Default to 0." -}}  */}}
 {{- end -}}
 
 {{/*  Optional parameters  */}}
@@ -72,8 +70,19 @@
 
 {{/*  TODO: make the 'player.bilibili.com/player.html' part configurable. This URL can be replaced by '//www.bilibili.com/blackboard/html5mobileplayer.html' to get a mobile version of the iframe player, which is even cleaner. See https://blog.zezeshe.com/archives/use-bilibili-iframe-player.html */}}
 
-{{- $url := printf "//player.bilibili.com/player.html?bvid=%s&page=%v%s%s%s%s%s%s%s%s%s" $bvid $page $autoplayPara $danmakuPara $mutedPara $tPara $hasMuteButtonPara $hideCoverInfoPara $hideDanmakuButtonPara $noFullScreenButtonPara $fjwPara -}}
+{{- $url := printf "//player.bilibili.com/player.html?bvid=%s&page=%v%s%s%s%s%s%s%s%s%s" 
+$bvid 
+$page 
+$autoplayPara 
+$danmakuPara 
+$mutedPara 
+$tPara 
+$hasMuteButtonPara 
+$hideCoverInfoPara 
+$hideDanmakuButtonPara 
+$noFullScreenButtonPara 
+$fjwPara }}
 
-<div class="bilibili">
-    <iframe src="{{ $url }}" height="425px" width="100%" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+<div class="bilibili-container" style="position: relative; width: 100%; padding-top: 56.25%;">
+    <iframe src="{{ $url }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" scrolling="no" allowfullscreen="true"></iframe>
 </div>
