@@ -9,7 +9,7 @@ title = "MetaX"
   isoCode = "en"
   rtl = false
   dateFormat = "2 January 2006"
-  logo = "img/logo_inverted@0.25x.png.png"
+  logo = "img/logo_inverted@0.25x.png"
   secondaryLogo = "img/logo@0.25x.png"
   description = "MetaX"
 
@@ -35,7 +35,7 @@ title = "MetaX"
   isoCode = "zh-cn"
   rtl = false
   dateFormat = "2006-01-02"
-  logo = "img/logo_inverted@0.25x.png.png"
+  logo = "img/logo_inverted@0.25x.png"
   secondaryLogo = "img/logo@0.25x.png"
   description = "MetaX"
 
@@ -43,14 +43,15 @@ title = "MetaX"
  [zh-cn.author]
   name = "MetaX"
   image = "img/metax_avatar.jpg"
-  headline = "Pioneer of Web3.0 Creator Economy"
+  headline = "AI & Web3.0 产品经理 / 小红书AI博主 / 创业者"
   bio = "Pioneer of Web3.0 Creator Economy"
   links = [
-    { email = "hktybcc@gmail.com/" },
+    { email = "mailto:hktybcc@gmail.com" },
     { x-twitter = "https://x.com/MetaversePlus" },
-    { linkedin = "https://x.com/aizx" },
-    { youtube = "https://x.com/aizx" },
-    { tiktok = "https://x.com/aizx" },
-    { instagram = "https://www.instagram.com/metaverseplus/" },
+    { linkedin = "https://www.linkedin.com/in/aizx/" },
+    { rednote = "https://www.xiaohongshu.com/user/profile/59f87643db2e602e550c9714" },
+    # { bilibili = "https://www.xiaohongshu.com/user/profile/59f87643db2e602e550c9714" },
+    { wechat = "https://www.xiaohongshu.com/user/profile/59f87643db2e602e550c9714" },    
+    # { youtube = "https://linkedin/aizx" },
     { github = "https://github.com/itey/" },
   ]

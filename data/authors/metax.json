@@ -1,0 +1,13 @@
+{
+    "name": "Metax",
+    "image" : "img/metax_avatar.jpg",
+    "bio": "Pioneer of Web3.0 Creator Economy",
+    "social": [
+        { "email": "mailto:hktybcc@gmail.com" },
+        { "x-twitter": "https://x.com/MetaversePlus" },
+        { "linkedin": "https://www.linkedin.com/in/aizx/" },
+        { "rednote": "https://www.xiaohongshu.com/user/profile/59f87643db2e602e550c9714" },
+        { "wechat": "https://www.xiaohongshu.com/user/profile/59f87643db2e602e550c9714" },
+        { "github": "https://github.com/itey/" }
+    ]
+}

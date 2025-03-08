@@ -3,7 +3,6 @@ title: "把自己变成稀缺资产，认知力、行动力与生命力优化之
 date: 2024-06-03
 draft: false
 description: "把自己变成稀缺资产，一个人的核心资产就是自己"
-categories: ["超级个体"]
 tags: ["AI超级个体", "资产"]
 showauthor: true
 slug: "make-yourself-a-scarce-asset"

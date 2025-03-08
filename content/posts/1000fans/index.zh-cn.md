@@ -1,14 +1,18 @@
 ---
 title: "打造个人品牌只需要1000个铁杆粉丝"
 date: 2024-06-03
-draft: false
 description: "用于创建 Blowfish 主题使用指南的模板"
-categories: ["超级个体"]
-tags: ["个人品牌", "粉丝"]
-showauthor: true
+tags: [个人品牌, 粉丝]
 slug: "1000fans"
-
-
+series: 
+series_order: 
+weight: 
+draft: false
+showAuthor: true
+authors:
+  - "metax"
+  - "longchen"
+showAuthorsBadges : false
 ---
 
 >聚焦1000铁杆粉丝，精耕细作，铸就个人品牌坚实基石。

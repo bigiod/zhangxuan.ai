@@ -3,10 +3,9 @@ title: "DeepSeek 优化指南：10 个实用指令让你更高效"
 date: 2025-03-07
 draft: false
 description: "本文探讨了如何通过优化提示词指令提升DeepSeek的效率，提供了10个实用指令，并通过具体例子展示了其应用方法，帮助用户更高效地完成任务"
-categories: ["DeepSeek"]
 tags: [DeepSeek,Prompt Engineering,指令工程,提示工程,提示词优化技巧]
 showauthor: true
-slug: "DeepSeek"
+slug: "deepseek优化指南"
 ---
 >本文探讨了如何通过优化提示词指令提升DeepSeek的效率，提供了10个实用指令，并通过具体例子展示了其应用方法，帮助用户更高效地完成任务。
 

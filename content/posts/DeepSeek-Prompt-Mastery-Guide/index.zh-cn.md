@@ -3,7 +3,6 @@ title: "DeepSeek调教指南：解锁AI隐藏力的12个核心策略"
 date: 2025-03-07
 draft: false
 description: "深度解析DeepSeek提示词设计技巧，提供各行业实用模板与避坑策略"
-categories: ["DeepSeek"]
 tags: [AI效率工具,提示词设计,DeepSeek技巧,智能工作流,AIGC实战,AI提示工程,行业应用模板,AI效率优化]
 showauthor: true
 slug: "DeepSeek"

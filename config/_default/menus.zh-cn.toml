@@ -55,6 +55,7 @@
 
 [[main]]
 name = "知识分享"
+pageRef = "posts"
 weight = 20
 
 [[main]]
@@ -107,17 +108,17 @@ name = "赞助"
 pageRef = "reward"
 weight = 50
 
-[[main]]
-identifier = "twitter"
-pre = "x-twitter"
-url = "https://x.com/MetaversePlus"
-weight = 200
+# [[main]]
+# identifier = "twitter"
+# pre = "x-twitter"
+# url = ""
+# weight = 200
 
-[[main]]
-identifier = "github"
-pre = "github"
-url = "https://github.com/itey/"
-weight = 300
+# [[main]]
+# identifier = "github"
+# pre = "github"
+# url = ""
+# weight = 300
 
 
 

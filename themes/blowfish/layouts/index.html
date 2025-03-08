@@ -3,7 +3,6 @@
   {{ if templates.Exists $partial }}
     {{ partial $partial . }}
   {{ else }}
-  1
     {{ partial "partials/home/profile.html" . }}
   {{ end }}
 {{ end }}

@@ -1,5 +1,5 @@
 ---
-title: "欢迎来到8xWorld"
+title: "欢迎"
 description: ""
 ---
 

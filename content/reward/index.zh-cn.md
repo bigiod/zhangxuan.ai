@@ -44,4 +44,4 @@ cascade:
 2. 技术支持与合作：如果您有意加入的团队或与我们合作，请和我联系。
 3. 资源共享：如有资源分享，请直接与我们联系，商讨具体合作方式。
 
-联系邮箱：[khtybcc@gmail.com](mailto:hktybcc@gmail.com)
+联系邮箱：[hktybcc@gmail.com](mailto:hktybcc@gmail.com)
