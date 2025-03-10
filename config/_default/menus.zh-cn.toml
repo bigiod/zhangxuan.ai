@@ -89,12 +89,30 @@ weight = 20
   weight = 2050
 
 [[main]]
-name = "项目"
-pageRef = "projects"
+name = "学习专栏"
+  pageRef = "columns"
 weight = 30
 
+[[main]]
+  name = "AI超级个体"
+  parent = "学习专栏"
+  pageRef = "columns/ai-super-individual/superindividual-1/"
+  weight = 3010
+
+[[main]]
+  name = "一人企业方法论"
+  parent = "学习专栏"
+  pageRef = "columns/one-person-bussiness/00-menu/"
+  weight = 3020
+
+[[main]]
+  name = "去中心化平台搭建"
+  parent = "学习专栏"
+  pageRef = "columns/ens-ipfs-dwebsite/101-overview/"
+  weight = 3030
+
 # [[main]]
-# name = "简历"
+# name = "资源库"
 # pageRef = "resume"
 # weight = 40
 
@@ -104,7 +122,7 @@ pageRef = "about"
 weight = 100
 
 [[main]]
-name = "赞助"
+name = "赞助支持"
 pageRef = "reward"
 weight = 50
 

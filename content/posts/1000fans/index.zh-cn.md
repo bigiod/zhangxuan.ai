@@ -9,9 +9,6 @@ series_order:
 weight: 
 draft: false
 showAuthor: true
-authors:
-  - "metax"
-  - "longchen"
 showAuthorsBadges : false
 ---
 

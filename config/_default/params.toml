@@ -20,7 +20,7 @@ disableImageZoom = false
 disableImageOptimization = false
 disableTextInHeader = true
 
-defaultBackgroundImage = "/img/fireflies.svg" # used as default for background images 
+defaultBackgroundImage = "/img/feature2.jpg" # used as default for background images 
 defaultFeaturedImage = "/img/featured.svg" # used as default for featured images in all articles
 
 highlightCurrentMenuArea = true
@@ -63,8 +63,8 @@ smartTOCHideUnfocusedChildren = false
   layoutBackgroundHeaderSpace = true # only used when heroStyle equals background
   showBreadcrumbs = true
   showDraftLabel = true
-  showEdit = false
-  # editURL = "https://github.com/username/repo/"
+  showEdit = true
+  editURL = "https://github.com/bigiod/zhangxuan.ai/"
   editAppendPath = false
   seriesOpened = false
   showHeadingAnchors = true
@@ -88,7 +88,7 @@ smartTOCHideUnfocusedChildren = false
   layoutBackgroundBlur = true # only used when heroStyle equals background
   layoutBackgroundHeaderSpace = true
   #是否显示面包屑导航
-  showBreadcrumbs = false
+  showBreadcrumbs = true
   showSummary = true
   showViews = false
   showLikes = false

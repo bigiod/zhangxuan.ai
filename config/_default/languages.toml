@@ -43,7 +43,7 @@ title = "MetaX"
  [zh-cn.author]
   name = "MetaX"
   image = "img/metax_avatar.jpg"
-  headline = "AI & Web3.0 产品经理 / 小红书AI博主 / 创业者"
+  headline = "产品经理 / AI知识博主 / 创业者"
   bio = "Pioneer of Web3.0 Creator Economy"
   links = [
     { email = "mailto:hktybcc@gmail.com" },
