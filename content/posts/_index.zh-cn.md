@@ -1,27 +1,7 @@
 ---
 title: "知识分享"
 description: "知识分享"
-cardview: true
-invertPagination: ture
-showTableOfContents: false
-showDate: false
-showAuthor: true
-showReadingTime: false
-layoutBackgroundHeaderSpace: true
-
-
-cascade:
-  showDate: true
-  showAuthor: false
-  invertPagination: true
-  showEdit: false
-  showReadingTime: true
-  showSummary: false
-  showLikes: false
-  showViews: false
 ---
-
-
 
 {{< lead >}}
 认知力、行动力、生命力

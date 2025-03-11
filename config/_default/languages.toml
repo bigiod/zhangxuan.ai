@@ -43,15 +43,15 @@ title = "MetaX"
  [zh-cn.author]
   name = "MetaX"
   image = "img/metax_avatar.jpg"
-  headline = "产品经理 / AI知识博主 / 创业者"
-  bio = "Pioneer of Web3.0 Creator Economy"
+  headline = "产品经理 / 科技博主 / 创业者"
+  bio = "产品经理 / 科技博主 / 创业者"
   links = [
     { email = "mailto:hktybcc@gmail.com" },
     { x-twitter = "https://x.com/MetaversePlus" },
     { linkedin = "https://www.linkedin.com/in/aizx/" },
     { rednote = "https://www.xiaohongshu.com/user/profile/59f87643db2e602e550c9714" },
     # { bilibili = "https://www.xiaohongshu.com/user/profile/59f87643db2e602e550c9714" },
-    { wechat = "https://www.xiaohongshu.com/user/profile/59f87643db2e602e550c9714" },    
+    # { wechat = "https://www.xiaohongshu.com/user/profile/59f87643db2e602e550c9714" },    
     # { youtube = "https://linkedin/aizx" },
-    { github = "https://github.com/itey/" },
+    { github = "https://github.com/bigiod/" },
   ]

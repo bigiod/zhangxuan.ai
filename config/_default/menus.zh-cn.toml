@@ -129,14 +129,14 @@ weight = 50
 # [[main]]
 # identifier = "twitter"
 # pre = "x-twitter"
-# url = ""
+# url = "https://x.com/MetaversePlus"
 # weight = 200
 
-# [[main]]
-# identifier = "github"
-# pre = "github"
-# url = ""
-# weight = 300
+[[main]]
+identifier = "github"
+pre = "github"
+url = "https://github.com/bigiod/"
+weight = 300
 
 
 

@@ -79,11 +79,15 @@
         
         {{ partial "series/series.html" . }}
 
-        <div class="article-content max-w-prose mb-20">
-          {{ .Content }}
+      <div class="article-content max-w-prose mb-20">
+        {{ .Content }}
+        {{ if or (eq .Params.showAuthor true) (and .Site.Params.article.showAuthor (not (eq .Params.showAuthor false))) }}
           {{- partial "single/reward.html" . -}}
-        </div>
+        {{ end }}
+      </div>
+     
         
+      
         {{ if (.Params.showAuthorBottom | default ( .Site.Params.article.showAuthorBottom | default false)) }}
 
           {{ if .Params.showAuthor | default (.Site.Params.article.showAuthor | default true) }}

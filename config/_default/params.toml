@@ -17,10 +17,10 @@ mainSections = ["posts"]
 
 
 disableImageZoom = false
-disableImageOptimization = false
+disableImageOptimization = true
 disableTextInHeader = true
 
-defaultBackgroundImage = "/img/feature2.jpg" # used as default for background images 
+defaultBackgroundImage = "/img/background.jpg" # used as default for background images 
 defaultFeaturedImage = "/img/featured.svg" # used as default for featured images in all articles
 
 highlightCurrentMenuArea = true
@@ -42,7 +42,7 @@ smartTOCHideUnfocusedChildren = false
   layout = "background" # valid options: page, profile, hero, card, background, custom
   # homepageImage = "IMAGE.jpg" # used in: hero, and card
   showRecent = true
-  showRecentItems = 3
+  showRecentItems = 6
   showMoreLink = true
   showMoreLinkDest = "/posts"
   cardView = true
@@ -50,7 +50,7 @@ smartTOCHideUnfocusedChildren = false
   layoutBackgroundBlur = false # only used when layout equals background
 
 [article]
-  showDate = false
+  showDate = true
   showViews = false
   showLikes = false
   showDateOnlyInArticle = false
@@ -64,8 +64,8 @@ smartTOCHideUnfocusedChildren = false
   showBreadcrumbs = true
   showDraftLabel = true
   showEdit = true
-  editURL = "https://github.com/bigiod/zhangxuan.ai/"
-  editAppendPath = false
+  editURL = "https://github.com/bigiod/zhangxuan.ai/blob/master/content/"
+  editAppendPath = true
   seriesOpened = false
   showHeadingAnchors = true
   showPagination = true
@@ -82,14 +82,14 @@ smartTOCHideUnfocusedChildren = false
 
 [list]
   #是否显示营销特效
-  showHero = false
+  showHero = true
   #英雄特效风格：basic/基本，big/大图，background/背景图，thumbAndBackground/背景图大图混合
   heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
   layoutBackgroundBlur = true # only used when heroStyle equals background
   layoutBackgroundHeaderSpace = true
   #是否显示面包屑导航
   showBreadcrumbs = true
-  showSummary = true
+  showSummary = false
   showViews = false
   showLikes = false
   showTableOfContents = false
@@ -143,8 +143,8 @@ smartTOCHideUnfocusedChildren = false
   # domain = "llama.yoursite.com"
 
 [buymeacoffee]
+  globalWidget = false
   identifier = "metax"
-  globalWidget = true
   globalWidgetMessage = "好呀！点我吧！"
   globalWidgetColor = "#FFDD00"
   globalWidgetPosition = "Right"

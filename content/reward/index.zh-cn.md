@@ -1,9 +1,10 @@
 ---
 title: "赞助支持"
+date: 2025-01-02
 description: "赞助支持"
 cascade:
-  showDate: false
-  showAuthor: false
+  showDate: true
+  showAuthor: true
   invertPagination: true
   showEdit: false
   showReadingTime: false
