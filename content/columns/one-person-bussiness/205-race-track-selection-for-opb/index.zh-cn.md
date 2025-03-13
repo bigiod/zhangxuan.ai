@@ -4,7 +4,6 @@ date: 2024-07-02
 weight: 1500
 draft: false
 description: "一人企业如何选择赛道"
-featureimage: "https://www.8x.world/images/feature/one-person-bussiness.jpg"
 slug: ""
 tags: ["一人企业","赛道"]
 series: ["一人企业方法论"]

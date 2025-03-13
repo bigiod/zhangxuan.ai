@@ -15,42 +15,43 @@
 
 [[main]]
   name = "🔥DeepSeek"
+  pageRef = "columns/deepseek"
   weight = 10
 
 [[main]]
   name = "关于DeepSeek"
   parent = "🔥DeepSeek"
-  pageRef = "deepseek10"
+  pageRef = "columns/deepseek/1"
   weight = 1010
 
 [[main]]
   name = "SDeepSeek使用指南"
   parent = "🔥DeepSeek"
-  pageRef = "deepseek20"
+  pageRef = "columns/deepseek/2"
   weight = 1020
 
 [[main]]
   name = "DeepSeek应用场景"
   parent = "🔥DeepSeek"
-  pageRef = "deepseek30"
+  pageRef = "columns/deepseek/3"
   weight = 1030
 
 [[main]]
   name = "DeepSeek资源汇总"
   parent = "🔥DeepSeek"
-  pageRef = "deepseek40"
+  pageRef = "columns/deepseek/4"
   weight = 1040
 
 [[main]]
   name = "SDeepSeek技术解析"
   parent = "🔥DeepSeek"
-  pageRef = "deepseek20"
+  pageRef = "columns/deepseek/5"
   weight = 1050
 
 [[main]]
   name = "DeepSeek行业资讯"
   parent = "🔥DeepSeek"
-  pageRef = "deepseek30"
+  pageRef = "columns/deepseek/6"
   weight = 1060
 
 [[main]]
@@ -90,41 +91,92 @@ weight = 20
 
 [[main]]
 name = "学习专栏"
-  pageRef = "columns"
+pageRef = "columns"
 weight = 30
+
+[[main]]
+  name = "DeepSeek"
+  parent = "学习专栏"
+  pageRef = "columns/deepseek"
+  weight = 3005
+
 
 [[main]]
   name = "AI超级个体"
   parent = "学习专栏"
-  pageRef = "columns/ai-super-individual/superindividual-1/"
+  pageRef = "superindividual"
   weight = 3010
 
 [[main]]
-  name = "一人企业方法论"
+  name = "一人企业"
   parent = "学习专栏"
   pageRef = "columns/one-person-bussiness/00-menu/"
   weight = 3020
 
 [[main]]
-  name = "去中心化平台搭建"
+  name = "dWebsite"
   parent = "学习专栏"
   pageRef = "columns/ens-ipfs-dwebsite/101-overview/"
   weight = 3030
 
-# [[main]]
-# name = "资源库"
-# pageRef = "resume"
-# weight = 40
+[[main]]
+  name = "Markdown"
+  parent = "学习专栏"
+  pageRef = "columns/markdown/1-mastering-markdown-for-productivity/"
+  weight = 3040
 
 [[main]]
-name = "关于我"
-pageRef = "about"
-weight = 100
+  name = "AI自动化赚钱"
+  parent = "学习专栏"
+  pageRef = "columns/ai-automated-earning/1-medium-make-money/"
+  weight = 3050
+
+[[main]]
+name = "📚知识库"
+ url  = "https://metaxai.notion.site/knowledgebase"
+weight = 40
+
+[[main]]
+  name = "🔠 Prompt提示词"
+  parent = "📚知识库"
+  url = ""
+  weight = 4010
+
+[[main]]
+  name = "🧰 AI工具箱"
+  parent = "📚知识库"
+  url = ""
+  weight = 4020
+
+[[main]]
+  name = "📚 我的书架"
+  parent = "📚知识库"
+   url = ""
+  weight = 4030
+
+[[main]]
+  name = "🗞️ RSS订阅源"
+  parent = "📚知识库"
+   url = ""
+  weight = 4040
+
+[[main]]
+  name = "🛠️ HTML > Markdown"
+  parent = "📚知识库"
+  url = "https://devtool.tech/html-md"
+  weight = 4050
 
 [[main]]
 name = "赞助支持"
 pageRef = "reward"
-weight = 50
+weight = 60
+
+[[main]]
+name = "关于"
+pageRef = "about"
+weight = 100
+
+
 
 # [[main]]
 # identifier = "twitter"

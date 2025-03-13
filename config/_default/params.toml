@@ -20,10 +20,10 @@ disableImageZoom = false
 disableImageOptimization = true
 disableTextInHeader = true
 
-defaultBackgroundImage = "/img/background.jpg" # used as default for background images 
-defaultFeaturedImage = "/img/featured.svg" # used as default for featured images in all articles
+defaultBackgroundImage = "/img/featured2616237192988165.jpg" # used as default for background images 
+defaultFeaturedImage = "/img/featured2616237192988165.jpg" # used as default for featured images in all articles
 
-highlightCurrentMenuArea = true
+highlightCurrentMenuArea = false
 smartTOC = true
 smartTOCHideUnfocusedChildren = false
 
@@ -34,15 +34,15 @@ smartTOCHideUnfocusedChildren = false
 [footer]
   showMenu = true
   showCopyright = true
-  showAppearanceSwitcher = true
+  showAppearanceSwitcher = false
   showThemeAttribution = false
   showScrollToTop = true
 
 [homepage]
   layout = "background" # valid options: page, profile, hero, card, background, custom
-  # homepageImage = "IMAGE.jpg" # used in: hero, and card
+  # homepageImage = "/img/background.jpg" # used in: hero, and card
   showRecent = true
-  showRecentItems = 6
+  showRecentItems = 12
   showMoreLink = true
   showMoreLinkDest = "/posts"
   cardView = true

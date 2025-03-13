@@ -4,7 +4,6 @@ date: 2024-07-09T05:59:04+08:00
 weight: 1
 draft: false
 description: "打造AI超级个体的数字载体，完全拥有数据权利"
-featureimage: "https://www.8x.world/images/feature/one-person-bussiness.jpg"
 slug: ""
 tags: ["去中心化网站","Web3.0"]
 series: ["零基础打造 Web3.0 AI超级个体门户"]

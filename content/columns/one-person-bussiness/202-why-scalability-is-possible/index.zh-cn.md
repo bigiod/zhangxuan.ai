@@ -4,7 +4,6 @@ date: 2024-07-02
 weight: 1800
 draft: false
 description: "为什么规模化是可能的"
-featureimage: "https://www.8x.world/images/feature/one-person-bussiness.jpg"
 slug: ""
 tags: ["一人企业","规模化"]
 series: ["一人企业方法论"]

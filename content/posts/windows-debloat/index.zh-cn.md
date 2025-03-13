@@ -6,13 +6,15 @@ description: "删除Windows预装的臃肿软件，简单易用且轻量级的�
 tags: [Win11Debloat,Windows系统清理]
 slug: "windows-debloat"
 ---
->Win11Debloat 是一个简单、易用且轻量级的 PowerShell 脚本，完全免费开源！可以删除预装的 Windows 臃肿软件应用程序、禁用遥测并通过禁用或删除侵入性界面元素、广告等来简化体验。无需亲自费力地完成所有设置，也无需逐个删除应用程序。Win11Debloat 使这个过程变得快速而简单！
-![alt text](image.png)
+> Win11Debloat 是一个简单、易用且轻量级的 PowerShell 脚本，完全免费开源！可以删除预装的 Windows 臃肿软件应用程序、禁用遥测并通过禁用或删除侵入性界面元素、广告等来简化体验。无需亲自费力地完成所有设置，也无需逐个删除应用程序。Win11Debloat 使这个过程变得快速而简单！
+
+![Win11Debloat](image.png)
 您可以精确选择脚本要进行的修改，也可以使用默认设置。如果您对任何更改不满意，可以使用“Regfiles”文件夹中的注册表文件轻松恢复它们。所有被删除的应用程序都可以从 Microsoft 商店重新安装。
 
 下载方式：【[官方下载](https://github.com/Raphire/Win11Debloat)】或 【[备用下载](https://www.dongli7.com/thread-154-1-1.html)】
 
-![Win11Debloat](image.png)
+![Win11Debloat](image2.png)
+
 
 应用程序删除
  

@@ -3,14 +3,14 @@ title: "DeepSeek调教指南：解锁AI隐藏力的12个核心策略"
 date: 2025-03-07
 draft: false
 description: "深度解析DeepSeek提示词设计技巧，提供各行业实用模板与避坑策略"
-tags: [AI效率工具,提示词设计,DeepSeek技巧,智能工作流,AIGC实战,AI提示工程,行业应用模板,AI效率优化]
+tags: [DeepSeek, 提示词设计, AI工具, 编程开发, 商业分析, 学术科研, 创意内容, 行业模板, 避坑指南, 提示词优化]
 showauthor: true
-slug: "DeepSeek"
+slug: "mastering-deepseek-prompt-design"
 ---
 > 深度解析DeepSeek提示词设计技巧，提供各行业实用模板与避坑策略。
 
 ## DeepSeek 提示词基本法则
-> 官方提供了一些 prompt ：https://api-docs.deepseek.com/zh-cn/prompt-library/
+> 官方提供了一些 prompt ：<https://api-docs.deepseek.com/zh-cn/prompt-library/>
 
 DeepSeek作为前沿AI工具，其潜力远超“简单问答”——关键在于如何用精准的提示词（Prompt）激活它的“隐藏技能”。玩了一阵子DeepSeek，小编总结了各行业场景化模板到底层设计逻辑，“提问的艺术”十分有必要，不同的提问姿势，给出的答案往往会千差万别 ！！
 

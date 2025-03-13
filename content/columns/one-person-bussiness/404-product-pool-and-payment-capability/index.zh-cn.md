@@ -4,7 +4,6 @@ date: 2024-07-02
 weight: 300
 draft: false
 description: "产品池和支付能力"
-featureimage: "https://www.8x.world/images/feature/one-person-bussiness.jpg"
 slug: ""
 tags: ["一人企业","产品","支付"]
 series: ["一人企业方法论"]

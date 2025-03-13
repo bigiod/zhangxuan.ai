@@ -4,7 +4,6 @@ date: 2024-07-02
 weight: 200
 draft: false
 description: "众包能力义"
-featureimage: "https://www.8x.world/images/feature/one-person-bussiness.jpg"
 slug: ""
 tags: ["一人企业","众包能力"]
 series: ["一人企业方法论"]

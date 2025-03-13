@@ -4,7 +4,6 @@ date: 2024-07-02
 weight: 1100
 draft: false
 description: "一人企业≠一人业务"
-featureimage: "https://www.8x.world/images/feature/one-person-bussiness.jpg"
 slug: ""
 tags: ["一人企业"]
 series: ["一人企业方法论"]

@@ -4,7 +4,6 @@ date: 2024-07-02
 weight: 400
 draft: false
 description: "内容池和自动化能力"
-featureimage: "https://www.8x.world/images/feature/one-person-bussiness.jpg"
 slug: ""
 tags: ["一人企业","内容","自动化"]
 series: ["一人企业方法论"]

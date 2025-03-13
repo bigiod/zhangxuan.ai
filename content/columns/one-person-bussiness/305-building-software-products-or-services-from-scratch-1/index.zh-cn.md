@@ -4,7 +4,6 @@ date: 2024-07-02
 weight: 700
 draft: false
 description: "从零构建软件产品或服务"
-featureimage: "https://www.8x.world/images/feature/one-person-bussiness.jpg"
 slug: ""
 tags: ["一人企业"]
 series: ["一人企业方法论"]

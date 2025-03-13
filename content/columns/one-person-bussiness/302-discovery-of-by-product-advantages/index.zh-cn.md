@@ -4,7 +4,6 @@ date: 2024-07-02
 weight: 1000
 draft: false
 description: "副产品优势发现"
-featureimage: "https://www.8x.world/images/feature/one-person-bussiness.jpg"
 slug: ""
 tags: ["一人企业"]
 series: ["一人企业方法论"]

@@ -6,7 +6,9 @@ description: "深度解析DeepSeek提示词设计技巧，提供各行业实用�
 tags: [Windows11,操作系统,纯净版]
 slug: "windows11-24h2-ltsc-install"
 ---
->Windows 11 （24H2 LTSC）是目前最干净最稳定的版本，最低2G内存的电脑都可以轻松安装使用！没有内置臃肿的功能，无任何广告打扰，系统优化更高级，推荐使用！
+> Windows 11 （24H2 LTSC）是目前最干净最稳定的版本，最低2G内存的电脑都可以轻松安装使用！没有内置臃肿的功能，无任何广告打扰，系统优化更高级，推荐使用！
+
+![windows 11](featuredimage.png)
 
 Windows11（24H2 LTSC） 下载方式：
 
