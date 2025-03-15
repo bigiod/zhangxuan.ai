@@ -48,7 +48,7 @@ draft: false
 
 为了让我能生成更精准、专业化的Midjourney提示词（Prompt），建议你按照以下结构化格式提供信息，每个部分尽量具体化：
 
-### **【主题关键词提交格式】**
+### 【主题关键词提交格式】
 1. **主题核心**（必填）  
    - **主体内容**：图片的核心元素（如人物/物体/场景）  
    - **动作/互动**：主体在做什么？与环境如何互动？  
@@ -75,7 +75,7 @@ draft: false
 
 ---
 
-### **【优质案例示范】**
+### 【优质案例示范】
 假设你需要一篇**"AI改变医疗"**文章的封面图：
 ```
 1. 主题核心：  
@@ -100,7 +100,7 @@ draft: false
 
 ---
 
-### **【我会为你生成的Prompt示例】**
+### 【我会为你生成的Prompt示例】
 基于上述案例，我会输出类似：  
 `Futuristic medical robot in a sterile laboratory, glowing translucent body with glass texture, carefully holding a strand of DNA that disintegrates into golden particles, cinematic 3D rendering with sci-fi aesthetic, Apple keynote-style lighting, cool white and azure background with bokeh effect, central symmetry composition, --ar 16:9 --v 6.1`
 

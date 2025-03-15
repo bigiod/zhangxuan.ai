@@ -4,7 +4,7 @@ date: 2024-07-02
 weight: 2200
 draft: false
 description: "「一人企业方法论」"
-featureimage: "https://zhangxuan.ai/images/feature/one-person-bussiness.jpg"
+featureimage: "https://zhangxuan.ai/images/feature/one-person-bussiness-2025.jpg"
 slug: "menu"
 tags: ["一人企业"]
 series: ["一人企业方法论"]

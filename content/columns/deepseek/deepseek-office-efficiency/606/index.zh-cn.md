@@ -1,5 +1,5 @@
 ---
-title: "eepSeek配合KIMI，自动生成PPT，感觉自己要失业了！"
+title: "DeepSeek配合KIMI，自动生成PPT，感觉自己要失业了！"
 date: 2025-03-14
 weight: 100
 draft: false

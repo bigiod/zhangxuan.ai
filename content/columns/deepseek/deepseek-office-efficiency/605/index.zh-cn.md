@@ -1,11 +1,11 @@
 ---
-title: "DeepSeek嵌入到Excel，提升10倍工作效率，太牛了！"
+title: "告别重复劳动！手把手教你用AI自动化Excel，老板惊掉下巴！"
 date: 2025-03-14
 weight: 100
 draft: false
-description: ""
-tags: []
-slug: ""
+description: "DeepSeek嵌入Excel全攻略：通过VBA代码调用API实现AI自动化，10倍提升数据处理效率。"
+tags: [DeepSeek-Excel, VBA自动化, API集成, 办公效率, 数据处理, Excel技巧, 工作流优化]
+slug: "deepseek-excel-integration-guide"
 ---
 ## DeepSeek嵌入到Excel，提升10倍工作效率，太牛了！
 

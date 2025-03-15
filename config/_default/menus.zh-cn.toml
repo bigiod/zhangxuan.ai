@@ -60,36 +60,6 @@ pageRef = "posts"
 weight = 20
 
 [[main]]
-  name = "AI内容创作"
-  parent = "知识分享"
-  pageRef = "zmt"
-  weight = 2010
-
-[[main]]
-  name = "提示词工程"
-  parent = "知识分享"
-  pageRef = "prompt"
-  weight = 2020
-
-[[main]]
-  name = "自动化工作流"
-  parent = "知识分享"
-  pageRef = "aiflowwork"
-  weight = 2030
-
-[[main]]
-  name = "RSS订阅源"
-  parent = "知识分享"
-  pageRef = "rss"
-  weight = 2040
-
-[[main]]
-  name = "AI SEO"
-  parent = "知识分享"
-  pageRef = "prompt"
-  weight = 2050
-
-[[main]]
 name = "学习专栏"
 pageRef = "columns"
 weight = 30
@@ -131,50 +101,50 @@ weight = 30
   pageRef = "columns/ai-automated-earning/1-medium-make-money"
   weight = 3050
 
-[[main]]
-name = "📚知识库"
- url  = "https://metaxai.notion.site/knowledgebase"
-weight = 40
+# [[main]]
+# name = "📚知识库"
+# url  = "https://metaxai.notion.site/knowledgebase"
+# weight = 40
 
-[[main]]
-  name = "🔠 Prompt提示词"
-  parent = "📚知识库"
-  url = ""
-  weight = 4010
+# [[main]]
+# name = "🔠 Prompt提示词"
+#  parent = "📚知识库"
+#  url = ""
+#  weight = 4010
 
-[[main]]
-  name = "🧰 AI工具箱"
-  parent = "📚知识库"
-  url = ""
-  weight = 4020
+# [[main]]
+#  name = "🧰 AI工具箱"
+#  parent = "📚知识库"
+#  url = ""
+#  weight = 4020
 
-[[main]]
-  name = "📚 我的书架"
-  parent = "📚知识库"
-   url = ""
-  weight = 4030
+# [[main]]
+#  name = "📚 我的书架"
+#  parent = "📚知识库"
+#   url = ""
+#  weight = 4030
 
-[[main]]
-  name = "🗞️ RSS订阅源"
-  parent = "📚知识库"
-   url = ""
-  weight = 4040
+# [[main]]
+#  name = "🗞️ RSS订阅源"
+#  parent = "📚知识库"
+#  url = ""
+#  weight = 4040
 
-[[main]]
-  name = "🛠️ HTML > Markdown"
-  parent = "📚知识库"
-  url = "https://devtool.tech/html-md"
-  weight = 4050
+# [[main]]
+#  name = "🛠️ HTML > Markdown"
+#  parent = "📚知识库"
+#  url = "https://devtool.tech/html-md"
+#  weight = 4050
 
 [[main]]
 name = "赞助支持"
 pageRef = "reward"
 weight = 60
 
-[[main]]
-name = "关于"
-pageRef = "about"
-weight = 100
+# [[main]]
+# name = "关于"
+# pageRef = "about"
+# weight = 100
 
 
 

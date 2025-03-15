@@ -1,10 +1,11 @@
 ---
 title: "关于"
 description: "关于"
-showAuthor: false
+
 showReadingTime: false
 showTableOfContents: false
 showLikes: false
+draft: true
 
 cascade:
   showDate: false

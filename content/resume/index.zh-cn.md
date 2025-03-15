@@ -5,6 +5,7 @@ showAuthor: false
 showReadingTime: false
 showTableOfContents: true
 showLikes: false
+draft: true
 
 cascade:
   showDate: false

@@ -1,11 +1,11 @@
 ---
-title: "DeepSeek R1 + 个人知识库，直接起飞！"
+title: "三步搭建个人AI知识库！DeepSeek-R1+免费工具，效率翻倍！"
 date: 2025-03-14
 weight: 100
 draft: false
-description: ""
-tags: []
-slug: ""
+description: "DeepSeek-R1结合Cherry Studio搭建个人知识库教程：模型配置、数据管理、智能对话全流程解析。"
+tags: [DeepSeek-R1, Cherry Studio, 个人知识库, AI应用, 硅基流动, 模型配置, 开源工具]
+slug: "deepseek-r1-cherry-studio-knowledge-base-guide"
 ---
 ## DeepSeek R1 + 个人知识库，直接起飞！
 
