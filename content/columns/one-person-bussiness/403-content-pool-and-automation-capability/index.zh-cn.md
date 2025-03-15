@@ -6,6 +6,7 @@ draft: false
 description: "内容池和自动化能力"
 slug: ""
 tags: ["一人企业","内容","自动化"]
+featureimage: "https://zhangxuan.ai/images/feature/one-person-bussiness.jpg"
 series: ["一人企业方法论"]
 series_order: 19
 seriesOpened: false

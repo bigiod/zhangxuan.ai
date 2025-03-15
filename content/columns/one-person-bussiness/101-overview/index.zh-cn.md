@@ -6,6 +6,8 @@ draft: false
 description: "「一人企业方法论」概述"
 slug: "overview"
 tags: ["一人企业"]
+featureimage: "https://zhangxuan.ai/images/feature/one-person-bussiness.jpg"
+slug: ""
 series: ["一人企业方法论"]
 series_order: 2
 seriesOpened: false

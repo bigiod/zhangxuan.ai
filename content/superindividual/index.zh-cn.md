@@ -75,7 +75,6 @@ cascade:
 
  {{< article link="/columns/ens-ipfs-dwebsite/101-overview/" >}}
 
-### AI超级个体
 
 {{< article link="/columns/ai-super-individual/superindividual-1/" >}}
 

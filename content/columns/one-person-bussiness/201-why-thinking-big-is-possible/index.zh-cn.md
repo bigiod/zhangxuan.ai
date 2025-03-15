@@ -6,6 +6,7 @@ draft: false
 description: "「为什么以小博大是可能的"
 slug: "why-thinking-big-is-possible"
 tags: ["一人企业"]
+featureimage: "https://zhangxuan.ai/images/feature/one-person-bussiness.jpg"
 series: ["一人企业方法论"]
 series_order: 4
 seriesOpened: false

@@ -6,6 +6,7 @@ draft: false
 description: "理想的一人企业基础设施"
 slug: ""
 tags: ["一人企业","基础设施"]
+featureimage: "https://zhangxuan.ai/images/feature/one-person-bussiness.jpg"
 series: ["一人企业方法论"]
 series_order: 17
 seriesOpened: false

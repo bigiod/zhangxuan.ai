@@ -2,7 +2,7 @@
 title: "认识超级个体"
 date: 2024-07-02
 weight: 20
-draft: false
+draft: true
 description: ""
 slug: ""
 tags: []

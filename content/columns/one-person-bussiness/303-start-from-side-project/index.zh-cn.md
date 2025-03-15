@@ -6,6 +6,8 @@ draft: false
 description: "用副业构建双线收入"
 slug: ""
 tags: ["一人企业"]
+featureimage: "https://zhangxuan.ai/images/feature/one-person-bussiness.jpg"
+featureimage: "https://zhangxuan.ai/images/feature/one-person-bussiness.jpg"
 series: ["一人企业方法论"]
 series_order: 14
 seriesOpened: false

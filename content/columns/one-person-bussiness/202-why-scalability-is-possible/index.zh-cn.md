@@ -6,6 +6,7 @@ draft: false
 description: "为什么规模化是可能的"
 slug: ""
 tags: ["一人企业","规模化"]
+featureimage: "https://zhangxuan.ai/images/feature/one-person-bussiness.jpg"
 series: ["一人企业方法论"]
 series_order: 5
 seriesOpened: false

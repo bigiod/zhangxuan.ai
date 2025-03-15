@@ -2,7 +2,7 @@
 title: "超级个体时代已来"
 date: 2024-07-02
 weight: 1
-draft: false
+draft: true
 description: ""
 slug: ""
 tags: []

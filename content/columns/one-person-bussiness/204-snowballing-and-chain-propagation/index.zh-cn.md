@@ -6,6 +6,7 @@ draft: false
 description: "滚雪球和链式传播"
 slug: ""
 tags: ["一人企业"]
+featureimage: "https://zhangxuan.ai/images/feature/one-person-bussiness.jpg"
 series: ["一人企业方法论"]
 series_order: 7
 seriesOpened: false

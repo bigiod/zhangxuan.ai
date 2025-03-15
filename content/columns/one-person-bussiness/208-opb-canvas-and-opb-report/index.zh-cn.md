@@ -6,6 +6,7 @@ draft: false
 description: "一人企业画布和一人企业月报"
 slug: ""
 tags: ["一人企业"]
+featureimage: "https://zhangxuan.ai/images/feature/one-person-bussiness.jpg"
 series: ["一人企业方法论"]
 series_order: 11
 seriesOpened: false

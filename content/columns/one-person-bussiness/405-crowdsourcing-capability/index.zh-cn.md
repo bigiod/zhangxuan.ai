@@ -6,6 +6,7 @@ draft: false
 description: "众包能力义"
 slug: ""
 tags: ["一人企业","众包能力"]
+featureimage: "https://zhangxuan.ai/images/feature/one-person-bussiness.jpg"
 series: ["一人企业方法论"]
 series_order: 21
 seriesOpened: false

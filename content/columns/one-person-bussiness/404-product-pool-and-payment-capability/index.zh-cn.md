@@ -6,6 +6,7 @@ draft: false
 description: "产品池和支付能力"
 slug: ""
 tags: ["一人企业","产品","支付"]
+featureimage: "https://zhangxuan.ai/images/feature/one-person-bussiness.jpg"
 series: ["一人企业方法论"]
 series_order: 20
 seriesOpened: false

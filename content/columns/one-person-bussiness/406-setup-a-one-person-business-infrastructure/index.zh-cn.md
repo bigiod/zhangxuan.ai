@@ -7,6 +7,7 @@ description: "搭建一人企业基础设施"
 slug: ""
 tags: ["一人企业"]
 series: ["一人企业方法论"]
+featureimage: "https://zhangxuan.ai/images/feature/one-person-bussiness.jpg"
 series_order: 22
 seriesOpened: false
 ---

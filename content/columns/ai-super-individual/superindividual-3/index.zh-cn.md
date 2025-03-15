@@ -2,7 +2,7 @@
 title: "成为超级个体必须掌握的7个新知识"
 date: 2024-07-02
 weight: 30
-draft: false
+draft: true
 description: ""
 slug: ""
 tags: []

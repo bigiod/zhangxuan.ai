@@ -2,7 +2,7 @@
 title: "《一人企业方法论》"
 date: 2024-07-02
 weight: 40
-draft: false
+draft: true
 description: ""
 slug: ""
 tags: []

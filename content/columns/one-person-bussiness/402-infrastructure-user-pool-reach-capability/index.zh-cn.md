@@ -6,6 +6,7 @@ draft: false
 description: "用户池和触达能力"
 slug: ""
 tags: ["一人企业"]
+featureimage: "https://zhangxuan.ai/images/feature/one-person-bussiness.jpg"
 series: ["一人企业方法论"]
 series_order: 18
 seriesOpened: false

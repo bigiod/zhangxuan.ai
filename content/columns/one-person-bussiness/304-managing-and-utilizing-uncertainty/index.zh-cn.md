@@ -6,6 +6,7 @@ draft: false
 description: "管理和利用不确定性"
 slug: ""
 tags: ["一人企业"]
+featureimage: "https://zhangxuan.ai/images/feature/one-person-bussiness.jpg"
 series: ["一人企业方法论"]
 series_order: 15
 seriesOpened: false

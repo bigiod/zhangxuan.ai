@@ -6,6 +6,7 @@ draft: false
 description: "一人企业如何选择赛道"
 slug: ""
 tags: ["一人企业","赛道"]
+featureimage: "https://zhangxuan.ai/images/feature/one-person-bussiness.jpg"
 series: ["一人企业方法论"]
 series_order: 8
 seriesOpened: false

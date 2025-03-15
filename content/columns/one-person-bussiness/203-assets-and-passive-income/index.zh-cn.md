@@ -6,6 +6,7 @@ draft: false
 description: "「资产和被动收入"
 slug: ""
 tags: ["一人企业","资产","被动收入"]
+featureimage: "https://zhangxuan.ai/images/feature/one-person-bussiness.jpg"
 series: ["一人企业方法论"]
 series_order: 6
 seriesOpened: false
