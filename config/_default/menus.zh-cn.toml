@@ -101,34 +101,34 @@ weight = 30
   weight = 3005
 
 
-[[main]]
-  name = "AI超级个体"
-  parent = "学习专栏"
-  pageRef = "superindividual"
-  weight = 3010
+# [[main]]
+#  name = "AI超级个体"
+#  parent = "学习专栏"
+#  pageRef = ""
+# weight = 3010
 
 [[main]]
   name = "一人企业"
   parent = "学习专栏"
-  pageRef = "columns/one-person-bussiness/00-menu/"
+  pageRef = "columns/one-person-bussiness/00-menu"
   weight = 3020
 
 [[main]]
   name = "dWebsite"
   parent = "学习专栏"
-  pageRef = "columns/ens-ipfs-dwebsite/101-overview/"
+  pageRef = "columns/ens-ipfs-dwebsite/101-overview"
   weight = 3030
 
 [[main]]
   name = "Markdown"
   parent = "学习专栏"
-  pageRef = "columns/markdown/1-mastering-markdown-for-productivity/"
+  pageRef = "columns/markdown/1-mastering-markdown-for-productivity"
   weight = 3040
 
 [[main]]
   name = "AI自动化赚钱"
   parent = "学习专栏"
-  pageRef = "columns/ai-automated-earning/1-medium-make-money/"
+  pageRef = "columns/ai-automated-earning/1-medium-make-money"
   weight = 3050
 
 [[main]]
