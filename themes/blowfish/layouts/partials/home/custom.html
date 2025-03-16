@@ -76,7 +76,16 @@
 
 {{ partial "slides.html" . }}
 
-{{ partial "video.html" . }}
+<!-- 在这里添加视频播放效果 -->
+<div class="video-container mt-8 mb-8">
+    <!-- <div class="bilibili-video mb-6">
+        {{ (printf "{{< bilibili BV1wyQSYmEz3 >}}" | .Page.RenderString) }}
+    </div> -->
+    
+    <div class="youtube-video">
+        {{ (printf "{{< youtube njX2bu-_Vw4 >}}" | .Page.RenderString) }}
+    </div>
+</div>
 
 <section>
     {{ partial "recent-articles/main.html" . }}
