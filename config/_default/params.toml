@@ -171,7 +171,7 @@ icons = [                           # 图标配置数组
 # 轮播图配置
 [[slides]]
   title = "ChatGPT"
-  image = "/images/slides/chatgpt.webp"
+  image = "/images/slides/featured_2617776227650053.jpg"
   link = ""
   description = ""
   openInNewTab = false

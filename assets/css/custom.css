@@ -172,10 +172,15 @@ td {
     outline-style:none
   }
 
+/* 默认隐藏浮动条 */
+.floating-bar {
+  display: none;
+}
 
 /* 仅在大屏显示 */
 @media (min-width: 768px) {
     .floating-bar {
+      display: flex; /* 在大屏上显示 */
       position: fixed;
       top: 50%;
       right: 20px;
@@ -186,7 +191,6 @@ td {
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       z-index: 999;
-      display: flex;
       flex-direction: column;
       gap: 20px;
       align-items: center;
@@ -207,7 +211,7 @@ td {
   
     .fb-qr-image {
         position: absolute;
-        left: -160px;
+        left: -170px;
         top: 50%;
         transform: translateY(-50%);
         /* 删除固定宽高 */
@@ -231,17 +235,5 @@ td {
         display: flex;
         justify-content: center;
         align-items: center;
-    
-  }
-
-
-  <!-- 调试信息 -->
-  <div style="background: #ffeeee; padding: 10px; margin: 10px 0; border: 1px solid red;">
-  <p>调试信息:</p>
-  <p>指定路径: {{ .Site.Params.featuredPost }}</p>
-  {{ $page := .Site.GetPage .Site.Params.featuredPost }}
-  <p>找到页面: {{ if $page }}是{{ else }}否{{ end }}</p>
-  {{ with $page }}
-  <p>页面标题: {{ .Title }}</p>
-  {{ end }}
-  </div>
+    }
+}
