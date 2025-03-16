@@ -1,0 +1,91 @@
+{{ $slides := .Site.Params.slides | default slice }}
+{{ if gt (len $slides) 0 }}
+<!-- 引入独立的CSS文件 -->
+{{ $slidesCSS := resources.Get "css/slides.css" | resources.Minify }}
+<link rel="stylesheet" href="{{ $slidesCSS.RelPermalink }}">
+
+<div class="ai-slides-container">
+  <div class="ai-slides-buttons">
+    {{ range $index, $slide := $slides }}
+    <button 
+      class="ai-slides-btn {{ if eq $index 0 }}active{{ end }}" 
+      data-index="{{ $index }}"
+      aria-label="{{ $slide.title }}">
+      {{ $slide.title }}
+    </button>
+    {{ end }}
+  </div>
+  
+  <div class="ai-slides-images">
+    {{ range $index, $slide := $slides }}
+    <div class="ai-slide-item {{ if eq $index 0 }}active{{ end }}" data-index="{{ $index }}">
+      <a href="{{ $slide.link }}" class="ai-slide-link" {{ if $slide.openInNewTab }}target="_blank" rel="noopener noreferrer"{{ end }}>
+        <img 
+          src="{{ $slide.image }}" 
+          alt="{{ $slide.title }}" 
+          class="ai-slide-image nozoom"
+          loading="{{ if eq $index 0 }}eager{{ else }}lazy{{ end }}"
+        >
+        {{ if $slide.description }}
+        <div class="ai-slide-description">
+          <h3>{{ $slide.title }}</h3>
+          <p>{{ $slide.description }}</p>
+        </div>
+        {{ end }}
+      </a>
+    </div>
+    {{ end }}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const slideButtons = document.querySelectorAll('.ai-slides-btn');
+    const slideItems = document.querySelectorAll('.ai-slide-item');
+    
+    // 初始化函数，确保始终只有一个幻灯片处于活动状态
+    function initSlides() {
+      // 如果没有活动的幻灯片，激活第一个
+      const activeItem = document.querySelector('.ai-slide-item.active');
+      if (!activeItem && slideItems.length > 0) {
+        slideButtons[0]?.classList.add('active');
+        slideItems[0]?.classList.add('active');
+      }
+      
+      // 强制设置所有幻灯片项为绝对定位
+      slideItems.forEach(item => {
+        item.style.position = 'absolute';
+        item.style.display = item.classList.contains('active') ? 'block' : 'none';
+      });
+    }
+    
+    slideButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const index = this.getAttribute('data-index');
+        
+        // 移除所有活动状态
+        slideButtons.forEach(btn => btn.classList.remove('active'));
+        slideItems.forEach(item => {
+          item.classList.remove('active');
+          item.style.display = 'none';
+        });
+        
+        // 设置当前活动状态
+        this.classList.add('active');
+        const activeItem = document.querySelector(`.ai-slide-item[data-index="${index}"]`);
+        activeItem.classList.add('active');
+        activeItem.style.display = 'block';
+      });
+    });
+    
+    // 监听窗口大小变化，确保幻灯片显示正确
+    window.addEventListener('resize', initSlides);
+    
+    // 初始化
+    initSlides();
+    
+    // 确保在小屏幕上也能正确显示
+    setTimeout(initSlides, 100);
+  });
+</script>
+{{ end }}

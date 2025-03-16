@@ -1,0 +1,31 @@
+{{ if .Site.Params.floatingBar.enable }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<div class="floating-bar">
+  {{ range .Site.Params.floatingBar.icons }}
+  <div class="fb-icon" data-qr="{{ .qr }}">
+    <i class="fas {{ .icon }}"></i>
+  </div>
+  {{ end }}
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.fb-icon').forEach(icon => {
+    const qrPath = icon.dataset.qr
+    const qrImg = new Image()
+    qrImg.src = qrPath
+    qrImg.className = 'fb-qr-image'
+    
+    icon.appendChild(qrImg)
+    
+    icon.addEventListener('mouseenter', () => 
+      qrImg.style.opacity = '1'
+    )
+    icon.addEventListener('mouseleave', () => 
+      qrImg.style.opacity = '0'
+    )
+  })
+})
+</script>
+{{ end }}

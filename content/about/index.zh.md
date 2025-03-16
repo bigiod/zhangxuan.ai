@@ -5,7 +5,7 @@ description: "关于"
 showReadingTime: false
 showTableOfContents: false
 showLikes: false
-draft: true
+draft: false
 
 cascade:
   showDate: false

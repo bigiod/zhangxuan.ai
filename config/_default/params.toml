@@ -39,8 +39,8 @@ smartTOCHideUnfocusedChildren = false
   showScrollToTop = true
 
 [homepage]
-  layout = "background" # valid options: page, profile, hero, card, background, custom
-# homepageImage = "/img/featured_2617776227650053.jpg" # used in: hero, and card
+  layout = "custom" # valid options: page, profile, hero, card, background, custom
+  # homepageImage = "/img/featured2616237192988165.jpg" # used in: hero, and card
   showRecent = true
   showRecentItems = 6
   showMoreLink = true
@@ -154,3 +154,85 @@ smartTOCHideUnfocusedChildren = false
   # bing = ""
   # pinterest = ""
   # yandex = ""
+
+
+[floatingBar]
+enable = true
+bgColor = "rgba(255,255,255,0.8)"  # 背景颜色
+width = "50px"                      # 容器宽度
+icons = [                           # 图标配置数组
+  { icon = "fa-brands fa-weixin", qr = "/images/qr-wechat.png" },
+  { icon = "fa-solid fa-user-group", qr = "/images/qr-wechat.png" },
+  { icon = "fa-solid fa-gift", qr = "/images/qr-wechat.png" },
+  { icon = "fa-solid fa-thumbs-up", qr = "/images/qr-wechat.png" }
+]
+
+
+# 轮播图配置
+[[slides]]
+  title = "ChatGPT"
+  image = "/images/slides/chatgpt.webp"
+  link = ""
+  description = ""
+  openInNewTab = false
+
+[[slides]]
+  title = "Midjourney"
+  image = "/images/slides/midjourney.webp"
+  link = ""
+  description = ""
+  openInNewTab = false
+
+[[slides]]
+  title = "Runway"
+  image = "/images/slides/runway.webp"
+  link = ""
+  description = ""
+  openInNewTab = false
+
+[[slides]]
+  title = "OpenLLM"
+  image = "/images/slides/llm.webp"
+  link = ""
+  description = ""
+  openInNewTab = false
+
+[[slides]]
+  title = "Audio"
+  image = "/images/slides/audio.webp"
+  link = ""
+  description = ""
+  openInNewTab = false
+
+[[slides]]
+  title = "Hegyen"
+  image = "/images/slides/heygen.webp"
+  link = ""
+  description = ""
+  openInNewTab = false
+
+[[slides]]
+  title = "Stable diffusion"
+  image = "/images/slides/sd.webp"
+  link = ""
+  description = ""
+  openInNewTab = false
+
+[[slides]]
+  title = "Agents"
+  image = "/images/slides/agent.webp"
+  link = ""
+  description = ""
+  openInNewTab = false
+
+[featruedContent]
+# 指定要在首页显示的文章路径
+  path = "posts/1000fans"
+
+# 首页特色视频配置
+[featuredVideo]
+title = "学知识 · 致良知 · 开世界"
+description = "每天进步一点点"
+type = "youtube"  # 可选值: youtube, bilibili, local
+videoId = "KKNCiRWd_j0"  # YouTube视频ID、B站BV号或本地视频路径
+thumbnail = "/images/videos/featured_2617776227650053.jpg"  # 视频缩略图o
