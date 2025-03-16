@@ -170,8 +170,15 @@ icons = [                           # 图标配置数组
 
 # 轮播图配置
 [[slides]]
+  title = "Hegyen"
+  image = "/images/slides/heygen.webp"
+  link = ""
+  description = ""
+  openInNewTab = false
+
+[[slides]]
   title = "ChatGPT"
-  image = "/images/slides/featured_2617776227650053.jpg"
+  image = "/images/slides/chatgpt.webp"
   link = ""
   description = ""
   openInNewTab = false
@@ -205,13 +212,6 @@ icons = [                           # 图标配置数组
   openInNewTab = false
 
 [[slides]]
-  title = "Hegyen"
-  image = "/images/slides/heygen.webp"
-  link = ""
-  description = ""
-  openInNewTab = false
-
-[[slides]]
   title = "Stable diffusion"
   image = "/images/slides/sd.webp"
   link = ""
@@ -224,11 +224,3 @@ icons = [                           # 图标配置数组
   link = ""
   description = ""
   openInNewTab = false
-
-# 首页特色视频配置
-[featuredVideo]
-title = "学知识 · 致良知 · 开世界"
-description = "每天进步一点点"
-type = "youtube"  # 可选值: youtube, bilibili, local
-videoId = "KKNCiRWd_j0"  # YouTube视频ID、B站BV号或本地视频路径
-thumbnail = "/images/videos/featured_2617776227650053.jpg"  # 视频缩略图o
