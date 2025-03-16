@@ -225,10 +225,6 @@ icons = [                           # 图标配置数组
   description = ""
   openInNewTab = false
 
-[featruedContent]
-# 指定要在首页显示的文章路径
-  path = "posts/1000fans"
-
 # 首页特色视频配置
 [featuredVideo]
 title = "学知识 · 致良知 · 开世界"
