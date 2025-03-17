@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>永久存储 on MetaX</title>
+    <link>//localhost:1313/tags/%E6%B0%B8%E4%B9%85%E5%AD%98%E5%82%A8/</link>
+    <description>Recent content in 永久存储 on MetaX</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 MetaX</copyright>
+    <lastBuildDate>Mon, 17 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/tags/%E6%B0%B8%E4%B9%85%E5%AD%98%E5%82%A8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>去中心化AI知识库：构建数字文明的诺亚方舟</title>
+      <link>//localhost:1313/posts/decentralized-knowledge-ark/</link>
+      <pubDate>Mon, 17 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/posts/decentralized-knowledge-ark/</guid>
+      <description>在这个每天有数百个传统网站永久消失，或者数以万计的自媒体频道</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/posts/decentralized-knowledge-ark/featured_e45dd94eb928df72f150b41221eb2851.jpg" />
+    </item>
+    
+  </channel>
+</rss>

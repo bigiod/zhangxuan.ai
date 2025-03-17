@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>关于DeepSeek on MetaX</title>
+    <link>//localhost:1313/columns/deepseek/deepseek-basics/</link>
+    <description>Recent content in 关于DeepSeek on MetaX</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 MetaX</copyright>
+    <lastBuildDate>Thu, 13 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/columns/deepseek/deepseek-basics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>什么是 DeepSeek</title>
+      <link>//localhost:1313/columns/deepseek/deepseek-basics/deepseek-ai-toolkit/</link>
+      <pubDate>Thu, 13 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/columns/deepseek/deepseek-basics/deepseek-ai-toolkit/</guid>
+      <description>什么是 DeepSeek # DeepSeek（深度求索）是一款由国内团队开发的</description>
+      
+    </item>
+    
+    <item>
+      <title>DeepSeek 创始团队介绍</title>
+      <link>//localhost:1313/columns/deepseek/deepseek-basics/103/</link>
+      <pubDate>Sat, 01 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/columns/deepseek/deepseek-basics/103/</guid>
+      <description>创始团队背景和创业故事 # DeepSeek 的故事始于创始人梁文锋，这位198</description>
+      
+    </item>
+    
+    <item>
+      <title>DeepSeek 发展历程</title>
+      <link>//localhost:1313/columns/deepseek/deepseek-basics/102/</link>
+      <pubDate>Sat, 01 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/columns/deepseek/deepseek-basics/102/</guid>
+      <description>DeepSeek 发展历程 # 创立与发展 # 创立背景 # 起源于金融量化领域 DeepSeek 的前身</description>
+      
+    </item>
+    
+  </channel>
+</rss>

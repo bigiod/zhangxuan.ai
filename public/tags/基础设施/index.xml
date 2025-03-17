@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>基础设施 on MetaX</title>
+    <link>//localhost:1313/tags/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/</link>
+    <description>Recent content in 基础设施 on MetaX</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 MetaX</copyright>
+    <lastBuildDate>Tue, 02 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/tags/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>理想的一人企业基础设施</title>
+      <link>//localhost:1313/columns/one-person-bussiness/401-what-is-the-ideal-one-person-business-infrastructure/</link>
+      <pubDate>Tue, 02 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/columns/one-person-bussiness/401-what-is-the-ideal-one-person-business-infrastructure/</guid>
+      <description>在了解方法论后，我们通常希望开始实践。但从这里开始，难度就会</description>
+      
+    </item>
+    
+  </channel>
+</rss>

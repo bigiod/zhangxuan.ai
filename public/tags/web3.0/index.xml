@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web3.0 on MetaX</title>
+    <link>//localhost:1313/tags/web3.0/</link>
+    <description>Recent content in Web3.0 on MetaX</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 MetaX</copyright>
+    <lastBuildDate>Tue, 09 Jul 2024 05:59:04 +0800</lastBuildDate><atom:link href="//localhost:1313/tags/web3.0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>零基础打造Web3.0 AI超级个体门户</title>
+      <link>//localhost:1313/columns/ens-ipfs-dwebsite/101-overview/</link>
+      <pubDate>Tue, 09 Jul 2024 05:59:04 +0800</pubDate>
+      
+      <guid>//localhost:1313/columns/ens-ipfs-dwebsite/101-overview/</guid>
+      <description>课程信息： # 课程说明: 本课程是《零基础打造 Web3.0 AI超级个体门户</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/columns/ens-ipfs-dwebsite/101-overview/featured2616106902849029.jpg" />
+    </item>
+    
+    <item>
+      <title>AI超级个体</title>
+      <link>//localhost:1313/superindividual/</link>
+      <pubDate>Tue, 02 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/superindividual/</guid>
+      <description>AI 超级个体的时代 # 互联网时代，人们的工作以脑力为主、体力为辅</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/superindividual/feature.jpg" />
+    </item>
+    
+  </channel>
+</rss>
