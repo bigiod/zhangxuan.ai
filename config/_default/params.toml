@@ -78,7 +78,6 @@ smartTOCHideUnfocusedChildren = false
   showAuthorsBadges = true
   showWordCount = false
   # sharingLinks = [ "linkedin", "twitter", "bluesky", "reddit", "pinterest", "facebook", "email", "whatsapp", "telegram"]
-  showZenMode = false
 
 [list]
   #是否显示营销特效
@@ -155,7 +154,7 @@ smartTOCHideUnfocusedChildren = false
   # pinterest = ""
   # yandex = ""
 
-
+# 右侧浮动二维码图片菜单
 [floatingBar]
 enable = true
 bgColor = "rgba(255,255,255,0.8)"  # 背景颜色
@@ -167,8 +166,7 @@ icons = [                           # 图标配置数组
   { icon = "fa-solid fa-thumbs-up", qr = "/images/qr-wechat.png" }
 ]
 
-
-# 轮播图配置
+# 首页轮播图配置
 [[slides]]
   title = "Hegyen"
   image = "/images/slides/heygen.webp"
@@ -212,7 +210,7 @@ icons = [                           # 图标配置数组
   openInNewTab = false
 
 [[slides]]
-  title = "Stable diffusion"
+  title = "Stable Diffusion"
   image = "/images/slides/sd.webp"
   link = ""
   description = ""

@@ -11,48 +11,15 @@
 # ordered by weight from lowest to highest.
 
 
-
+[[main]]
+name = "首页"
+pageRef = "/"
+weight = 10
 
 [[main]]
-  name = "🔥DeepSeek"
-  pageRef = "columns/deepseek"
-  weight = 10
-
-[[main]]
-  name = "新手快速使用指南"
-  parent = "🔥DeepSeek"
-  pageRef = "columns/deepseek/deepseek-usage-guide"
-  weight = 1010
-
-[[main]]
-  name = "DeepSeek提问技巧"
-  parent = "🔥DeepSeek"
-  pageRef = "columns/deepseek/deepseek-questioning-skills"
-  weight = 1020
-
-[[main]]
-  name = "DeepSeek+内容创作"
-  parent = "🔥DeepSeek"
-  pageRef = "columns/deepseek/deepseek-content-creation"
-  weight = 1030
-
-[[main]]
-  name = "DeepSeek+创意设计"
-  parent = "🔥DeepSeek"
-  pageRef = "columns/deepseek/deepseek-creative-design"
-  weight = 1040
-
-[[main]]
-  name = "DeepSeek+办公效率"
-  parent = "🔥DeepSeek"
-  pageRef = "columns/deepseek/deepseek-office-efficiency"
-  weight = 1050
-
-[[main]]
-  name = "DeepSeek资源汇总"
-  parent = "🔥DeepSeek"
-  pageRef = "columns/deepseek/deepseek-resource-hub"
-  weight = 1060
+name = "🔥DeepSeek"
+pageRef = "columns/deepseek"
+weight = 10
 
 [[main]]
 name = "知识分享"
@@ -60,46 +27,15 @@ pageRef = "posts"
 weight = 20
 
 [[main]]
+name = "成长叙事"
+pageRef = "timeline"
+weight = 30
+
+[[main]]
 name = "学习专栏"
 pageRef = "columns"
 weight = 30
 
-[[main]]
-  name = "DeepSeek"
-  parent = "学习专栏"
-  pageRef = "columns/deepseek"
-  weight = 3005
-
-
-# [[main]]
-#  name = "AI超级个体"
-#  parent = "学习专栏"
-#  pageRef = ""
-# weight = 3010
-
-[[main]]
-  name = "一人企业"
-  parent = "学习专栏"
-  pageRef = "columns/one-person-bussiness/00-menu"
-  weight = 3020
-
-[[main]]
-  name = "dWebsite"
-  parent = "学习专栏"
-  pageRef = "columns/ens-ipfs-dwebsite/101-overview"
-  weight = 3030
-
-[[main]]
-  name = "Markdown"
-  parent = "学习专栏"
-  pageRef = "columns/markdown/1-mastering-markdown-for-productivity"
-  weight = 3040
-
-[[main]]
-  name = "AI自动化赚钱"
-  parent = "学习专栏"
-  pageRef = "columns/ai-automated-earning/1-medium-make-money"
-  weight = 3050
 
 # [[main]]
 # name = "📚知识库"
