@@ -172,6 +172,10 @@ td {
     outline-style:none
   }
 
+
+  
+  
+
 /* 默认隐藏浮动条 */
 .floating-bar {
   display: none;
@@ -237,3 +241,46 @@ td {
         align-items: center;
     }
 }
+
+/* 新的打赏功能 */
+
+.reward-container {
+  text-align: center;
+  margin-top: 20px;
+  }
+  
+  .reward-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  }
+  
+  .reward-hint {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+  }
+  
+  .reward-images {
+  display: none;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 20px;
+  }
+  
+  .reward-item {
+  margin: 0 10px;
+  }
+  
+  .reward-item img {
+  width: 200px;
+  height: auto;
+  }
+  
+  @media (max-width: 768px) {
+  .reward-images {
+  display: none; /* 窄屏时不显示二维码 */
+  }
+  }

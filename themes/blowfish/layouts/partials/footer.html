@@ -69,3 +69,25 @@
   {{ partialCached "extend-footer.html" . }}
   {{ end }}
 </footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  var rewardButton = document.querySelector('.reward-button');
+  if (rewardButton) {
+  rewardButton.addEventListener('click', function() {
+  var container = document.querySelector('.reward-container');
+  if (window.innerWidth > 768) {
+  var images = container.querySelector('.reward-images');
+  if (images.style.display === 'none' || images.style.display === '') {
+  images.style.display = 'flex';
+  } else {
+  images.style.display = 'none';
+  }
+  } else {
+  var defaultLink = container.getAttribute('data-default-link');
+  window.location.href = defaultLink;
+  }
+  });
+  }
+  });
+  </script>

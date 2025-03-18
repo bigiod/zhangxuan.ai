@@ -7,7 +7,7 @@ slug: "1000fans"
 series: 
 series_order: 
 weight: 
-draft: false
+draft: true
 showAuthor: true
 showAuthorsBadges : false
 ---

@@ -1,0 +1,12 @@
+<div class="reward-container" data-default-link="{{ .Site.Data.rewards.defaultLink }}">
+    <button class="reward-button">{{ .Site.Data.rewards.buttonText }}</button>
+    <p class="reward-hint">{{ .Site.Data.rewards.hintText }}</p>
+    <div class="reward-images">
+    {{ range .Site.Data.rewards.rewards }}
+    <div class="reward-item">
+    <img src="{{ .image }}" alt="{{ .text }}">
+    <p>{{ .text }}</p>
+    </div>
+    {{ end }}
+    </div>
+</div>

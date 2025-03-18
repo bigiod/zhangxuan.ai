@@ -1,39 +1,4 @@
-<style>
-    .gallery {
-      column-gap: 10px; /* 列间距 */
-      width: 100%; /* 确保容器占满宽度 */
-    }
-    .gallery img {
-      width: 100%; /* 默认宽度填满列 */
-      height: auto; /* 保持原始宽高比 */
-      margin-bottom: 10px; /* 图片间距 */
-      break-inside: avoid; /* 防止图片跨列分割 */
-    }
-    /* Tailwind 响应式前缀 */
-    @media (min-width: 768px) {
-      .md\:grid-w33 { width: 33%; }
-      .md\:grid-w50 { width: 50%; }
-    }
-    @media (min-width: 1280px) {
-      .xl\:grid-w25 { width: 25%; }
-    }
-    /* 根据图片数量动态调整列数 */
-    .gallery {
-      column-count: 3; /* 默认 3 列，可根据需要调整 */
-    }
-    @media (max-width: 1440px) {
-      .gallery { column-count: 4; }
-    }
-    @media (max-width: 1280px) {
-      .gallery { column-count: 3; }
-    }
-    @media (max-width: 768px) {
-      .gallery { column-count: 2; }
-    }
-    @media (max-width: 480px) {
-      .gallery { column-count: 1; }
-    }
-  </style>
+
 <div class="gallery">
     <img src="/images/certifications/nvidia-ai.jpg" class="grid-w50 md:grid-w33 xl:grid-w25" />
     <img src="/images/certifications/linkedin-pmi-ai.jpg" class="grid-w50 md:grid-w33 xl:grid-w25" />
