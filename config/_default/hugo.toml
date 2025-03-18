@@ -68,3 +68,10 @@ enableEmoji = true
       name = 'fragmentrefs'
       type = 'fragments'
       weight = 10
+
+[security]
+  [security.exec]
+    allow = ['^dart-sass-embedded$', '^go$', '^npx$', '^postcss$']  # 添加必要权限
+
+[markup.goldmark.renderer]
+  unsafe = true  # 必须开启
