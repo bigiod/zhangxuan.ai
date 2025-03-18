@@ -1,6 +1,6 @@
 buttonText: "打赏作者"
 hintText: "如果您觉得这篇文章有帮助，请考虑打赏作者。"
-defaultLink: "https://8x.world/"  # 窄屏时跳转的默认支付链接
+defaultLink: "weixin://dl/business/?t=sDm7qcR8fPN2n3g"  # 窄屏时跳转的默认支付链接
 rewards:
   - image: "/images/reward/wechatpay.png"
     text: "微信支付"
