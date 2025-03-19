@@ -60,7 +60,7 @@ smartTOCHideUnfocusedChildren = false
   showHero = true
   heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
   layoutBackgroundBlur = true # only used when heroStyle equals background or thumbAndBackground
-  layoutBackgroundHeaderSpace = true # only used when heroStyle equals background
+  layoutBackgroundHeaderSpace = false # only used when heroStyle equals background
   showBreadcrumbs = true
   showDraftLabel = true
   showEdit = true
@@ -85,7 +85,7 @@ smartTOCHideUnfocusedChildren = false
   #英雄特效风格：basic/基本，big/大图，background/背景图，thumbAndBackground/背景图大图混合
   heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
   layoutBackgroundBlur = true # only used when heroStyle equals background
-  layoutBackgroundHeaderSpace = true
+  layoutBackgroundHeaderSpace = false
   #是否显示面包屑导航
   showBreadcrumbs = true
   showSummary = false

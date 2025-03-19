@@ -73,7 +73,7 @@ weight = 30
 #  weight = 4050
 
 [[main]]
-name = "赞助支持"
+name = "赞助"
 pageRef = "reward"
 weight = 60
 
