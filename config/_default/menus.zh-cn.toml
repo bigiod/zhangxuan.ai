@@ -102,15 +102,15 @@ weight = 300
 # The footer menu is displayed at the bottom of the page, just before
 # the copyright notice. Configure as per the main menu above.
 
-[[footer]]
-name = "赞助"
-pageRef = "reward"
-weight = 10
+# [[footer]]
+# name = "赞助"
+# pageRef = "reward"
+# weight = 10
 
-[[footer]]
-name = "关于"
-pageRef = "about"
-weight = 100
+# [[footer]]
+# name = "关于"
+# pageRef = "about"
+# weight = 100
 
 # [[footer]]
 #   name = "Tags"
