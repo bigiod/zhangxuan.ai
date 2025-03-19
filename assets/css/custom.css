@@ -215,12 +215,12 @@ td {
   
     .fb-qr-image {
         position: absolute;
-        left: -170px;
+        left: -210px;
         top: 50%;
         transform: translateY(-50%);
         /* 删除固定宽高 */
-        max-width: 150px;  /* 最大宽度限制 */
-        max-height: 180px; /* 最大高度限制 */
+        max-width: 200px;  /* 最大宽度限制 */
+        max-height: 250px; /* 最大高度限制 */
         width: auto;       /* 保持原始宽度比例 */
         height: auto;      /* 保持原始高度比例 */ 
         object-fit: contain; /* 关键属性：保持图片比例 */
