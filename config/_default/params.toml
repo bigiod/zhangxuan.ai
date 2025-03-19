@@ -172,56 +172,56 @@ icons = [                           # 图标配置数组
 
 # 首页轮播图配置
 [[slides]]
-  title = "Hegyen"
-  image = "/images/slides/heygen.webp"
-  link = ""
-  description = ""
-  openInNewTab = false
-
-[[slides]]
-  title = "ChatGPT"
-  image = "/images/slides/chatgpt.webp"
-  link = ""
-  description = ""
-  openInNewTab = false
-
-[[slides]]
-  title = "Midjourney"
-  image = "/images/slides/midjourney.webp"
-  link = ""
-  description = ""
-  openInNewTab = false
-
-[[slides]]
-  title = "Runway"
-  image = "/images/slides/runway.webp"
-  link = ""
-  description = ""
-  openInNewTab = false
-
-[[slides]]
-  title = "OpenLLM"
+  title = "AI大模型"
   image = "/images/slides/llm.webp"
   link = ""
   description = ""
   openInNewTab = false
 
 [[slides]]
-  title = "Audio"
+  title = "AI数字人"
+  image = "/images/slides/heygen.webp"
+  link = ""
+  description = ""
+  openInNewTab = false
+
+[[slides]]
+  title = "AI会话"
+  image = "/images/slides/chatgpt.webp"
+  link = ""
+  description = ""
+  openInNewTab = false
+
+[[slides]]
+  title = "AI绘图"
+  image = "/images/slides/midjourney.webp"
+  link = ""
+  description = ""
+  openInNewTab = false
+
+[[slides]]
+  title = "AI视频"
+  image = "/images/slides/runway.webp"
+  link = ""
+  description = ""
+  openInNewTab = false
+
+[[slides]]
+  title = "AI音乐"
   image = "/images/slides/audio.webp"
   link = ""
   description = ""
   openInNewTab = false
 
 [[slides]]
-  title = "Stable Diffusion"
+  title = "AI自动化"
   image = "/images/slides/sd.webp"
   link = ""
   description = ""
   openInNewTab = false
 
 [[slides]]
-  title = "Agents"
+  title = "AI代理"
   image = "/images/slides/agent.webp"
   link = ""
   description = ""
