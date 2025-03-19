@@ -260,8 +260,14 @@ td {
   .reward-hint {
   margin-top: 10px;
   font-size: 14px;
-  color: #666;
+  color: #888;
   }
+
+  .reward-text {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #FFF;
+    }
   
   .reward-images {
   display: none;
@@ -277,6 +283,8 @@ td {
   .reward-item img {
   width: 200px;
   height: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
   }
   
   @media (max-width: 768px) {

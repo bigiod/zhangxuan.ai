@@ -81,21 +81,28 @@ Web2.0浏览器访问地址：（通过Chrome、火狐、Edge、QQ、360等传�
 {{< /timelineItem >}}
 
 {{< timelineItem icon="code" header="发布『和AI做个朋友』微信小程序" badge="2024-07" >}}
+<a href="/wxminiapp" target="_blank">『和AI做个朋友』微信小程序</a>
 不写一行代码，不设计一张UI图，一个人一个月时间，独立完成『和AI做个朋友』微信小程序的开发测试，部署上线运营。这是一款可模块化搭建的微信小程序，融合了知识付费、会员订阅、知识库、广告管理、线上商城、粉丝社区、任务活动管理等模块。
 {{< gallery >}}
-          <img src="/images/feature/1901924122372345856.jpg" class="grid-w50 md:grid-w33 xl:grid-w25" />
-          <img src="/images/feature/1901924313309646848.jpg" class="grid-w50 md:grid-w33 xl:grid-w25" />
-          <img src="/images/feature/1901924424131547136.jpg" class="grid-w50 md:grid-w33 xl:grid-w25" />
-          <img src="/images/feature/1901924533464469504.jpg" class="grid-w50 md:grid-w33 xl:grid-w25" />
+          <img src="/images/feature/9a6751f50c89d7463eebc9a251d45def.jpg" class="grid-w50 md:grid-w33 xl:grid-w25" />
+          <img src="/images/feature/53f108db8efc7682d8a5def54f1650f1.jpg" class="grid-w50 md:grid-w33 xl:grid-w25" />
+          <img src="/images/feature/0996bf8104283aaa43673fa651d19409.jpg" class="grid-w50 md:grid-w33 xl:grid-w25" />
+          <img src="/images/feature/5879833b7a91f0d38d6911e68f61b083.jpg" class="grid-w50 md:grid-w33 xl:grid-w25" />
 {{< /gallery >}}
 {{< /timelineItem >}}
 
-{{< timelineItem icon="code" header="『斗极元宇宙导航』网站发布上线" badge="2023-07" >}}
-斗极元宇宙生态是一个开放的Web3.0世界，这是一个自下而上不断发展的宇宙生态。斗极元宇宙导航，作为一个帮助用户找寻元宇宙项目的门户导航，
+{{< timelineItem icon="link" header="『斗极元宇宙导航』网站项目" badge="2023-07" >}}
+<a href="https://www.metabd.cc/" target="_blank">『斗极元宇宙导航』平台</a>
+ 『斗极元宇宙导航』平台作为全球首个基于分布式协作的Web3.0生态导航系统，致力于构建价值互联网3.0时代的创新基础设施。平台采用去中心化维基架构，赋能每位用户参与全球优质AI及元宇宙项目的收录、验证与信息维护，通过智能合约驱动的数字激励体系，将用户的内容贡献、数据验证及社区治理行为转化为可量化的数字资产。</br></br>
+ 
+ 创新设计的"生态共建者权益池"整合项目方流量分成、平台增值服务收益与生态增长红利三大渠道，依托多链兼容的智能分配系统，为参与者提供透明、可持续的链上收益回报。平台首创AI验证与人工协作的双重保障机制，结合开放透明的DAO治理框架，重新定义"共建即受益"的数字生态协作范式，让每个用户的数字足迹都能成为探索未来文明的价值起点。
 {{< /timelineItem >}}
 
-{{< timelineItem icon="code" header="Famland.World GameFi" badge="2022-09" >}}
-Famland元宇宙，是一个集合包括NFT、Game、Defi多种要素组成的NFT价值养成型Play to Earn游戏生态。游戏本着以人为本的设计初心，不依赖资金投入、重视玩家在游戏中时间和智慧投入的价值，依托NFT价值养成和价值共享的算法规则，最大限度保障每名玩家在游戏中的基本权利和公平性，把利用资本损害游戏生态健康发展的不利因素降到最低。Famland元宇宙是一个完全社区化的项目，项目创始团队无预挖、无手续费收益、无运营提成， 项目发行的所有资产和收益，100%全部回馈社区玩家。
+{{< timelineItem icon="link" header="Famland.World 私域土地元宇宙项目 " badge="2022-09" >}}
+<a href="https://famland.world/" target="_blank">『Famland World』官方网站</a>
+『Famland World』元宇宙，元宇宙构建了一个融合NFT、链游与DeFi三位一体的价值培育型GameFi生态。该平台以"玩家本位"为核心设计理念，创新打造基于NFT资产价值养成与价值共生的算法体系，通过去中心化经济模型将玩家时间投入与策略智慧转化为可持续收益，构建无需资本门槛的公平参与机制。系统采用自驱式经济系统设计，通过算法动态平衡生态价值，有效抑制资本逐利对生态的负面影响，建立数字生产资料的全新确权范式。</br></br>
+
+作为真正由社区驱动的Web3项目，Famland践行"零团队保留"原则：项目方不仅放弃预挖权益，更彻底剥离手续费抽成与运营分润机制，通过智能合约实现全量资产（含治理代币、NFT权益及生态收益）向玩家社区的100%开放分配。项目治理采用DAO架构，重要参数升级与生态发展方向均由社区提案投票决定，开创了"开发者搭台、社区唱戏"的去中心化游戏治理新模式，致力于打造开放共赢的数字文明新范式。
 
 {{< /timelineItem >}}
 
