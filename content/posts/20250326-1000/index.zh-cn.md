@@ -2,7 +2,7 @@
 title: "如何在Windows系统上安装MacOS最新系统"
 date: 2025-03-26
 description: ""
-tags: []
+tags: [windows,MacOS,操作系统,Sonoma,虚拟机,VMWare]
 slug: ""
 weight: 
 draft: false
@@ -11,7 +11,7 @@ draft: false
 
 那么跟着我步骤来进行安装吧~
 
-![alt text](image.png)
+![alt text](featured.png)
 
 ## 安装步骤
 

@@ -1,0 +1,29 @@
+{{ $id := printf "aplayer-%d" .Ordinal }}
+<div id="{{ $id }}"></div>
+
+{{ $data := dict "containerId" $id }}
+
+{{ if .Get "audio" }}
+  {{ $data.Set "type" "local" }}
+  {{ $data.Set "audio" (.Get "audio" | transform.FromJSON) }}
+{{ else if .Get "platform_url" }}
+  {{ $data.Set "type" "url" }}
+  {{ $data.Set "url" (.Get "platform_url") }}
+{{ else if and (.Get "platform") (.Get "id") (.Get "type") }}
+  {{ $data.Set "type" "custom" }}
+  {{ $data.Set "platform" (.Get "platform") }}
+  {{ $data.Set "id" (.Get "id") }}
+  {{ $data.Set "type" (.Get "type") }}
+{{ else }}
+  <!-- 如果没有提供有效参数，可以添加错误处理 -->
+{{ end }}
+
+{{ $options := dict }}
+{{ range $key,$value := .Params }}
+  {{ if not (in (slice "audio" "platform_url" "platform" "id" "type") $key) }}
+    {{ $options.Set $key $value }}
+  {{ end }}
+{{ end }}
+{{ $data.Set "options" $options }}
+
+{{ .Page.Scratch.Add "aplayers" $data }}

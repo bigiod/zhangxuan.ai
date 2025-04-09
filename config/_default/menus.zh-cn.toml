@@ -36,6 +36,10 @@ name = "学习专栏"
 pageRef = "columns"
 weight = 30
 
+[[main]]
+name = "原创音乐"
+pageRef = "music/softmusic/"
+weight = 50
 
 # [[main]]
 # name = "📚知识库"

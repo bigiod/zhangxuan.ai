@@ -1,5 +1,5 @@
 ---
-title: "打造个人品牌只需要1000个铁杆粉丝"
+title: "打造"
 date: 2024-06-03
 description: "用于创建 Blowfish 主题使用指南的模板"
 tags: [个人品牌, 粉丝]
@@ -7,7 +7,7 @@ slug: "1000fans"
 series: 
 series_order: 
 weight: 
-draft: true
+draft: false
 showAuthor: true
 showAuthorsBadges : false
 ---
@@ -17,6 +17,11 @@ showAuthorsBadges : false
 {{< alert >}}
 **重点！** 1000个铁杆粉丝就够用！
 {{< /alert >}}
+
+
+
+
+
 
 如何通过培养1000个铁杆粉丝来建立和巩固个人品牌，强调精准定位与深度互动，助力学员在竞争激烈的市场中脱颖而出，实现品牌价值的持续增长。
 
@@ -58,3 +63,15 @@ With other shortcodes
 
 {{< /timeline >}}
 
+{{< music url="/music/Wavelength.mp3" name=Wavelength artist=oldmanyoung cover="feature.jpg" >}}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non magna ex. Donec sollicitudin ut lorem quis lobortis. Nam ac ipsum libero. Sed a ex eget ipsum tincidunt venenatis quis sed nisl. Pellentesque sed urna vel odio consequat tincidunt id ut purus. Nam sollicitudin est sed dui interdum rhoncus. 
+
+
+
+
+{{< aplayer fixed=false mini=false autoplay=false theme="#448aff" loop="all" order="list" preload="auto" volume=1.0 mutex=true lrcType=3 listFolded=false listMaxHeight="" storageName="aplayer-setting" >}}
+    {{< audio name="AI数字身份" artist="MetaX" url="/music/aiidentity.mp3" lrc="/music/aiidentity.lrc" cover="feature.jpg" />}}    
+    {{< audio name="数字孪生" artist="MetaX" url="/music/digitaltwin.mp3" lrc="/music/digitaltwin.lrc" cover="feature.jpg" />}}
+    {{< audio name="Digital Twin" artist="MetaX" url="/music/digitaltwin.mp3" lrc="/music/digitaltwin.lrc" cover="feature.jpg" />}}
+{{< /aplayer >}}
