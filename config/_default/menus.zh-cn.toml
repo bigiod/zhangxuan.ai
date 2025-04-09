@@ -38,7 +38,7 @@ weight = 30
 
 [[main]]
 name = "原创音乐"
-pageRef = "/music/softmusic/"
+pageRef = "music/softmusic"
 weight = 50
 
 # [[main]]
