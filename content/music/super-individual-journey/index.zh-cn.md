@@ -22,7 +22,7 @@ summary: "一张充满力量与希望的纯音乐专辑，让听众踏上一段�
 - 第15-17首：达到情绪高潮，展现超越自我与成就AI超级个体的辉煌时刻。
 - 第18-20首：以庄严与空灵收尾，传递永恒与圆满，留给听众对未来的无限遐想。
 
-{{< aplayer fixed=false mini=false autoplay=false theme="#448aff" loop="all" order="list" preload="auto" volume=0.8 mutex=true lrcType=3 listFolded=false listMaxHeight="700px" storageName="aplayer-setting" >}}
+{{< aplayer fixed=false mini=false autoplay=false theme="#448aff" loop="all" order="list" preload="auto" volume=0.8 mutex=true lrcType=3 listFolded=false listMaxHeight="1000px" storageName="aplayer-setting" >}}
     {{< audio name="希望的旋律" artist="MetaX" url="/music/super-individual-journey/1910330625349390336.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910330625349390336.png" />}}    
     {{< audio name="光明彼岸" artist="MetaX" url="/music/super-individual-journey/1910333168976662528.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910333168976662528.png" />}}
     {{< audio name="信念崛起" artist="MetaX" url="/music/super-individual-journey/1910342773341425664.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910342773341425664.png" />}}
