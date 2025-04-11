@@ -1,0 +1,33 @@
+---
+title: "《Second Me》"
+date: 2025-04-09
+description: "原创音乐专辑《Second Me》"
+tags: [原创音乐,Second Me,第二个我,音乐专辑]
+slug: ""
+weight: 120
+draft: false
+showdate: false
+showedit: false
+showSummary: true
+summary: "一张激励人心和自我探索的音乐专辑，传递通过学习AI技能，打造数字分身，实现自我价值放大与生命延续的信念。"
+---
+
+> MetaX原创纯音乐专辑《第二个我》（英文名：Second Me）
+
+《Second Me》是一张充满未来感和自我探索的音乐专辑，旨在传递一个信念：任何人都可以通过学习AI技能，打造第二个自我。这张专辑以音乐为媒介，讲述了如何通过不断努力，塑造AI数字分身，让它成为我们的伙伴与延伸。每首歌曲都映射了成长的不同阶段——从学习AI的起点，到掌握技术的突破，再到与数字分身携手实现自我价值的放大。这不仅是关于科技与创新的探索，更是对生命时间延续的深刻思考。通过旋律与歌词，《Second Me》激励每个人拥抱AI的力量，超越自我，创造无限可能。欢迎聆听这张专辑，一同踏上关于成长与未来的音乐之旅！
+
+
+{{< aplayer fixed=false mini=false autoplay=false theme="#448aff" loop="all" order="list" preload="auto" volume=0.8 mutex=true lrcType=3 listFolded=false listMaxHeight="500px" storageName="aplayer-setting" >}}
+    {{< audio name="数字孪生 / Digital Twin" artist="MetaX" url="/music/second-me/digital-twin.mp3" lrc="/music/second-me/digital-twin.lrc" cover="/music/second-me/digital-twin.jpg" />}}    
+    {{< audio name="AI数字分身 / AI Identity" artist="MetaX" url="/music/second-me/ai-identity.mp3" lrc="/music/second-me/ai-identity.lrc" cover="/music/second-me/ai-identity.jpg" />}}      
+{{< /aplayer >}}
+
+## 数字孪生 / Digital Twin
+
+Future bass anthem 'Digital Twin' with dual vocals: emotive human vs futuristic AI. Euphoric anti-drop chorus, 160BPM, 8-bit layers. Theme: transcending dimensions together.
+
+## AI数字分身 / AI Identity
+
+Modern pop-electronic song 'AI Identity' about digital alter-ego. Hopeful mood, catchy chorus. Youthful lyrics about innovation. 6 segments: verses, choruses, bridge, outro.
+
+
