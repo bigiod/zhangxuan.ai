@@ -16,7 +16,7 @@ summary: "一张穿梭于虚实边界的音乐叙事集，12首作品以氛围�
 
 《虚实之境》是一张探索虚实交融的音乐叙事专辑，12首作品以氛围感为基调，融合暗黑美学的深邃与浪漫主义的诗意，旨在引领听众穿梭于现实与虚幻的边界，感受时空交错的情感共鸣。通过Lofi噪点与独立民谣的纯净，构建听觉迷宫，从电子脉冲的冰冷到吉他弦音的温暖，每曲如时间裂缝中的低语，或飘散如柳絮，或凝固似星尘，最终以流行旋律收尾，为漂泊灵魂带来片刻栖息与内心的宁静。
 
-{{< aplayer fixed=false mini=false autoplay=false theme="#448aff" loop="all" order="list" preload="auto" volume=0.8 mutex=true lrcType=3 listFolded=false listMaxHeight="500px" storageName="aplayer-setting" >}}
+{{< aplayer fixed=false mini=false autoplay=false theme="#448aff" loop="all" order="list" preload="auto" volume=0.8 mutex=true lrcType=3 listFolded=false listMaxHeight="700px" storageName="aplayer-setting" >}}
     {{< audio name="絮语回响 / Whispered Echoes" artist="MetaX" url="/music/softmusic/1902524837855760384.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902524837855760384.png" />}}    
     {{< audio name="虚空絮语 / Whispers in the Void" artist="MetaX" url="/music/softmusic/1902527489880625152.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902527489880625152.png" />}} 
     {{< audio name="永恒相拥 / Eternal Embrace" artist="MetaX" url="/music/softmusic/1902531163172376576.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902531163172376576.png" />}} 

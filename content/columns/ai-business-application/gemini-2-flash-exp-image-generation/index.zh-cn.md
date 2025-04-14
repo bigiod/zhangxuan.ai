@@ -1,7 +1,7 @@
 ---
 title: "Gemini 2.0多模态功能"
 date: 2025-04-06
-draft: false
+draft: true
 description: ""
 tags: []
 showauthor: true
