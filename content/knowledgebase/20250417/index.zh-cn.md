@@ -1,7 +1,7 @@
 ---
 title: "全部文章"
 date: 2025-04-17T08:00:00+08:00
-draft: false
+draft: true
 description: ""
 tags: []
 showauthor: true
@@ -472,7 +472,7 @@ https://xiaobot.net/post/b6354771-82cf-4f73-9589-dfac08bcef3d
 https://xiaobot.net/post/23d9e293-c4d8-4f7a-a04e-9b2115ea444f
 
 ### Make中文教程：类型强制转换（Type coercion）
-https://xiaobot.net/98b3a55d-43b3-4e14-a2ee-ca85e4c4384f
+https://xiaobot.net/post/98b3a55d-43b3-4e14-a2ee-ca85e4c4384f
 
 ### Make中文教程：项目数据类型（Item data types）
 https://xiaobot.net/post/12d34904-9c2e-4d51-9247-7d8644c544f8
