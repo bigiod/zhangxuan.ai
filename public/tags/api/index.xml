@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>API on MetaX</title>
+    <link>//localhost:1313/tags/api/</link>
+    <description>Recent content in API on MetaX</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 MetaX</copyright>
+    <lastBuildDate>Mon, 21 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/tags/api/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>xAI Grok大羊毛，充值5美金，每月150美元免费额度，速抢！</title>
+      <link>//localhost:1313/posts/20250421-0800/</link>
+      <pubDate>Mon, 21 Apr 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/posts/20250421-0800/</guid>
+      <description>xAI 公司重磅发布了全新一代大语言模型 Grok 3，其卓越的性能表现令业</description>
+      
+    </item>
+    
+    <item>
+      <title>Make新手必看：常见问题与解决技巧全攻略</title>
+      <link>//localhost:1313/posts/make-automation-for-beginners/</link>
+      <pubDate>Tue, 18 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/posts/make-automation-for-beginners/</guid>
+      <description>MetaX为新手总结了使用Make自动化工具的常见问题，并通</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/posts/make-automation-for-beginners/featured_2624372829454853.jpg" />
+    </item>
+    
+  </channel>
+</rss>

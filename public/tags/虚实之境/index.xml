@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>虚实之境 on MetaX</title>
+    <link>//localhost:1313/tags/%E8%99%9A%E5%AE%9E%E4%B9%8B%E5%A2%83/</link>
+    <description>Recent content in 虚实之境 on MetaX</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 MetaX</copyright>
+    <lastBuildDate>Wed, 09 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/tags/%E8%99%9A%E5%AE%9E%E4%B9%8B%E5%A2%83/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>《虚实之境》</title>
+      <link>//localhost:1313/music/between-realms/</link>
+      <pubDate>Wed, 09 Apr 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/music/between-realms/</guid>
+      <description>一张穿梭于虚实边界的音乐叙事集，12首作品以氛围感为底色，糅合暗黑美学的深邃与浪漫主义的诗意。</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/music/between-realms/feature72c31078b36777855874b33a0286d6f9.jpg" />
+    </item>
+    
+  </channel>
+</rss>

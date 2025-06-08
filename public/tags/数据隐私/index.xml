@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数据隐私 on MetaX</title>
+    <link>//localhost:1313/tags/%E6%95%B0%E6%8D%AE%E9%9A%90%E7%A7%81/</link>
+    <description>Recent content in 数据隐私 on MetaX</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 MetaX</copyright>
+    <lastBuildDate>Tue, 18 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/tags/%E6%95%B0%E6%8D%AE%E9%9A%90%E7%A7%81/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Make新手必看：常见问题与解决技巧全攻略</title>
+      <link>//localhost:1313/posts/make-automation-for-beginners/</link>
+      <pubDate>Tue, 18 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/posts/make-automation-for-beginners/</guid>
+      <description>MetaX为新手总结了使用Make自动化工具的常见问题，并通</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/posts/make-automation-for-beginners/featured_2624372829454853.jpg" />
+    </item>
+    
+  </channel>
+</rss>

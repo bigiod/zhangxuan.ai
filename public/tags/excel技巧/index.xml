@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Excel技巧 on MetaX</title>
+    <link>//localhost:1313/tags/excel%E6%8A%80%E5%B7%A7/</link>
+    <description>Recent content in Excel技巧 on MetaX</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 MetaX</copyright>
+    <lastBuildDate>Fri, 14 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/tags/excel%E6%8A%80%E5%B7%A7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>告别重复劳动！手把手教你用AI自动化Excel，老板惊掉下巴！</title>
+      <link>//localhost:1313/columns/deepseek/deepseek-office-efficiency/deepseek-excel-integration-guide/</link>
+      <pubDate>Fri, 14 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/columns/deepseek/deepseek-office-efficiency/deepseek-excel-integration-guide/</guid>
+      <description>DeepSeek嵌入到Excel，提升10倍工作效率，太牛了</description>
+      
+    </item>
+    
+  </channel>
+</rss>

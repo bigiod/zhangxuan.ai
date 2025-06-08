@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>个人品牌 on MetaX</title>
+    <link>//localhost:1313/tags/%E4%B8%AA%E4%BA%BA%E5%93%81%E7%89%8C/</link>
+    <description>Recent content in 个人品牌 on MetaX</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 MetaX</copyright>
+    <lastBuildDate>Mon, 03 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/tags/%E4%B8%AA%E4%BA%BA%E5%93%81%E7%89%8C/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一个普通人的AI超级个体成长叙事</title>
+      <link>//localhost:1313/timeline/</link>
+      <pubDate>Mon, 03 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/timeline/</guid>
+      <description>各位新老朋友们： 我是小红书AI科技博主MetaX，当AI开始</description>
+      
+    </item>
+    
+  </channel>
+</rss>

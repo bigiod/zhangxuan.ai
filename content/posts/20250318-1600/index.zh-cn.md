@@ -5,7 +5,7 @@ description: "MetaX为新手总结了使用Make自动化工具的常见问题，
 tags: [Make, 自动化工具, 新手指南, 无代码自动化, 教程, 自动化工作流, Webhook, API, 数据隐私, 调试技巧]
 slug: "make-automation-for-beginners"
 weight: 
-draft: false
+draft: true
 ---
 
 > MetaX为新手总结了使用Make自动化工具的常见问题，并通过问答形式详细介绍了从基础概念到高级功能的使用方法，帮助用户轻松入门并提升工作效率。

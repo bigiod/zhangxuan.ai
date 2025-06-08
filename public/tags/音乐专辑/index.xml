@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>音乐专辑 on MetaX</title>
+    <link>//localhost:1313/tags/%E9%9F%B3%E4%B9%90%E4%B8%93%E8%BE%91/</link>
+    <description>Recent content in 音乐专辑 on MetaX</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 MetaX</copyright>
+    <lastBuildDate>Fri, 11 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/tags/%E9%9F%B3%E4%B9%90%E4%B8%93%E8%BE%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MetaX的原创音乐</title>
+      <link>//localhost:1313/music/overview/</link>
+      <pubDate>Fri, 11 Apr 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/music/overview/</guid>
+      <description>这是一个用AI加速自己成长的普通人的原创音乐合集，专注AI超级个体成长。</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/music/overview/featuree1c0bb25019b56f966074ea520d37e2a.jpg" />
+    </item>
+    
+    <item>
+      <title>《AI超级个体之旅》</title>
+      <link>//localhost:1313/music/super-individual-journey/</link>
+      <pubDate>Wed, 09 Apr 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/music/super-individual-journey/</guid>
+      <description>一张充满力量与希望的纯音乐专辑，让听众踏上一段从内心觉醒到成为AI赋能超级个体的心灵旅程。</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/music/super-individual-journey/feature4475ae4dbfdce3b7e267b94bdda0d4fc.jpg" />
+    </item>
+    
+    <item>
+      <title>《虚实之境》</title>
+      <link>//localhost:1313/music/between-realms/</link>
+      <pubDate>Wed, 09 Apr 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/music/between-realms/</guid>
+      <description>一张穿梭于虚实边界的音乐叙事集，12首作品以氛围感为底色，糅合暗黑美学的深邃与浪漫主义的诗意。</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/music/between-realms/feature72c31078b36777855874b33a0286d6f9.jpg" />
+    </item>
+    
+    <item>
+      <title>《Second Me》</title>
+      <link>//localhost:1313/music/second-me/</link>
+      <pubDate>Wed, 09 Apr 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/music/second-me/</guid>
+      <description>一张激励人心和自我探索的音乐专辑，传递通过学习AI技能，打造数字分身，实现自我价值放大与生命延续的信念。</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/music/second-me/feature878b9feb8875e0b38268bbf32d432dbc.jpg" />
+    </item>
+    
+  </channel>
+</rss>

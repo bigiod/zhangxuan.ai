@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web3基础设施 on MetaX</title>
+    <link>//localhost:1313/tags/web3%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/</link>
+    <description>Recent content in Web3基础设施 on MetaX</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 MetaX</copyright>
+    <lastBuildDate>Wed, 12 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/tags/web3%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>谁在悄悄瓜分华尔街的午餐？数字文明正在重写99%普通人的财富命运</title>
+      <link>//localhost:1313/posts/the-great-unbundling-how-blockchain-and-ai-are-rewriting-civilization/</link>
+      <pubDate>Wed, 12 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/posts/the-great-unbundling-how-blockchain-and-ai-are-rewriting-civilization/</guid>
+      <description>数字技术、AI和区块链正在解构传统价值体系，重塑生产力和生产</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/posts/the-great-unbundling-how-blockchain-and-ai-are-rewriting-civilization/featured2615922780832261.jpg" />
+    </item>
+    
+  </channel>
+</rss>

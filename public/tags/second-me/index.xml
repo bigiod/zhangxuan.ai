@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Second Me on MetaX</title>
+    <link>//localhost:1313/tags/second-me/</link>
+    <description>Recent content in Second Me on MetaX</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 MetaX</copyright>
+    <lastBuildDate>Wed, 09 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/tags/second-me/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>《Second Me》</title>
+      <link>//localhost:1313/music/second-me/</link>
+      <pubDate>Wed, 09 Apr 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/music/second-me/</guid>
+      <description>一张激励人心和自我探索的音乐专辑，传递通过学习AI技能，打造数字分身，实现自我价值放大与生命延续的信念。</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/music/second-me/feature878b9feb8875e0b38268bbf32d432dbc.jpg" />
+    </item>
+    
+  </channel>
+</rss>

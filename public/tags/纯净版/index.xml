@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>纯净版 on MetaX</title>
+    <link>//localhost:1313/tags/%E7%BA%AF%E5%87%80%E7%89%88/</link>
+    <description>Recent content in 纯净版 on MetaX</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 MetaX</copyright>
+    <lastBuildDate>Mon, 10 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/tags/%E7%BA%AF%E5%87%80%E7%89%88/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Window11最干净稳定版本，2G内存电脑也可用，附免费激活方法</title>
+      <link>//localhost:1313/posts/windows11-24h2-ltsc-install/</link>
+      <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/posts/windows11-24h2-ltsc-install/</guid>
+      <description>Windows 11 （24H2 LTSC）是目前最干净最稳定的版本，最低2G内</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/posts/windows11-24h2-ltsc-install/featured2616090771408901.jpg" />
+    </item>
+    
+  </channel>
+</rss>

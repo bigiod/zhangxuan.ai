@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>提示工程 on MetaX</title>
+    <link>//localhost:1313/tags/%E6%8F%90%E7%A4%BA%E5%B7%A5%E7%A8%8B/</link>
+    <description>Recent content in 提示工程 on MetaX</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 MetaX</copyright>
+    <lastBuildDate>Fri, 07 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/tags/%E6%8F%90%E7%A4%BA%E5%B7%A5%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DeepSeek 优化指南：10 个实用指令让你更高效</title>
+      <link>//localhost:1313/posts/deepseek%E4%BC%98%E5%8C%96%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Fri, 07 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/posts/deepseek%E4%BC%98%E5%8C%96%E6%8C%87%E5%8D%97/</guid>
+      <description>本文探讨了如何通过优化提示词指令提升DeepSeek的效率，</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/posts/deepseek%E4%BC%98%E5%8C%96%E6%8C%87%E5%8D%97/featured2616174492502533.jpg" />
+    </item>
+    
+  </channel>
+</rss>

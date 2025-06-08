@@ -5,7 +5,7 @@ description: ""
 tags: [Grok,xAI,API]
 slug: ""
 weight: 
-draft: false
+draft: true
 ---
 
 xAI 公司重磅发布了全新一代大语言模型 Grok 3，其卓越的性能表现令业界瞩目。为了回馈广大开发者，xAI 平台目前正在开展一项超值优惠活动 - 只需充值 5 美元，即可获得每月高达 150 美元的 API 调用额度。现在可以直接通过 make 平台直接调用 Gork 3，是一个性价比不错的大模型。
