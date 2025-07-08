@@ -4,11 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const LOGIN_WEBHOOK_URL = 'https://szb.zeabur.app/webhook/d4ba8fa0-45e9-4d1f-ad6d-9c3523ada543';
     const UPLOAD_WEBHOOK_URL = 'https://szb.zeabur.app/webhook/upload-file';
     const MAX_FILES = 10;
-    
-    // ========================================================================
-    // ✨【核心配置】请在这里修改您允许的文件类型，格式为['.后缀名1', '.后缀名2']
-    const ALLOWED_FILE_TYPES = ['.mp4']; 
-    // ========================================================================
+    const ALLOWED_FILE_TYPES = ['.mp4', '.txt'];
+    const SESSION_DURATION = 60 * 60 * 1000; // 1小时
 
     let filesToUpload = [];
 
@@ -17,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
     const loginBtn = document.getElementById('loginBtn');
     const loginError = document.getElementById('loginError');
-
     const uploadSection = document.getElementById('uploadSection');
     const uploadArea = document.getElementById('uploadArea');
     const uploadHint = document.getElementById('uploadHint');
@@ -29,13 +25,50 @@ document.addEventListener('DOMContentLoaded', () => {
     const uploadError = document.getElementById('uploadError');
     const uploadBtn = document.getElementById('uploadBtn');
     const resetBtn = document.getElementById('resetBtn');
+    // ✨ NEW: 获取退出登录按钮
+    const logoutBtn = document.getElementById('logoutBtn');
 
-    // --- 初始化 ---
-    // <--- 重要改动：动态设置input的accept属性，限制文件选择对话框
+    // ========================================================================
+    // 登录与会话管理函数
+    // ========================================================================
+    function checkLoginStatus() {
+        const sessionDataString = localStorage.getItem('userSession');
+        if (!sessionDataString) return;
+        try {
+            const sessionData = JSON.parse(sessionDataString);
+            const now = Date.now();
+            if (sessionData.isLoggedIn && (now - sessionData.loginTimestamp < SESSION_DURATION)) {
+                loginSection.classList.add('hidden');
+                uploadSection.classList.remove('hidden');
+            } else {
+                logout();
+            }
+        } catch (error) {
+            logout();
+        }
+    }
+
+    function performLogin() {
+        const sessionData = { isLoggedIn: true, loginTimestamp: Date.now() };
+        localStorage.setItem('userSession', JSON.stringify(sessionData));
+        loginSection.classList.add('hidden');
+        uploadSection.classList.remove('hidden');
+    }
+
+    // ✨ NEW: 创建一个统一的退出登录函数
+    function logout() {
+        localStorage.removeItem('userSession');
+        // 使用 location.reload() 可以确保所有状态都被重置
+        location.reload();
+    }
+
+
+    // --- 初始化与事件监听 ---
     fileInput.setAttribute('accept', ALLOWED_FILE_TYPES.join(','));
-    updateUploadability(); // 初始化提示文本
+    updateUploadability();
+    checkLoginStatus(); 
 
-    // --- 登录逻辑 (保持不变) ---
+    // 登录表单提交
     loginForm.addEventListener('submit', async (event) => {
         event.preventDefault();
         setButtonLoading(loginBtn, true);
@@ -51,8 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             const data = await response.json();
             if (response.ok && data.success) {
-                loginSection.classList.add('hidden');
-                uploadSection.classList.remove('hidden');
+                performLogin(); // 调用登录函数
             } else {
                 showMessage(loginError, data.message || '发生未知错误，请重试。');
             }
@@ -63,16 +95,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- 文件处理与上传交互 ---
-    ['click', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-        uploadArea.addEventListener(eventName, e => e.preventDefault());
-    });
-    uploadArea.addEventListener('click', () => {
-        if (!uploadArea.classList.contains('disabled')) fileInput.click();
-    });
-    uploadArea.addEventListener('dragover', () => {
-        if (!uploadArea.classList.contains('disabled')) uploadArea.classList.add('dragover');
-    });
+    // ✨ NEW: 为退出登录按钮添加点击事件
+    logoutBtn.addEventListener('click', logout);
+
+    // 文件处理与上传交互
+    ['click', 'dragover', 'dragleave', 'drop'].forEach(eventName => uploadArea.addEventListener(eventName, e => e.preventDefault()));
+    uploadArea.addEventListener('click', () => { if (!uploadArea.classList.contains('disabled')) fileInput.click(); });
+    uploadArea.addEventListener('dragover', () => { if (!uploadArea.classList.contains('disabled')) uploadArea.classList.add('dragover'); });
     uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
     uploadArea.addEventListener('drop', e => {
         if (!uploadArea.classList.contains('disabled')) {
@@ -84,24 +113,15 @@ document.addEventListener('DOMContentLoaded', () => {
     uploadBtn.addEventListener('click', uploadAllFiles);
     resetBtn.addEventListener('click', resetUploadState);
 
-    // --- 核心功能函数 ---
-
-    /**
-     * 【已修改】处理文件选择，增加对多种文件类型的验证
-     * @param {FileList} selectedFiles - 用户选择的文件列表
-     */
+    // --- 核心功能函数 (这部分代码保持不变) ---
     function handleFileSelection(selectedFiles) {
         hideMessage(uploadError);
-        
         const validFiles = [];
         const invalidFileNames = [];
-
-        // <--- 重要改动：使用数组方法检查文件类型
         const isFileTypeValid = (file) => {
             const fileNameLower = file.name.toLowerCase();
             return ALLOWED_FILE_TYPES.some(type => fileNameLower.endsWith(type));
         };
-
         for (const file of selectedFiles) {
             if (isFileTypeValid(file)) {
                 validFiles.push(file);
@@ -109,20 +129,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 invalidFileNames.push(file.name);
             }
         }
-
         if (invalidFileNames.length > 0) {
             showMessage(uploadError, `只支持 ${ALLOWED_FILE_TYPES.join(' 或 ')} 格式。以下文件已被忽略: ${invalidFileNames.join(', ')}`);
         }
-        
         if (filesToUpload.length + validFiles.length > MAX_FILES) {
             showMessage(uploadError, `选择失败：一次最多只能上传 ${MAX_FILES} 个文件。`);
             fileInput.value = '';
             return;
         }
-
         filesToUpload.push(...validFiles);
         renderFileList();
-        
         fileInput.value = '';
     }
 
@@ -133,7 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             fileListContainer.classList.add('hidden');
         }
-
         filesToUpload.forEach((file, index) => {
             const fileItem = document.createElement('div');
             fileItem.className = 'file-list-item';
@@ -146,7 +161,6 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             fileListContainer.appendChild(fileItem);
         });
-        
         document.querySelectorAll('.delete-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const indexToRemove = parseInt(e.currentTarget.dataset.index, 10);
@@ -154,17 +168,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderFileList();
             });
         });
-
         updateUploadability();
     }
-    
-    /**
-     * 【已修改】更新提示文本以显示所有允许的类型
-     */
+
     function updateUploadability() {
         uploadBtn.disabled = filesToUpload.length === 0;
         const allowedTypesString = ALLOWED_FILE_TYPES.join(', ');
-
         if (filesToUpload.length >= MAX_FILES) {
             uploadArea.classList.add('disabled');
             uploadHint.textContent = `已达到 ${MAX_FILES} 个文件的上限`;
@@ -174,13 +183,136 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // (uploadAllFiles, uploadSingleFile, renderSuccessResults, resetUploadState 及辅助函数保持不变)
-    async function uploadAllFiles(){setButtonLoading(uploadBtn,!0),uploadBtn.classList.add("hidden"),progressContainer.classList.remove("hidden"),hideMessage(uploadError);let e=filesToUpload.reduce((e,t)=>e+t.size,0),t=0;const o=filesToUpload.map(o=>uploadSingleFile(o,l=>{t+=l;const n=e>0?Math.round(t/e*100):0;progressFill.style.width=`${n}%`,progressText.textContent=`整体进度: ${n}% (${formatFileSize(t)} / ${formatFileSize(e)})`}));try{const e=await Promise.all(o);renderSuccessResults(e)}catch(e){showMessage(uploadError,`上传失败: ${e.message||"未知错误"}`),progressContainer.classList.add("hidden"),uploadBtn.classList.remove("hidden")}finally{setButtonLoading(uploadBtn,!1),resetBtn.classList.remove("hidden"),uploadArea.classList.add("disabled")}}
-    function uploadSingleFile(e,t){return new Promise((o,l)=>{const n=new XMLHttpRequest,s=new FormData;s.append("file0",e);let i=0;n.upload.onprogress=e=>{if(e.lengthComputable){const o=e.loaded-i;i=e.loaded,t(o)}},n.onload=()=>{if(n.status>=200&&n.status<300)try{const e=JSON.parse(n.responseText);e.success&&e.url?o({fileName:file.name,url:e.url}):l(new Error(e.message||`文件 ${file.name} 上传成功但服务器返回错误`))}catch(e){l(new Error(`文件 ${file.name} 的服务器响应解析失败`))}else l(new Error(`文件 ${file.name} 上传失败，状态码: ${n.status}`))},n.onerror=()=>l(new Error(`文件 ${e.name} 发生网络错误`)),n.open("POST",UPLOAD_WEBHOOK_URL,!0),n.send(s)})}
-    function renderSuccessResults(e){progressContainer.classList.add("hidden"),fileListContainer.innerHTML="",e.forEach(e=>{const t=document.createElement("div");t.className="result-item";const o=document.createElement("a");o.className="result-link",o.href=e.url,o.textContent=e.fileName,o.title=e.url,o.target="_blank";const l=document.createElement("button");l.className="btn copy-btn",l.textContent="复制",l.onclick=()=>{navigator.clipboard.writeText(e.url).then(()=>{l.textContent="已复制!",setTimeout(()=>{l.textContent="复制"},2e3)})},t.appendChild(o),t.appendChild(l),fileListContainer.appendChild(t)})}
-    function resetUploadState(){filesToUpload=[],fileInput.value="",renderFileList(),hideMessage(uploadError),progressContainer.classList.add("hidden"),uploadBtn.classList.remove("hidden"),resetBtn.classList.add("hidden")}
-    function formatFileSize(e){if(0===e)return"0 Bytes";const t=1024,o=["Bytes","KB","MB","GB","TB"],l=Math.floor(Math.log(e)/Math.log(t));return`${parseFloat((e/Math.pow(t,l)).toFixed(2))} ${o[l]}`}
-    function setButtonLoading(e,t){const o=e.querySelector(".btn-text"),l=o||e;e.dataset.originalText||(e.dataset.originalText=l.textContent.trim()),t?(e.disabled=!0,o?l.innerHTML='<span class="loading-spinner"></span>处理中...':l.textContent="处理中..."):(e.disabled=!1,l.innerHTML=e.dataset.originalText)}
-    function showMessage(e,t){e.textContent=t,e.classList.remove("hidden")}
-    function hideMessage(e){e&&e.classList.add("hidden")}
+    async function uploadAllFiles() {
+        setButtonLoading(uploadBtn, true);
+        uploadBtn.classList.add("hidden");
+        progressContainer.classList.remove("hidden");
+        hideMessage(uploadError);
+        let totalSize = filesToUpload.reduce((sum, file) => sum + file.size, 0);
+        let uploadedSize = 0;
+        const uploadPromises = filesToUpload.map(file => uploadSingleFile(file, (chunkSize) => {
+            uploadedSize += chunkSize;
+            const percentage = totalSize > 0 ? Math.round(uploadedSize / totalSize * 100) : 0;
+            progressFill.style.width = `${percentage}%`;
+            progressText.textContent = `整体进度: ${percentage}% (${formatFileSize(uploadedSize)} / ${formatFileSize(totalSize)})`;
+        }));
+        try {
+            const results = await Promise.all(uploadPromises);
+            renderSuccessResults(results);
+        } catch (error) {
+            showMessage(uploadError, `上传失败: ${error.message || "未知错误"}`);
+            progressContainer.classList.add("hidden");
+            uploadBtn.classList.remove("hidden");
+        } finally {
+            setButtonLoading(uploadBtn, false);
+            resetBtn.classList.remove("hidden");
+            uploadArea.classList.add("disabled");
+        }
+    }
+
+    function uploadSingleFile(file, onProgress) {
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            const formData = new FormData();
+            formData.append("file0", file);
+            let lastLoaded = 0;
+            xhr.upload.onprogress = (event) => {
+                if (event.lengthComputable) {
+                    const chunkLoaded = event.loaded - lastLoaded;
+                    lastLoaded = event.loaded;
+                    onProgress(chunkLoaded);
+                }
+            };
+            xhr.onload = () => {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    try {
+                        const response = JSON.parse(xhr.responseText);
+                        if (response.success && response.url) {
+                            resolve({ fileName: file.name, url: response.url });
+                        } else {
+                            reject(new Error(response.message || `文件 ${file.name} 上传成功但服务器返回错误`));
+                        }
+                    } catch (e) {
+                        reject(new Error(`文件 ${file.name} 的服务器响应解析失败`));
+                    }
+                } else {
+                    reject(new Error(`文件 ${file.name} 上传失败，状态码: ${xhr.status}`));
+                }
+            };
+            xhr.onerror = () => reject(new Error(`文件 ${file.name} 发生网络错误`));
+            xhr.open("POST", UPLOAD_WEBHOOK_URL, true);
+            xhr.send(formData);
+        });
+    }
+
+    function renderSuccessResults(results) {
+        progressContainer.classList.add("hidden");
+        fileListContainer.innerHTML = "";
+        results.forEach(result => {
+            const resultItem = document.createElement("div");
+            resultItem.className = "result-item";
+            const link = document.createElement("a");
+            link.className = "result-link";
+            link.href = result.url;
+            link.textContent = result.fileName;
+            link.title = result.url;
+            link.target = "_blank";
+            const copyBtn = document.createElement("button");
+            copyBtn.className = "btn copy-btn";
+            copyBtn.textContent = "复制";
+            copyBtn.onclick = () => {
+                navigator.clipboard.writeText(result.url).then(() => {
+                    copyBtn.textContent = "已复制!";
+                    setTimeout(() => {
+                        copyBtn.textContent = "复制"
+                    }, 2000);
+                });
+            };
+            resultItem.appendChild(link);
+            resultItem.appendChild(copyBtn);
+            fileListContainer.appendChild(resultItem);
+        });
+    }
+    
+    function resetUploadState() {
+        filesToUpload = [];
+        fileInput.value = "";
+        renderFileList();
+        hideMessage(uploadError);
+        progressContainer.classList.add("hidden");
+        uploadBtn.classList.remove("hidden");
+        resetBtn.classList.add("hidden");
+    }
+
+    function formatFileSize(bytes) {
+        if (bytes === 0) return "0 Bytes";
+        const k = 1024;
+        const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return `${parseFloat((bytes / Math.pow(k, i)).toFixed(2))} ${sizes[i]}`;
+    }
+
+    function setButtonLoading(button, isLoading) {
+        const btnText = button.querySelector(".btn-text");
+        const target = btnText || button;
+        if (!button.dataset.originalText) {
+            button.dataset.originalText = target.textContent.trim();
+        }
+        if (isLoading) {
+            button.disabled = true;
+            target.innerHTML = btnText ? '<span class="loading-spinner"></span>处理中...' : "处理中...";
+        } else {
+            button.disabled = false;
+            target.innerHTML = button.dataset.originalText;
+        }
+    }
+
+    function showMessage(element, message) {
+        element.textContent = message;
+        element.classList.remove("hidden");
+    }
+
+    function hideMessage(element) {
+        if (element) element.classList.add("hidden");
+    }
 });
