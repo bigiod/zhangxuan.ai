@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Series on MetaX</title>
+    <link>//localhost:1313/series/</link>
+    <description>Recent content in Series on MetaX</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 MetaX</copyright>
+    <lastBuildDate>Tue, 15 Apr 2025 08:00:00 +0800</lastBuildDate><atom:link href="//localhost:1313/series/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>基础设计</title>
+      <link>//localhost:1313/series/%E5%9F%BA%E7%A1%80%E8%AE%BE%E8%AE%A1/</link>
+      <pubDate>Tue, 15 Apr 2025 08:00:00 +0800</pubDate>
+      
+      <guid>//localhost:1313/series/%E5%9F%BA%E7%A1%80%E8%AE%BE%E8%AE%A1/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>时尚与消费品设计</title>
+      <link>//localhost:1313/series/%E6%97%B6%E5%B0%9A%E4%B8%8E%E6%B6%88%E8%B4%B9%E5%93%81%E8%AE%BE%E8%AE%A1/</link>
+      <pubDate>Tue, 15 Apr 2025 08:00:00 +0800</pubDate>
+      
+      <guid>//localhost:1313/series/%E6%97%B6%E5%B0%9A%E4%B8%8E%E6%B6%88%E8%B4%B9%E5%93%81%E8%AE%BE%E8%AE%A1/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>Markdown 入门基础</title>
+      <link>//localhost:1313/series/markdown-%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Sat, 01 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/series/markdown-%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>零基础打造 Web3.0 AI超级个体门户</title>
+      <link>//localhost:1313/series/%E9%9B%B6%E5%9F%BA%E7%A1%80%E6%89%93%E9%80%A0-web3.0-ai%E8%B6%85%E7%BA%A7%E4%B8%AA%E4%BD%93%E9%97%A8%E6%88%B7/</link>
+      <pubDate>Tue, 09 Jul 2024 05:59:04 +0800</pubDate>
+      
+      <guid>//localhost:1313/series/%E9%9B%B6%E5%9F%BA%E7%A1%80%E6%89%93%E9%80%A0-web3.0-ai%E8%B6%85%E7%BA%A7%E4%B8%AA%E4%BD%93%E9%97%A8%E6%88%B7/</guid>
+      <description></description>
+      
+    </item>
+    
+    <item>
+      <title>一人企业方法论</title>
+      <link>//localhost:1313/series/%E4%B8%80%E4%BA%BA%E4%BC%81%E4%B8%9A%E6%96%B9%E6%B3%95%E8%AE%BA/</link>
+      <pubDate>Tue, 02 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/series/%E4%B8%80%E4%BA%BA%E4%BC%81%E4%B8%9A%E6%96%B9%E6%B3%95%E8%AE%BA/</guid>
+      <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

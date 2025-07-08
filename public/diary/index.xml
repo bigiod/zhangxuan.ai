@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MetaX超级个体成长日志 on MetaX</title>
+    <link>//localhost:1313/diary/</link>
+    <description>Recent content in MetaX超级个体成长日志 on MetaX</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 MetaX</copyright>
+    <lastBuildDate>Tue, 22 Apr 2025 08:00:00 +0800</lastBuildDate><atom:link href="//localhost:1313/diary/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025年4月22日MetaX超级个体成长日志</title>
+      <link>//localhost:1313/diary/20250422/</link>
+      <pubDate>Tue, 22 Apr 2025 08:00:00 +0800</pubDate>
+      
+      <guid>//localhost:1313/diary/20250422/</guid>
+      <description>今日主要成果 # RSS订阅源获取文章，保存到Notion知识库</description>
+      
+    </item>
+    
+    <item>
+      <title>常用工具合集</title>
+      <link>//localhost:1313/diary/toolbox/</link>
+      <pubDate>Fri, 18 Apr 2025 06:00:00 +0800</pubDate>
+      
+      <guid>//localhost:1313/diary/toolbox/</guid>
+      <description>常用工具 # 名称 功能 简介 Arya Markdown编辑器 编辑器 支持实时</description>
+      
+    </item>
+    
+    <item>
+      <title>2025年4月17日MetaX超级个体成长日志</title>
+      <link>//localhost:1313/diary/20250417/</link>
+      <pubDate>Thu, 17 Apr 2025 08:00:00 +0800</pubDate>
+      
+      <guid>//localhost:1313/diary/20250417/</guid>
+      <description>今日主要成果 # 图片风格提示词Make自动化工作流完成 wewe-rss docker 微信</description>
+      
+    </item>
+    
+  </channel>
+</rss>

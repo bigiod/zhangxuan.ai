@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>赛道 on MetaX</title>
+    <link>//localhost:1313/tags/%E8%B5%9B%E9%81%93/</link>
+    <description>Recent content in 赛道 on MetaX</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 MetaX</copyright>
+    <lastBuildDate>Tue, 02 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/tags/%E8%B5%9B%E9%81%93/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一人企业如何选择赛道</title>
+      <link>//localhost:1313/columns/one-person-bussiness/205-race-track-selection-for-opb/</link>
+      <pubDate>Tue, 02 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/columns/one-person-bussiness/205-race-track-selection-for-opb/</guid>
+      <description>现在我们来讨论「规划一人企业」的第二部分，赛道选择。 远离大众</description>
+      
+    </item>
+    
+  </channel>
+</rss>

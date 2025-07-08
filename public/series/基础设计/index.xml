@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>基础设计 on MetaX</title>
+    <link>//localhost:1313/series/%E5%9F%BA%E7%A1%80%E8%AE%BE%E8%AE%A1/</link>
+    <description>Recent content in 基础设计 on MetaX</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 MetaX</copyright>
+    <lastBuildDate>Tue, 15 Apr 2025 08:00:00 +0800</lastBuildDate><atom:link href="//localhost:1313/series/%E5%9F%BA%E7%A1%80%E8%AE%BE%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>动漫创作</title>
+      <link>//localhost:1313/columns/exploring-ai-art-with-midjourney/anime-creation/</link>
+      <pubDate>Tue, 15 Apr 2025 08:00:00 +0800</pubDate>
+      
+      <guid>//localhost:1313/columns/exploring-ai-art-with-midjourney/anime-creation/</guid>
+      <description>Midjourney动漫设计：AI赋能，秒变日系梦幻画风，定制你的二次元世界！</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/columns/exploring-ai-art-with-midjourney/anime-creation/featurefe4af16783170d1252b69015b6f93aaf.jpg" />
+    </item>
+    
+  </channel>
+</rss>

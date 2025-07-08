@@ -1,0 +1,2338 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
+  data-auto-appearance="true"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="zh-cn" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>DeepSeek-V3 高效训练关键技术分析 &middot; MetaX</title>
+  <meta name="title" content="DeepSeek-V3 高效训练关键技术分析 &middot; MetaX" />
+  
+  <meta name="description" content="MetaX" />
+  
+  
+  
+  <link rel="canonical" href="//localhost:1313/columns/deepseek/deepseek-model-training/1003/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.05c1ccb42e090067344fdb991d37674131ff8f421b547ff2725cea5a7409c797fb30472e848fa178cc6586e2768e19b8d5dc5df6d65dd05dfcf82ade3ae8bd4f.css"
+    integrity="sha512-BcHMtC4JAGc0T9uZHTdnQTH/j0IbVH/yclzqWnQJx5f7MEcuhI&#43;heMxlhuJ2jhm41dxd9tZd0F38&#43;CreOui9Tw==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.8005d84a6854421095b665f090e66ab23e70c20e460687167aac8be457cef82d5ba7d12ba36c57f797da470d51835a595f0b53cecda155fbccf443e43d4f113d.js"
+    integrity="sha512-gAXYSmhUQhCVtmXwkOZqsj5wwg5GBocWeqyL5FfO&#43;C1bp9Ero2xX95faRw1Rg1pZXwtTzs2hVfvM9EPkPU8RPQ=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.8b56b0fd46524eaecbfe33f576b8ba2cd2a122521a89f8229a95be0b635a7ac8e774eb1d8b8b93b32bbd677c3deb734aeea62917443f124d5bf5478859767380.js"
+    integrity="sha512-i1aw/UZSTq7L/jP1dri6LNKhIlIaifgimpW&#43;C2NaesjndOsdi4uTsyu9Z3w963NK7qYpF0Q/Ek1b9UeIWXZzgA==" data-copy="" data-copied=""></script>
+  
+  
+  <script src="/js/zoom.min.js"></script>
+  
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="//localhost:1313/columns/deepseek/deepseek-model-training/1003/">
+  <meta property="og:site_name" content="MetaX">
+  <meta property="og:title" content="DeepSeek-V3 高效训练关键技术分析">
+  <meta property="og:description" content="DeepSeek-V3 高效训练关键技术分析 # 本文从模型架构、并行策略、通信优化和">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="columns">
+    <meta property="article:published_time" content="2025-03-14T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-03-14T00:00:00+00:00">
+
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="DeepSeek-V3 高效训练关键技术分析">
+  <meta name="twitter:description" content="DeepSeek-V3 高效训练关键技术分析 # 本文从模型架构、并行策略、通信优化和">
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "学习专栏",
+    "name": "DeepSeek-V3 高效训练关键技术分析",
+    "headline": "DeepSeek-V3 高效训练关键技术分析",
+    
+    "abstract": "DeepSeek-V3 高效训练关键技术分析 # 本文从模型架构、并行策略、通信优化和",
+    "inLanguage": "zh-cn",
+    "url" : "\/\/localhost:1313\/columns\/deepseek\/deepseek-model-training\/1003\/",
+    "author" : {
+      "@type": "Person",
+      "name": "MetaX"
+    },
+    "copyrightYear": "2025",
+    "dateCreated": "2025-03-14T00:00:00\u002b00:00",
+    "datePublished": "2025-03-14T00:00:00\u002b00:00",
+    
+    "dateModified": "2025-03-14T00:00:00\u002b00:00",
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "8595"
+  }]
+  </script>
+
+
+  
+  
+  <meta name="author" content="MetaX" />
+  
+  
+  
+  <link href="mailto:hktybcc@gmail.com" rel="me" />
+  
+  
+  <link href="https://x.com/MetaversePlus" rel="me" />
+  
+  
+  <link href="https://www.linkedin.com/in/aizx/" rel="me" />
+  
+  
+  <link href="https://www.xiaohongshu.com/user/profile/59f87643db2e602e550c9714" rel="me" />
+  
+  
+  <link href="https://github.com/bigiod/" rel="me" />
+  
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.js" integrity=""></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+  
+  
+  <meta name="theme-color"/>
+  
+  
+
+  <script> var MemberSpace = window.MemberSpace || {"subdomain":"8x"}; (function(d){ var s = d.createElement("script"); s.src = "https://cdn.memberspace.com/scripts/widgets.js"; var e = d.getElementsByTagName("script")[0]; e.parentNode.insertBefore(s,e); }(document)); </script>
+</head>
+<head>
+    
+  <link rel="stylesheet" href="/css/APlayer.min.css">
+  <script src="/js/APlayer.min.js"></script>
+  <script src="/js/meting.min.js"></script>
+</head> 
+
+
+
+<body
+  class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32 scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600">
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>跳过正文</a>
+  </div>
+  
+  
+  <div class="min-h-[148px]"></div>
+<div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
+  <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
+  <div class="relative max-w-[64rem] ml-auto mr-auto">
+    <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px"
+    class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3">
+    
+    
+    
+    <div>
+        <a href="/" class="flex">
+            <span class="sr-only">MetaX</span>
+
+            <img src="/img/logo_inverted@0.25x.png" width="562" height="187"
+                class="logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom" alt="MetaX" />
+
+        </a>
+    </div>
+    
+    <div class="flex flex-1 items-center justify-between">
+        <nav class="flex space-x-3">
+
+            
+
+        </nav>
+        <nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12">
+
+            
+            
+            
+  <a href="/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        首页
+    </p>
+</a>
+
+
+
+            
+            
+  <a href="/columns/deepseek/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        🔥DeepSeek
+    </p>
+</a>
+
+
+
+            
+            
+  <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        知识分享
+    </p>
+</a>
+
+
+
+            
+            
+  <a href="/columns/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        学习专栏
+    </p>
+</a>
+
+
+
+            
+            
+  <a href="/timeline/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        成长叙事
+    </p>
+</a>
+
+
+
+            
+            
+  <a href="/music/overview/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        原创音乐
+    </p>
+</a>
+
+
+
+            
+            
+  <a href="/reward/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        赞助
+    </p>
+</a>
+
+
+
+            
+            
+  <a href="https://github.com/bigiod/"  target="_blank"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <span >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+
+    </span>
+    
+    <p class="text-base font-medium" title="">
+        
+    </p>
+</a>
+
+
+
+            
+            
+
+            
+
+
+            
+            <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+
+            
+            
+
+        </nav>
+        <div class="flex md:hidden items-center space-x-5 md:ml-12 h-12">
+
+            <span></span>
+
+            
+
+
+            
+            <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+            
+            
+
+        </div>
+    </div>
+    <div class="-my-2 -mr-2 md:hidden">
+
+        <label id="menu-button" for="menu-controller" class="block">
+            <input type="checkbox" id="menu-controller" class="hidden" />
+            
+            <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+                
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+            </div>
+            <div id="menu-wrapper" style="padding-top:5px;"
+                class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+                <ul
+                    class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+                    <li>
+                        <span
+                            class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+                    </li>
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            首页
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/columns/deepseek/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            🔥DeepSeek
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            知识分享
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/columns/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            学习专栏
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/timeline/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            成长叙事
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/music/overview/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            原创音乐
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/reward/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            赞助
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="https://github.com/bigiod/"  target="_blank"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <div >
+            
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+
+        </div>
+        
+        <p class="text-bg font-bg" title="">
+            
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                </ul>
+                
+                
+
+            </div>
+        </label>
+    </div>
+    
+</div>
+
+
+
+
+
+
+
+  </div>
+</div>
+<script>
+  window.addEventListener('scroll', function (e) {
+    var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    var background_blur = document.getElementById('menu-blur');
+    background_blur.style.opacity = (scroll / 300);
+  });
+</script>
+
+  
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+
+
+<article>
+  
+  
+  
+  
+  
+  
+ 
+  
+   
+  
+ 
+
+
+
+
+
+    
+    <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
+    style="background-image:url(/img/featured2616237192988165.jpg);">
+    
+
+
+    <div class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal">
+    </div>
+    <div
+        class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal">
+    </div>
+</div>
+
+<div id="background-blur" class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
+<script>
+    window.addEventListener('scroll', function (e) {
+        var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        var background_blur = document.getElementById('background-blur');
+        background_blur.style.opacity = (scroll / 300)
+    });
+</script>
+
+  
+  
+
+  <header id="single_header" class="mt-5 max-w-prose">
+    
+    <ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden">
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+  <li class="inline hidden">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/"
+      >欢迎</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline ">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/columns/"
+      >学习专栏</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline ">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/columns/deepseek/"
+      >DeepSeek专栏</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline ">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/columns/deepseek/deepseek-model-training/"
+      >DeepSeek模型训练</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+  
+  <li class="inline hidden">
+    <a
+      class="hover:underline decoration-neutral-300 dark:underline-neutral-600"
+      href="/columns/deepseek/deepseek-model-training/1003/"
+      >DeepSeek-V3 高效训练关键技术分析</a
+    ><span class="px-1 text-primary-500">/</span>
+  </li>
+
+</ol>
+
+
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      DeepSeek-V3 高效训练关键技术分析
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2025-03-14 00:00:00 &#43;0000 UTC">2025-03-14</time><span class="px-2 text-primary-500">&middot;</span>
+
+
+  
+  
+
+<span class="mb-[2px]">
+  <a
+    href="https://github.com/bigiod/zhangxuan.ai/blob/master/content/columns/deepseek/deepseek-model-training/1003/index.zh-cn.md"
+    class="text-lg hover:text-primary-500"
+    rel="noopener noreferrer"
+    target="_blank"
+    title="编辑内容"
+    ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path fill="currentColor" d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"/></svg>
+  </span>
+
+</span></a
+  >
+</span>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+    </div>
+
+    
+    
+    
+    
+    
+
+    
+
+    
+      
+      
+        
+        
+<div class="flex author">
+  
+    
+    
+      
+    
+    
+      
+      <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96" height="96"
+      alt="MetaX" src="/img/metax_avatar.jpg" />
+    
+  
+  <div class="place-self-center">
+    
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      作者
+    </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      MetaX
+    </div>
+    
+    
+    <div class="text-sm text-neutral-700 dark:text-neutral-400">产品经理 / 科技博主 / 创业者</div>
+    
+    <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="mailto:hktybcc@gmail.com"
+          target="_blank"
+          aria-label="Email"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://x.com/MetaversePlus"
+          target="_blank"
+          aria-label="X-Twitter"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://www.linkedin.com/in/aizx/"
+          target="_blank"
+          aria-label="Linkedin"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://www.xiaohongshu.com/user/profile/59f87643db2e602e550c9714"
+          target="_blank"
+          aria-label="Rednote"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="500" height="500" viewBox="20,20,256,256">
+<g fill="currentColor" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.70,5.70)"><path d="M35,22v2h1v-2zM35,22v2h1v-2zM44,4h-38c-1.09,0 -2,0.91 -2,2v38c0,1.09 0.91,2 2,2h38c1.09,0 2,-0.91 2,-2v-38c0,-1.09 -0.91,-2 -2,-2zM12,24c0,1.38 -0.19,5.89 -2.61,6.24l-0.28,-1.98c0.39,-0.19 0.89,-2.14 0.89,-4.26v-2h2zM15,30h-2v-11h2zM17.29,29.71c-1.2,-1.2 -1.29,-4.73 -1.29,-5.78v-1.93h2v1.93c0,1.91 0.34,3.99 0.71,4.36zM22,31h-3l1,-2h3zM31,31h-7l1,-2h2v-7h-2l-2.1,4.38h1.72l-1,2h-2.62c-0.8,0 -1.28,-0.91 -0.82,-1.57l1.82,-2.81h-2c-0.78,0 -1.26,-0.85 -0.86,-1.51l3,-5l1.72,1.02l-2.09,3.49h3.23v-2h6v2h-2v7h2zM40,28.5c0,1.38 -1.12,2.5 -2.5,2.5c-1.21,0 -1.22,-0.86 -1.45,-2h1.95v-3h-3v5h-2v-5h-2v-2h2v-2h-1v-2h1v-1h2v1h1c1.1,0 2,0.9 2,2v2c1.1,0 2,0.9 2,2zM40,22h-1v-1c0,-0.55 0.45,-1 1,-1c0.55,0 1,0.45 1,1c0,0.55 -0.45,1 -1,1zM35,24h1v-2h-1zM35,22v2h1v-2z"></path></g></g>
+</svg>
+  </span>
+
+</span></a
+        >
+      
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://github.com/bigiod/"
+          target="_blank"
+          aria-label="Github"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+  </div>
+
+</div>
+  </div>
+</div>
+
+      
+
+      
+
+      
+      <div class="mb-5"></div>
+      
+
+    
+
+  </header>
+  
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+    
+     <div
+      class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
+      <div class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-[140px]">
+
+         <details open id="TOCView"
+  class="toc-right mt-0 overflow-y-scroll overscroll-contain scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600 rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    目录
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#deepseek-v3-高效训练关键技术分析">DeepSeek-V3 高效训练关键技术分析</a></li>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#一模型架构">一、模型架构</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1-基本概念">1. <strong>基本概念</strong>：</a></li>
+            <li><a href="#2-优化方法">2. <strong>优化方法</strong>：</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#二并行策略">二、并行策略</a></li>
+    <li><a href="#三通信优化">三、通信优化</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1基本概念"><strong>1.基本概念：</strong></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#四显存优化">四、显存优化</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    目录
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#deepseek-v3-高效训练关键技术分析">DeepSeek-V3 高效训练关键技术分析</a></li>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#一模型架构">一、模型架构</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1-基本概念">1. <strong>基本概念</strong>：</a></li>
+            <li><a href="#2-优化方法">2. <strong>优化方法</strong>：</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#二并行策略">二、并行策略</a></li>
+    <li><a href="#三通信优化">三、通信优化</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1基本概念"><strong>1.基本概念：</strong></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#四显存优化">四、显存优化</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+<script>
+
+  var margin = 200;
+  var marginError = 50;
+
+  (function () {
+    var $window = $(window);
+    var $toc = $('#TOCView');
+    var tocHeight = $toc.height();
+
+    function onResize() {
+      var windowAndMarginHeight = $window.height() - margin;
+      if(tocHeight >= windowAndMarginHeight) {
+        $toc.css("overflow-y", "scroll")
+        $toc.css("max-height", (windowAndMarginHeight + marginError) + "px")
+      } else {
+        $toc.css("overflow-y", "hidden")
+        $toc.css("max-height", "9999999px")
+      }
+    }
+
+    $window.on('resize', onResize);
+    $(document).ready(onResize);
+  })();
+
+
+
+  (function () {
+    var $toc = $('#TableOfContents');
+    if ($toc.length > 0) {
+      var $window = $(window);
+
+      function onScroll() {
+        var currentScroll = $window.scrollTop();
+        var h = $('.anchor');
+        var id = "";
+        h.each(function (i, e) {
+          e = $(e);
+          if (e.offset().top - $(window).height()/3 <= currentScroll) {
+            id = decodeURIComponent(e.attr('id'));
+          }
+        });
+        var active = $toc.find('a.active');      
+        if (active.length == 1 && active.eq(0).attr('href') == '#' + id) return true;
+
+        active.each(function (i, e) {
+          
+            $(e).removeClass('active');
+          
+        });
+        $toc.find('a[href="#' + id + '"]').addClass('active')
+        $toc.find('a[href="#' + id + '"]').parentsUntil('#TableOfContents').each(function (i, e) {
+          $(e).children('a').parents('ul').show();          
+        });
+      }
+
+      $window.on('scroll', onScroll);
+      $(document).ready(function () {
+        
+        onScroll();
+      });
+    }
+  })();
+
+
+</script>
+   </div>
+      </div>
+      
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+        
+
+
+      <div class="article-content max-w-prose mb-20">
+        
+
+<h2 class="relative group">DeepSeek-V3 高效训练关键技术分析 
+    <div id="deepseek-v3-%E9%AB%98%E6%95%88%E8%AE%AD%E7%BB%83%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#deepseek-v3-%E9%AB%98%E6%95%88%E8%AE%AD%E7%BB%83%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF%E5%88%86%E6%9E%90" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>本文从模型架构、并行策略、通信优化和显存优化四个方面展开，深入分析了DeepSeek-V3高效训练的关键技术，探讨其如何以仅5%的算力实现对标GPT-4o的性能。</p>
+
+
+<h2 class="relative group">前言 
+    <div id="%E5%89%8D%E8%A8%80" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%89%8D%E8%A8%80" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>今年春节 DeepSeek-V3&amp;R1 对国内外 AI 圈产生了巨大的影响，其本质在于开拓了一条不同于 OpenAI 训练方法的道路，证明了通过模型架构和训练方法的极致优化，能够基于更少的算力资源训练出同等能力水平的大模型，这不仅让人们对 OpenAI 等厂商的<strong>高</strong> <strong>算力投入产生质疑</strong>，更通过将先进模型开源的策略对 OpenAI 等<strong>闭源模型的商业模式形成了巨大冲击</strong>。</p>
+<p>本文试图探究 DeepSeek 为什么能够利用5%的算力训练出对标 GPT-4o 的先进模型，由于 DeepSeek-R1 源于 DeepSeek-V3 架构，且 DeepSeek-V3 论文中讲述了更多高效训练方法相关的内容，所以本文将以 DeepSeek-V3 为研究对象，分析其<strong>在高效训练方面都采用了哪些关键技术</strong>，未来再单独针对 DeepSeek-R1 进行分析总结。</p>
+<p>
+  <figure>
+    <img class="my-0 rounded-md" loading="lazy" src="https://pic.yupi.icu/yuyi/1739511927574-2acfa88b-d104-4ccf-84df-fee2d5e43ba3.png" alt="img" />
+    
+  </figure>
+</p>
+
+
+<h2 class="relative group">一、模型架构 
+    <div id="%E4%B8%80%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E4%B8%80%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p><strong>1.1 高效的模型架构设计：多头潜在注意力 MLA 和 DeepSeekMoE 架构</strong></p>
+<ol>
+<li>
+<p><strong>多头潜在注意力 MLA</strong>：MLA（Multi - head Latent Attention）架构与标准的MHA（Multi - head Attention）架构相比，核心是对注意力键和值进行低秩联合压缩，减少了推理时的 Key - Value（KV）缓存，减少了推理内存占用，提升了推理效率，该架构对训练过程无直接帮助，不是本文分析的重点。</p>
+</li>
+<li>
+<p><strong>DeepSeekMoE 架构</strong>：核心是采用了更细粒度的专家分配策略，每个MoE层有1个共享专家和256个路由专家（共有58个MoE层14906个专家），每个输入Token可以激活8个路由专家，<strong>该架构可以有效利用计算资源，实现高效训练，其与标准MoE架构存在以下不同点：</strong></p>
+</li>
+</ol>
+<p>a)<strong>专家构成</strong>：标准MoE架构的类型和分工较为宽泛，一般不会特别强调共享专家的设置，各个专家相对独立的处理不同输入数据，在处理不同类型数据特征时，专家间一般缺少专门设计的协作和共享机制；而 DeepSeekMoE 架构中的共享专家可对不同输入数据中的共性特征进行处理，在不同类型的输入数据间实现共性特征的知识共享，<strong>以便减少模型参数冗余</strong>，而路由专家则负责处理具有特定模式或特征的数据，提高模型对不同数据的适应性和处理能力。</p>
+<p>b)<strong>专家分配</strong>：标准MoE架构的专家分配策略相对比较粗放，门控网络根据输入数据进行专家选择时，对于一些复杂数据特征的区分不够精准，不能很好地将数据分配到最能处理该特征的专家；而 DeepSeekMoE 架构采用了<strong>更细粒度的专家分配策略</strong>，门控网络能够更精准地分析输入数据的特征，将其分配到最合适的专家，提升模型对于复杂数据的处理能力。</p>
+<p>c)<strong>专家激活</strong>：标准MoE架构对于输入数据激活的专家数量没有固定标准，在某些情况下输入数据可能会激活过多非必要的专家，导致计算资源的浪费；而 DeepSeekMoE 架构明确了每个输入 Token 激活8个路由专家，在保证模型处理效果的同时，<strong>避免了过度激活专家带来的计算资源浪费</strong>，提高了计算效率、降低了计算成本；在具体实现方式上，共享专家会对每个输入 Token 进行处理，以便提取通用的基本特征，而路由专家会根据输入 Token 的特征而决定是否被激活参与计算。</p>
+<p>
+  <figure>
+    <img class="my-0 rounded-md" loading="lazy" src="https://pic.yupi.icu/yuyi/1739511927657-4e2a84f6-32cb-4225-af5d-2cb9849f89c1.png" alt="img" />
+    
+  </figure>
+</p>
+<p><strong>1.2 创新的负载均衡策略：无辅助损失负载均衡和序列级负载均衡</strong></p>
+
+
+<h4 class="relative group">1. <strong>基本概念</strong>： 
+    <div id="1-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#1-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>在MoE大模型训练过程中，输入数据会根据一定的路由规则分配到不同的专家模型进行处理，这个过程中可能会出现负载不均衡的情况，<strong>即某些专家被频繁调用，而另一些专家则很少被使用</strong>，这会导致训练效率和模型性能下降；</p>
+<p>业界通常采用的负载均衡策略为引入专门的辅助损失函数来强制平衡专家之间的负载，例如通过惩罚专家之间的负载差异来促使模型均匀地使用各个专家，<strong>额外引入的损失函数往往会导致模型复杂度增加、训练不稳定、发生与原本训练目标不一致等问题</strong>；</p>
+<p>除了上述基于单 Token 的负载不均问题外，一个输入序列中的 Token 在专家间的分配情况也容易出现负载不均，即同一序列中的多个 Token 可能会集中分配给某些专家。</p>
+
+
+<h4 class="relative group">2. <strong>优化方法</strong>： 
+    <div id="2-%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#2-%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>DeepSeek-V3 采用无辅助损失负载均衡技术，通过直接在路由机制中融入负载均衡逻辑，<strong>避免了引入辅助损失函数</strong>，实现了仅通过对路由决策动态调整就实现专家负载均衡的效果；同时训练过程<strong>辅以序列级负载均衡策略</strong>，确保了每个序列内的专家负载均衡。</p>
+<p>a)<strong>无辅助损失负载均衡</strong>：DeepSeek-V3 为每个专家引入了一个可学习的偏置项，在训练过程中它会随着专家负载情况进行动态更新，当门控网络计算输入 Token 与各专家的匹配得分时，<strong>该偏置项会动态调整每个专家的匹配得分</strong>，基于得分和对各专家利用率的实时监测（例如在一定时间窗口内专家处理的 Token 数量、计算资源占用时长等），动态调整路由策略，将输入 Token 实时分配给负载较低的专家，这种方法不仅负载均衡效果好，而且避免了引入辅助损失函数带来的衍生问题。</p>
+<p>b)<strong>序列级负载均衡</strong>：DeepSeek-V3 额外增加了一个序列级负载均衡损失函数，对序列中的每个 Token 进行精细化的分析和处理，<strong>根据 Token 在序列中的位置、上下文信息等更合理地分配到各个专家</strong>（而不是仅仅基于单个 Token 的特征进行独立分配），通过这种负载均衡方案，兼顾了 Token 之间的关联性和序列的整体结构。</p>
+<p><strong>1.3 多令牌预测（MTP） 训练目标：提高训练效率和推理速度</strong></p>
+<ol>
+<li><strong>基本概念</strong>：MTP 的全称是 Multi - Token Prediction（多令牌预测），与之对应的是 DeepSeek-V3 发布之前业界普遍使用的单令牌预测（Single - Token Prediction，STP），STP 一次仅预测一个Token，而 MTP 可同时预测多个 Token，<strong>这一方案在训练阶段可以提升数据训练效率，在推理阶段可以实现显著加速</strong>。</li>
+<li><strong>实现方案</strong>：如 DeepSeek 论文中所展示的 MTP 架构所示，MTP 由一个主模型（Main Model）以及多个 MTP 模块（MTP Module 1、MTP Module 2 等）构成，<strong>主模型负责基础的下一个 Token 预测任务，MTP 模块则用于预测多个未来 Token</strong>，它们共同协作完成多Token 预测训练。</li>
+</ol>
+<p>a)<strong>输入 Token 与输出 Token</strong>：如图左下方的t1、t2、t3、t4等，是模型的输入序列；如图上方的t2、t3、t4、t5是模型预测需要匹配的真实 Token 序列，不同部分对应不同的预测任务。</p>
+<p>b)<strong>主模型（Main Model）与 MTP 模块</strong>：输入 Token 先经过嵌入层转换为向量表示，然后分别在 Main Model 和 MTP 内部进行计算，基于与目标 Token 计算得到的 Loss，指导模型更新训练参数。</p>
+<p>c)<strong>共享机制</strong>：嵌入层（Embedding Layer）和输出头（Output Head）在主模型和 MTP 模块之间共享，<strong>这种共享机制确保了模型在不同预测任务中的参数一致性，同时减少了参数数量，提高了训练效率。</strong></p>
+<p>
+  <figure>
+    <img class="my-0 rounded-md" loading="lazy" src="https://pic.yupi.icu/yuyi/1739511927648-1e364721-a86e-4721-bf5f-cca03f0ba7d3.png" alt="img" />
+    
+  </figure>
+</p>
+<ol start="3">
+<li><strong>核心价值</strong>：MTP 不仅在推理时能够显著加速生成速度（据称生成速度可提升 1.8 倍），对于高效训练同样很有价值。</li>
+</ol>
+<p>a)<strong>实现高效训练</strong>：由于一次可预测多个 Token，在相同数据量的情况下，<strong>相比 STP 架构，模型可以学习到更多的信息</strong>，从而提升了数据的利用效率，使得训练更加高效。</p>
+<p>b)<strong>提升训练效果</strong>：模型可以基于对多个 Token 的预测，更合理地调整自身参数，<strong>学习到更丰富的语言模式和语义信息</strong>，有助于模型在训练中更好地收敛，提升训练效果。</p>
+
+
+<h2 class="relative group">二、并行策略 
+    <div id="%E4%BA%8C%E5%B9%B6%E8%A1%8C%E7%AD%96%E7%95%A5" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E4%BA%8C%E5%B9%B6%E8%A1%8C%E7%AD%96%E7%95%A5" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p><strong>2.1 高效的并行策略设计：大量使用 EP、不再使用 TP</strong></p>
+<ol>
+<li><strong>并行策略总结</strong>：DeepSeek-V3 的训练由 HAI-LLM 框架（DeepSeek 自研训练框架）支持，采用了<strong>16路流水线并行（PP），跨越8个节点的64路专家并行（EP），以及 ZeRO-1 数据并行（DP）</strong>，实现了充分利用计算资源，提高训练效率，减少训练时间和成本。其中 PP 和 DP 将在本节后边两个要点进行分析，此处重点分析其为何没有使用 TP。</li>
+<li><strong>使用 EP 而不是 TP</strong>：在 DeepSeek-V3 训练中，优先使用 EP 而没有使用 TP 的原因核心有以下几个方面：</li>
+</ol>
+<p>a)<strong>模型结构适配性</strong>：MoE 模型由多个专家网络和一个门控网络组成，<strong>EP 正好与这种结构相匹配</strong>，它可以将不同的专家分配到不同的计算单元上并行计算，让模型同时处理多个不同的任务或数据特征，<strong>提高模型的处理能力和训练效率</strong>；TP 通常用于处理大型张量的计算，不能很好地对应 MoE 模型的结构特点。</p>
+<p>b)<strong>通信成本考虑</strong>：<strong>在 EP 中不同专家之间的通信相对较少</strong>，主要的通信开销在于门控网络与专家网络之间的信息交互，以及在进行模型参数更新等操作时的一些全局通信；TP 需要在多个设备之间频繁地进行张量的切分、合并等操作，通信量会随着模型规模和数据量的增加而显著增加，降低训练效率。</p>
+<p>c)<strong>计算资源利用率</strong>：MoE 模型中的不同专家可能具有不同的计算复杂度和数据需求，<strong>EP 可以根据各个专家的特点灵活地分配计算资源</strong>，使不同性能的计算单元都能得到充分利用；TP 的资源分配方式相对单一，对于不同专家的多样性计算需求支持不佳。</p>
+<p><strong>2.2 Dualpipe 流水线并行策略：双流并行计算优化与双向流水线调度优化</strong></p>
+<p>1.<strong>双流并行计算优化</strong>：</p>
+<p><strong>a)基本概念</strong>：如 DeepSeek 在论文中所述，在训练过程中包含前向传递、反向传递两个阶段，具体包括<strong>计算流和通信流</strong>两个流。</p>
+<ol>
+<li>
+<ol>
+<li><strong>前向传递</strong>：通常按顺序执行 <strong>ATTN（计算流）、DISPATCH（通信流）、MLP（计算流）、COMBINE（通信流）</strong> 操作。</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li>ATTN（计算流）：指注意力机制计算，使大模型能够捕捉文本等数据中的依赖关系，提升模型的性能和泛化能力。</li>
+<li>DISPATCH（通信流）：指数据或任务在不同GPU节点之间的传递，提高整个训练系统的并行度和效率。</li>
+<li>MLP（计算流）：即多层感知机计算，由输入层、输出层和一个或多个隐藏层构成，利用梯度下降法更新权重参数。</li>
+<li>COMBINE（通信流）：指将不同GPU节点上将计算结果进行合并的通信操作。</li>
+</ul>
+<p>ii. <strong>反向传递</strong>：需要执行 <strong>COMBINE（通信流）、MLP_B（计算流）、MLP_W（计算流）、DISPATCH（通信流）、ATTN_B（计算流）、ATTN_W（计算流）</strong> 操作:</p>
+<ul>
+<li>COMBINE（通信流）：定义与前向传递相同，此处特指反向传递时的数据汇总，以便进行全局参数更新。</li>
+<li>MLP_B（计算流）：此处的B指的是Bias，指的是反向传播中对于偏执项的计算，以便更新大模型的偏执参数。</li>
+<li>MLP_W（计算流）：此处的W指的是Weight，指的是反向传播中对于权重参数的计算，用于更新权重参数。</li>
+<li>DISPATCH（通信流）：在反向计算中，DISPATCH 的作用仍然是负责数据或任务的分发。</li>
+<li>ATTN_B（计算流）：偏置项也会影响注意力权重的计算和最终的输出，通过计算调整注意力机制中的偏置参数。</li>
+<li>ATTN_W（计算流）：计算损失函数对注意力权重的梯度，通过更新注意力权重捕捉数据中的依赖关系和重要信息。</li>
+</ul>
+<p>
+  <figure>
+    <img class="my-0 rounded-md" loading="lazy" src="https://pic.yupi.icu/yuyi/1739511927683-afc5fe33-4e4a-4203-a0b1-a209ba05edd6.png" alt="img" />
+    
+  </figure>
+</p>
+<p><strong>b)优化方法：</strong> 此处的双流并行，指的是计算流和通信流，双流并行即在大模型训练的反向传递阶段，<strong>将原本存在先后顺序的更新当前层权重（即MLP_B）和将梯度继续传递到前一层（即MLP_W）这两个操作，拆分成两个独立且并行的流</strong>，同时通过细致的设计，让训练的 barrier 刚好停在两个流任务完成的时候，<strong>而不需要通信流或者是计算流进行等待，提高计算效率</strong>。</p>
+<p>
+  <figure>
+    <img class="my-0 rounded-md" loading="lazy" src="https://pic.yupi.icu/yuyi/1739511927679-676fb960-da37-4560-ae80-7c8d9d9775bc.png" alt="img" />
+    
+  </figure>
+</p>
+<ol start="2">
+<li><strong>双向流水线调度优化</strong> <strong>：</strong></li>
+</ol>
+<p>a)<strong>基本概念</strong>：PP并行方法中，<strong>训练过程经常容易出现气泡（即GPU闲置）</strong>，核心原因是在PP并行中不同的计算阶段可能具有不同的计算复杂度和执行时间，<strong>导致计算快的阶段需要等待计算慢的阶段完成后才能继续进行下一轮计算</strong>，同时不同阶段之间需要进行数据通信来传递中间结果，可能会受到网络带宽等影响导致数据传输延迟，如下图所示，其中有以下一些关键信息。</p>
+<p>i.<strong>颜色</strong>：蓝色代表前向传播，绿色代表反向传播，<strong>灰色代表空闲状态</strong>（即气泡）。</p>
+<p>ii.<strong>数字</strong>：表示不同的微批次（Micro - batch），图中不同GPU上的数字序列，反映了各个微批次在不同GPU上的计算顺序和时间分布。</p>
+<p>
+  <figure>
+    <img class="my-0 rounded-md" loading="lazy" src="https://pic.yupi.icu/yuyi/1739511928276-250a49fd-0301-4af0-b433-47f0a634faad.png" alt="img" />
+    
+  </figure>
+</p>
+<p>b)<strong>优化方法：</strong> 传统的单向流水线通常是按照固定顺序，从流水线起始端依次进行微批次（micro - batch）处理；而DeepSeek-V3在训练过程中<strong>采用了双向流水线调度设计，即同时从两端进行微批次（micro - batch）处理</strong>，减少流水线气泡，另外DeepSeek将每个 micro - batch 进一步划分为更小的块（chunk），<strong>并对计算和通信进行精细调度，实现两者的高度重叠，提高 GPU 利用率</strong>。</p>
+<p>iii.<strong>起始端</strong>：在PP并行中，通常将设备编号较小的一端视为起始端，即图中的 Device 0。</p>
+<p>iv.<strong>末端</strong>：设备编号较大的一端为末端，也就是图中的 Device 7，在双向流水线中，Device 7 等设备也会在合适的时机启动计算任务，且与起始端的计算任务相互配合，<strong>并非只是被动等待起始端计算完成后才开始工作</strong>。</p>
+<p>
+  <figure>
+    <img class="my-0 rounded-md" loading="lazy" src="https://pic.yupi.icu/yuyi/1739511928296-2da235e7-5041-4cb2-a644-36cf771d675e.png" alt="img" />
+    
+  </figure>
+</p>
+<p><strong>2.3 ZeRO-1(DP) 数据并行策略：降低内存占用，加速模型训练</strong></p>
+<p><strong>1.基本概念：</strong> ZeRO（Zero Redundancy Optimizer）即零冗余优化器，是由微软提出的一种旨在减少分布式训练中内存使用的技术框架；ZeRO-1(DP)结合了零冗余优化器的思想和数据并行策略。</p>
+<p><strong>2.工作原理</strong>：在传统的数据并行中，每个设备都保存完整的优化器状态（如梯度、参数等），这会导致内存冗余；而 ZeRO-1 会将优化器状态划分到不同的设备上，<strong>每个设备只保存一部分优化器状态</strong>，在反向传播计算完成后，各个设备会交换自己所负责的参数的梯度信息，然后根据这些梯度更新各自保存的部分优化器状态和模型参数；通过这种方式，<strong>虽然每个设备只保存了部分信息，但最终所有设备上的模型参数会保持一致</strong>。</p>
+<p><strong>3.核心价值：</strong></p>
+<p>a)<strong>降低内存占用</strong>：ZeRO-1(DP) 数据并行策略<strong>显著降低了单个 GPU 的内存占用</strong>，让模型能够在有限的显存中进行训练。</p>
+<p>b)<strong>加速模型训练</strong>：首先由于内存占用降低，模型可以处理更大的批量数据，<strong>提高了计算资源的利用率</strong>，从而加快训练速度；另外ZeRO-1 通过在不同GPU之间共享一部分状态变量，<strong>减少了 GPU 之间的通信开销</strong>，进一步提升了整体训练效率。</p>
+
+
+<h2 class="relative group">三、通信优化 
+    <div id="%E4%B8%89%E9%80%9A%E4%BF%A1%E4%BC%98%E5%8C%96" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E4%B8%89%E9%80%9A%E4%BF%A1%E4%BC%98%E5%8C%96" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p><strong>3.1 Moe 路由的All2All优化设计：网络拓扑优化与资源分配优化</strong></p>
+
+
+<h4 class="relative group"><strong>1.基本概念：</strong> 
+    <div id="1%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#1%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5" aria-label="锚点">#</a>
+    </span>        
+    
+</h4>
+<p>在MoE大模型训练中，需要将训练数据按照数据类型或特征分配给最合适的专家模型进行处理，<strong>此时常用到两种数据路由方案</strong>，一种是All to All通信方案，另一种是基于 Magetron 实现的All Reduce和Reduce Scatter通信方案，其优缺点大致如下：</p>
+<p>a)<strong>All to All通信</strong>：在数据传输时，根据实际传输的数据量来开辟相应大小的显存空间；这种方案的<strong>优势是显存开销小，劣势是由于是点对点通信、通信效率相对较低</strong>。</p>
+<p>b)<strong>All Reduce和Reduce Scatter通信</strong>：这种方案首先是将所有数据路由至每一张GPU，然后通过掩码筛选出每个专家模型真正需要的数据，再进行求和、求最大值等规约操作，并将数据重新合理分配至每一张GPU；这种方案的<strong>优势是通信效率较高，劣势是显存开销比较大</strong>。</p>
+<ol>
+<li><strong>实现方案：</strong> 在 DeepSeek-V3 的实际训练中，<strong>选择了All to All的通信方案</strong>，为了解决All to All在通信效率方面存在的劣势，<strong>采用了众多通信优化手段</strong>，比较核心的有以下几个方面。</li>
+</ol>
+<p>a)<strong>限制路由范围</strong>：限制每个训练 token 最多只能被调度到 4 台GPU服务器，<strong>减少跨节点间的 IB 流量</strong>，规避了节点过多时训练 Token 随意路由导致的通信拥塞问题。</p>
+<p>b)<strong>网络拓扑优化</strong>：DeepSeek-V3 的训练集群应该<strong>采用了多轨组网方案</strong>（其并未正式公布，从其他渠道了解信息猜测得到），确保服务器收发数据时，可以在不同节点的同号卡之间实现最少跳数的互联，所以在数据路由策略上，DeepSeek-V3 会通过IB网络将数据从源端服务器传输至目标服务器相同卡号的GPU上，然后基于 NVLink 转发至托管目标专家的特定GPU，实现高效机内和机间通信，最大化利用高速互联网络带宽。</p>
+<p>c)<strong>资源分配优化</strong>：当期望训练流与通信流同时工作并达到重叠状态时（如二.2所述），就容易出现<strong>GPU SM资源（SM即流多处理器，H800有132个SM）的争抢，DeepSeek-V3 通过使用定制化的 PTX（即网络上宣称绕过CUDA的语言）</strong>，对GPU的132个SM进行了改造，专门划分出20个SM用于处理服务器间通信任务，并根据训练流和通信流的具体特点和需求，对指令执行进行优化，例如分配指令优先级、调整指令执行顺序等，减少 SM 资源分配和 L2 缓存抢占现象的发生。</p>
+<p>d)<strong>动态资源调整</strong>：DeepSeek-V3 采用了自动调整的资源分配策略，<strong>能够根据训练流和通信流在不同时刻的资源需求动态地分配 SM 和 L2 缓存资源</strong>，系统能够通过为每个专家引入的偏置项，根据每个专家的历史利用率情况，动态地调整其接收新任务的概率，即无辅助损失负载均衡策略。</p>
+
+
+<h2 class="relative group">四、显存优化 
+    <div id="%E5%9B%9B%E6%98%BE%E5%AD%98%E4%BC%98%E5%8C%96" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E5%9B%9B%E6%98%BE%E5%AD%98%E4%BC%98%E5%8C%96" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p><strong>4.1 FP8 低精度训练：混合训练框架和精细量化策略</strong></p>
+<ol>
+<li>
+<p><strong>混合精度训练框架</strong>：在 DeepSeek-V3 的训练中，对于占据大量计算量的 <strong>GEMM（通用矩阵乘法）操作，采用 FP8 精度执行</strong>，FP8 数据类型具有较低的内存占用和更快的计算速度，所以可以<strong>显著提升计算效率、降低显存开销</strong>；同时为了确保训练的稳定性，对于少数对精度要求比较高的关键操作，如嵌入模块（将输入 Token 转换为向量表示）、注意力操作等，<strong>仍保持高精度（BF16/FP32）计算</strong>。</p>
+</li>
+<li>
+<p><strong>精细量化策略</strong>：FP8 虽然在训练速度和显存占用方面优势明显，但是由于需要采取措施对训练数据、模型参数、中间激活值进行量化操作，<strong>容易在训练过程中出现因量化误差导致的模型发散等问题</strong>，影响训练稳定性和模型性能，DeepSeek-V3 在训练过程中采用了分块量化、块级量化、高精度累加<strong>三种精细量化策略</strong>解决这个问题。</p>
+</li>
+</ol>
+<p>a)<strong>分块量化</strong>：数据划分粒度相对较细，<strong>将数据划分为多个小块</strong>，然后对每个小块分别进行量化操作，这种方式能更精细地适应数据的局部特征，减少量化误差。</p>
+<p>b)<strong>块级量化</strong>：数据划分粒度相对较粗，<strong>对更大的块进行统一量化处理</strong>，这种方式更关注数据的整体特征和分布情况，通过对较大块的数据采用相同的量化参数进行量化，可以简化量化计算过程，降低计算复杂度。</p>
+<p>c)<strong>高精度累加</strong>：在一些关键计算步骤中，虽然中间计算过程使用了 FP8 精度以提高计算效率，<strong>但在进行累加等操作时，会将 FP8 数据转换为更高精度的数据类型（BF16/FP32）进行累加</strong>，然后再根据需要转换回 FP8 精度进行后续计算，这种机制可以有效控制量化误差的积累。</p>
+<p>
+  <figure>
+    <img class="my-0 rounded-md" loading="lazy" src="https://pic.yupi.icu/yuyi/1739511928288-566f276e-7343-4210-96bd-cd40571b97ec.png" alt="img" />
+    
+  </figure>
+</p>
+<p><strong>4.2 选择重计算：间隔重计算和选择性重计算优化</strong></p>
+<ol>
+<li><strong>基本概念：</strong> 在训练过程中，需要占用大量的显存来存储模型参数、中间结果等数据，当模型参数规模较大或者训练数据量较多时，可能会出现显存不够用的情况；所以业界会采用重计算优化方法，<strong>即在前向传播时不保存上述的中间结果数据，而是在反向传播需要的时候重新计算它们</strong>，大大减少中间结果所占用的显存空间。</li>
+<li><strong>实现方案：</strong> 比较粗暴的实现方案是完全重计算，这种方案因为计算量较大，会大幅增加训练全过程时间，所以业界一直在探索更为高效的选择重计算方案，DeepSeek-V3 在训练过程中主要应用了<strong>间隔重计算和选择性重计算</strong>两种优化手段。</li>
+</ol>
+<p>a)<strong>间隔重计算</strong>：即“<strong>隔一层重计算一次</strong>” ，在反向传播中对一半层的输入输出进行重计算，另一半层按照传统方式保存中间结果数据。</p>
+<p>b)<strong>选择性重计算</strong>：大模型每一层的计算，通常由<strong>类似 RMSkernel 的计算强度较弱的部分</strong>（包含平方、求和、开方等计算操作，用于稳定训练过程、加速模型收敛）和<strong>计算强度较强的 GEMM 矩阵乘法部分组成</strong>，他们虽然都会产生中间结果，但是计算成本差异较大；通常 RMSkernel 的计算时间占比小、但<strong>单位计算的显存占用大</strong>，而GEMM的计算时间占比大、但<strong>单位计算的显存占用小</strong>；所以选择性重计算方法<strong>重点是针对 RMSkernel 相关的部分算子进行重计算，获得最大的性价比。</strong></p>
+<p><strong>4.3 EMA显存优化：异步处理与显存卸载优化</strong></p>
+<ol>
+<li><strong>基本概念：</strong> EMA是指数移动平均（Exponential Moving Average），它对于模型训练过程中每一步更新得到的参数，计算指数加权平均值，得到一组新的参数，用于监测训练方向，<strong>避免噪声对于模型参数更新的影响，以得到更加稳定、泛化能力更强的参数</strong>；由于EMA需要额外维护一组参数，所以会占用一定的显存空间。</li>
+</ol>
+<p>2.<strong>实现方案</strong>：DeepSeek-V3 在训练过程中采用了异步处理和显存卸载方法，优化了EMA的显存占用。</p>
+<p>a)<strong>异步处理</strong>：由于EMA的计算过程并不需要训练过程中实时产生的数据，所以可以独立于前向传播和反向传播而开展，DeepSeek采用异步处理方式，<strong>让EMA计算过程与训练过程并行开展。</strong></p>
+<p>b)<strong>显存卸载</strong>：基于上述异步处理的基础，<strong>可以将EMA计算从GPU显存卸载至CPU</strong>，即在每一轮训练结束后，将模型参数传递给CPU，在 CPU 上计算 EMA 参数，然后将更新后的 EMA 参数存储在 CPU 内存中，减少GPU的显存占用。</p>
+<p><strong>4.4 头尾参数共享：embedding 层和 lm_head 层共享参数的优化策略</strong></p>
+<p><strong>1.基本概念：</strong> embedding层位于模型首端，核心作用是把离散的 Token 转换为连续的向量表示，实现这一转换依靠的是一个可学习的权重矩阵，其大小为 vocab_size * hidden_size（词表大小 * 每个 Token 对应的嵌入向量的维度）；lm_head 层位于模型的末端，将模型输出的嵌入向量重新映射回 Token 的概率分布，以便计算损失函数，其实现方式同样是依赖一个大小为 vocab_size * hidden_size 的权重矩阵。</p>
+<p><strong>2.实现方案：<strong>头尾参数共享，指的是</strong>让 embedding 层和 lm_head 层使用同一个权重矩阵</strong>，这种优化方案由于减少了参数存储量，与之相关的梯度、优化器状态和参数备份等占用的显存也会相应减少，<strong>且共用的权重矩阵有助于模型学习到更稳定和通用的 Token 表示</strong>，从而提高模型的性能和泛化能力。</p>
+
+
+<h2 class="relative group">总结 
+    <div id="%E6%80%BB%E7%BB%93" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#%E6%80%BB%E7%BB%93" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>通过上述对 DeepSeek-V3 高效训练关键技术的分析，我们能够看出，DeepSeek-V3 之所以能够利用5%的算力训练出对标 GPT-4o 的先进模型，与其创新性的模型架构设计、高效的并行策略选择以及对集群通信和显存的极致优化密不可分，<strong>高效训练方法的表象是需要更少规模的算力</strong>，<strong>但其本质是对算法创新和极致集群性能的更高要求</strong>，所以 DeepSeek-V3 的先进经验对于 AI Infra 绝不是利空，反而随着精细化的高效训练方法被业界普遍采用，<strong>基于先进芯片选型、先进架构搭建的 AI Infra 的重要性会越发凸显</strong>，持续学习。</p>
+<blockquote>
+<p>来源：https://news.qq.com/rain/a/20250211A01HDY00?utm_source=chatgpt.com</p>
+</blockquote>
+
+        <div class="reward-container" data-default-link="/reward/">
+    <button class="reward-button">打赏作者</button>
+    <p class="reward-hint">如果您觉得这篇文章有帮助，请考虑打赏作者。</p>
+    <div class="reward-images">
+    
+    <div class="reward-item">
+    <img src="/images/reward/wechatpay.png" alt="微信支付">
+    <p class="reward-text">微信支付</p>
+    </div>
+    
+    <div class="reward-item">
+    <img src="/images/reward/alipay.png" alt="支付宝">
+    <p class="reward-text">支付宝</p>
+    </div>
+    
+    <div class="reward-item">
+    <img src="/images/reward/usdt.png" alt="USDT(ERC-20)">
+    <p class="reward-text">USDT(ERC-20)</p>
+    </div>
+    
+    </div>
+</div>
+      </div>
+     
+        
+      
+        
+
+        
+
+        
+
+        
+
+
+<h2 class="mt-8 text-2xl font-extrabold mb-10">相关文章</h2>
+<section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+  
+  
+
+  <a href="/columns/deepseek/deepseek-usage-guide/207/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/featuredfeatured2614721666615301.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/columns/deepseek/deepseek-usage-guide/207/">2分钟学会 DeepSeek API，竟然比官方更好用！</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2025-03-14 00:00:00 &#43;0000 UTC">2025-03-14</time>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+        </div>
+        
+        
+         
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
+  
+
+  <a href="/columns/deepseek/deepseek-model-training/1001/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/featuredfeatured2614721666615301.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/columns/deepseek/deepseek-model-training/1001/">DeepSeek-R1的四个训练阶段</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2025-03-14 00:00:00 &#43;0000 UTC">2025-03-14</time>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+        </div>
+        
+        
+         
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
+  
+
+  <a href="/columns/deepseek/deepseek-programming-development/801/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/columns/deepseek/deepseek-programming-development/801/featured_2619149037570565.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/columns/deepseek/deepseek-programming-development/801/">3 小时做游戏，10 天狂赚 28 万！程序员用 AI 躺赚？</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2025-03-14 00:00:00 &#43;0000 UTC">2025-03-14</time>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+        </div>
+        
+        
+         
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
+  
+
+  <a href="/columns/deepseek/deepseek-content-creation/401/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/featuredfeatured2614721666615301.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/columns/deepseek/deepseek-content-creation/401/">3秒让DeepSeek写出爆款小红书</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2025-03-14 00:00:00 &#43;0000 UTC">2025-03-14</time>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+        </div>
+        
+        
+         
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
+  
+
+  <a href="/columns/deepseek/deepseek-creative-design/502/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/featuredfeatured2614721666615301.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/columns/deepseek/deepseek-creative-design/502/">5 个不得不收藏的 Deepseek 王炸组合！</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2025-03-14 00:00:00 &#43;0000 UTC">2025-03-14</time>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+        </div>
+        
+        
+         
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
+  
+
+  <a href="/columns/deepseek/deepseek-questioning-skills/301/" class="min-w-full">
+    
+    <div class="min-h-full border border-neutral-200 dark:border-neutral-700 border-2 rounded overflow-hidden shadow-2xl relative">
+        
+        <div class="w-full thumbnail_card_related nozoom" style="background-image:url(/img/featuredfeatured2614721666615301.jpg);"></div>
+        
+      
+
+      <div class="px-6 py-4">
+
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/columns/deepseek/deepseek-questioning-skills/301/">50个常用的DeepSeek模仿风格提示词，去AI味的大杀器</div>
+        
+
+        <div class="text-sm text-neutral-500 dark:text-neutral-400">
+          
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2025-03-14 00:00:00 &#43;0000 UTC">2025-03-14</time>
+  
+
+  
+  
+</div>
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+
+
+        </div>
+        
+        
+         
+      </div>
+      <div class="px-6 pt-4 pb-2">
+
+      </div>
+    </div>
+  </a>
+
+  
+</section>
+
+  
+      </div>
+     
+      
+      
+        
+        
+          
+          
+        
+      <script>
+        var oid = "views_columns\\deepseek\\deepseek-model-training\\1003\\index.md"
+        var oid_likes = "likes_columns\\deepseek\\deepseek-model-training\\1003\\index.md"
+      </script>
+      
+      
+      
+      <script type="text/javascript" src="/js/page.min.0860cf4e04fa2d72cc33ddba263083464d48f67de06114529043cb4623319efed4f484fd7f1730df5abea0e2da6f3538855634081d02f2d6e920b956f063e823.js" integrity="sha512-CGDPTgT6LXLMM926JjCDRk1I9n3gYRRSkEPLRiMxnv7U9IT9fxcw31q&#43;oOLabzU4hVY0CB0C8tbpILlW8GPoIw=="></script>
+  
+    </section>
+
+  <footer class="pt-8 max-w-prose print:hidden">
+
+    
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group mr-3" href="/columns/deepseek/deepseek-model-training/1004/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >DeepSeek华丽文风从何而来？业内人士：训练数据、训练策略和迭代优化缺一不可</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2025-03-14 00:00:00 &#43;0000 UTC">2025-03-14</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="flex text-right group ml-3" href="/columns/deepseek/deepseek-model-training/1002/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >DeepSeek-R1的训练流程强化学习（RL）阶段采用了GRPO算法</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2025-03-14 00:00:00 &#43;0000 UTC">2025-03-14</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
+  
+
+
+    
+  </footer>
+</article>
+
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="返回顶部" title="返回顶部">
+    &uarr;
+  </a>
+</div>
+    </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+  
+  <div class="flex items-center justify-between">
+
+
+  
+    
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+      &copy;
+      2025
+      MetaX · <a href="https://beian.miit.gov.cn/" target="_blank">京ICP备14009107号-2</a>
+    </p>
+    
+  
+ 
+
+    
+    
+
+  </div>
+  <script>
+    
+    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/process.min.ee03488f19c93c2efb199e2e3014ea5f3cb2ce7d45154adb3399a158cac27ca52831db249ede5bb602700ef87eb02434139de0858af1818ab0fb4182472204a4.js" integrity="sha512-7gNIjxnJPC77GZ4uMBTqXzyyzn1FFUrbM5mhWMrCfKUoMdsknt5btgJwDvh&#43;sCQ0E53ghYrxgYqw&#43;0GCRyIEpA=="></script>
+  
+  
+
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  var rewardButton = document.querySelector('.reward-button');
+  if (rewardButton) {
+  rewardButton.addEventListener('click', function() {
+  var container = document.querySelector('.reward-container');
+  if (window.innerWidth > 768) {
+  var images = container.querySelector('.reward-images');
+  if (images.style.display === 'none' || images.style.display === '') {
+  images.style.display = 'flex';
+  } else {
+  images.style.display = 'none';
+  }
+  } else {
+  var defaultLink = container.getAttribute('data-default-link');
+  window.location.href = defaultLink;
+  }
+  });
+  }
+  });
+  </script><div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="//localhost:1313/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="搜索"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="关闭 (Esc)"
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<div class="floating-bar">
+  
+  <div class="fb-icon" data-qr="/images/slidebar/qr-metax-reward.png">
+    <i class="fas fa-solid fa-thumbs-up"></i>
+  </div>
+  
+  <div class="fb-icon" data-qr="/images/slidebar/qr-metax-plus.png">
+    <i class="fas fa-solid fa-user-plus"></i>
+  </div>
+  
+  <div class="fb-icon" data-qr="/images/slidebar/qr-aifriend-miniapp.png">
+    <i class="fas fa-solid fa-code"></i>
+  </div>
+  
+  <div class="fb-icon" data-qr="/images/slidebar/ar-aifriend-public.png">
+    <i class="fas fa-brands fa-weixin"></i>
+  </div>
+  
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.fb-icon').forEach(icon => {
+    const qrPath = icon.dataset.qr
+    const qrImg = new Image()
+    qrImg.src = qrPath
+    qrImg.className = 'fb-qr-image'
+    
+    icon.appendChild(qrImg)
+    
+    icon.addEventListener('mouseenter', () => 
+      qrImg.style.opacity = '1'
+    )
+    icon.addEventListener('mouseleave', () => 
+      qrImg.style.opacity = '0'
+    )
+  })
+})
+</script>
+
+
+
+</body>
+
+
+
+<script>
+  document.querySelectorAll('.aplayer-shortcode').forEach(el => {
+    new APlayer({
+      container: el,
+      audio: JSON.parse(el.dataset.audio),
+      ...JSON.parse(el.dataset.options)
+    });
+  });
+  </script>
+  
+</html>

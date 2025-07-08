@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>时尚与消费品设计 on MetaX</title>
+    <link>//localhost:1313/series/%E6%97%B6%E5%B0%9A%E4%B8%8E%E6%B6%88%E8%B4%B9%E5%93%81%E8%AE%BE%E8%AE%A1/</link>
+    <description>Recent content in 时尚与消费品设计 on MetaX</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 MetaX</copyright>
+    <lastBuildDate>Tue, 15 Apr 2025 08:00:00 +0800</lastBuildDate><atom:link href="//localhost:1313/series/%E6%97%B6%E5%B0%9A%E4%B8%8E%E6%B6%88%E8%B4%B9%E5%93%81%E8%AE%BE%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>服装设计</title>
+      <link>//localhost:1313/columns/exploring-ai-art-with-midjourney/clothing-design/</link>
+      <pubDate>Tue, 15 Apr 2025 08:00:00 +0800</pubDate>
+      
+      <guid>//localhost:1313/columns/exploring-ai-art-with-midjourney/clothing-design/</guid>
+      <description>服装设计概述 服装设计是指将设计师的创意想法转化为实际可穿着的</description>
+      
+    </item>
+    
+  </channel>
+</rss>

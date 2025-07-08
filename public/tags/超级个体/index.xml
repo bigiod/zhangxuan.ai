@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>超级个体 on MetaX</title>
+    <link>//localhost:1313/tags/%E8%B6%85%E7%BA%A7%E4%B8%AA%E4%BD%93/</link>
+    <description>Recent content in 超级个体 on MetaX</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 MetaX</copyright>
+    <lastBuildDate>Wed, 09 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/tags/%E8%B6%85%E7%BA%A7%E4%B8%AA%E4%BD%93/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI超级个体</title>
+      <link>//localhost:1313/superindividual/</link>
+      <pubDate>Tue, 02 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/superindividual/</guid>
+      <description>AI 超级个体的时代 # 互联网时代，人们的工作以脑力为主、体力为辅</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/superindividual/feature.jpg" />
+    </item>
+    
+    <item>
+      <title>《AI超级个体之旅》</title>
+      <link>//localhost:1313/music/super-individual-journey/</link>
+      <pubDate>Wed, 09 Apr 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/music/super-individual-journey/</guid>
+      <description>一张充满力量与希望的纯音乐专辑，让听众踏上一段从内心觉醒到成为AI赋能超级个体的心灵旅程。</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/music/super-individual-journey/feature4475ae4dbfdce3b7e267b94bdda0d4fc.jpg" />
+    </item>
+    
+    <item>
+      <title>一个普通人的AI超级个体成长叙事</title>
+      <link>//localhost:1313/timeline/</link>
+      <pubDate>Mon, 03 Jun 2024 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/timeline/</guid>
+      <description>各位新老朋友们： 我是小红书AI科技博主MetaX，当AI开始</description>
+      
+    </item>
+    
+  </channel>
+</rss>

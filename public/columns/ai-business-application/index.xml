@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AI场景化商业应用实践 on MetaX</title>
+    <link>//localhost:1313/columns/ai-business-application/</link>
+    <description>Recent content in AI场景化商业应用实践 on MetaX</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 MetaX</copyright>
+    <lastBuildDate>Tue, 15 Apr 2025 08:00:00 +0800</lastBuildDate><atom:link href="//localhost:1313/columns/ai-business-application/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>即梦AI生成字体，用这套Prompt效率提升200%</title>
+      <link>//localhost:1313/columns/ai-business-application/jimeng-ai-font-design/</link>
+      <pubDate>Tue, 15 Apr 2025 08:00:00 +0800</pubDate>
+      
+      <guid>//localhost:1313/columns/ai-business-application/jimeng-ai-font-design/</guid>
+      <description>先放一些看起来还不错的图文效果： &amp;#34;艺术家看到的比你多</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/columns/ai-business-application/jimeng-ai-font-design/feature.jpg" />
+    </item>
+    
+    <item>
+      <title>10个让人惊叹的ChatGPT-4o绘图应用场景/实践案例</title>
+      <link>//localhost:1313/columns/ai-business-application/chatgpt-4o-drawing/</link>
+      <pubDate>Mon, 07 Apr 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/columns/ai-business-application/chatgpt-4o-drawing/</guid>
+      <description>GPT-4o绘图介绍与特点: # 高度精确的指令遵循 GPT-4o 能够严格按</description>
+      <media:content xmlns:media="http://search.yahoo.com/mrss/" url="//localhost:1313/columns/ai-business-application/chatgpt-4o-drawing/featured.png" />
+    </item>
+    
+  </channel>
+</rss>

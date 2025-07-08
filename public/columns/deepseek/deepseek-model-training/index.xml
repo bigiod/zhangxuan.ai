@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DeepSeek模型训练 on MetaX</title>
+    <link>//localhost:1313/columns/deepseek/deepseek-model-training/</link>
+    <description>Recent content in DeepSeek模型训练 on MetaX</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2025 MetaX</copyright>
+    <lastBuildDate>Fri, 14 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/columns/deepseek/deepseek-model-training/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DeepSeek-R1的四个训练阶段</title>
+      <link>//localhost:1313/columns/deepseek/deepseek-model-training/1001/</link>
+      <pubDate>Fri, 14 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/columns/deepseek/deepseek-model-training/1001/</guid>
+      <description>DeepSeek-R1的四个训练阶段 # DeepSeek-R1</description>
+      
+    </item>
+    
+    <item>
+      <title>DeepSeek-R1的训练流程强化学习（RL）阶段采用了GRPO算法</title>
+      <link>//localhost:1313/columns/deepseek/deepseek-model-training/1002/</link>
+      <pubDate>Fri, 14 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/columns/deepseek/deepseek-model-training/1002/</guid>
+      <description>DeepSeek-R1的训练流程强化学习（RL）阶段采用了G</description>
+      
+    </item>
+    
+    <item>
+      <title>DeepSeek-V3 高效训练关键技术分析</title>
+      <link>//localhost:1313/columns/deepseek/deepseek-model-training/1003/</link>
+      <pubDate>Fri, 14 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/columns/deepseek/deepseek-model-training/1003/</guid>
+      <description>DeepSeek-V3 高效训练关键技术分析 # 本文从模型架构、并行策略、通信优化和</description>
+      
+    </item>
+    
+    <item>
+      <title>DeepSeek华丽文风从何而来？业内人士：训练数据、训练策略和迭代优化缺一不可</title>
+      <link>//localhost:1313/columns/deepseek/deepseek-model-training/1004/</link>
+      <pubDate>Fri, 14 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>//localhost:1313/columns/deepseek/deepseek-model-training/1004/</guid>
+      <description>DeepSeek华丽文风从何而来？业内人士：训练数据、训练策</description>
+      
+    </item>
+    
+  </channel>
+</rss>
