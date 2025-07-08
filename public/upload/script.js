@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const LOGIN_WEBHOOK_URL = 'https://szb.zeabur.app/webhook/d4ba8fa0-45e9-4d1f-ad6d-9c3523ada543';
     const UPLOAD_WEBHOOK_URL = 'https://szb.zeabur.app/webhook/upload-file';
     const MAX_FILES = 10;
-    const ALLOWED_FILE_TYPES = ['.mp4', '.txt'];
+    const ALLOWED_FILE_TYPES = ['.mp4'];
     const SESSION_DURATION = 60 * 60 * 1000; // 1小时
 
     let filesToUpload = [];
