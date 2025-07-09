@@ -1,15 +1,17 @@
+// script.js (已修正并优化)
+
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 全局变量和配置 ---
+    // --- 1. 全局变量和配置 ---
     const LOGIN_WEBHOOK_URL = 'https://szb.zeabur.app/webhook/d4ba8fa0-45e9-4d1f-ad6d-9c3523ada543';
-    const UPLOAD_WEBHOOK_URL = 'https://szb.zeabur.app/webhook/upload-file';
+    const GCS_SIGN_REQUEST_URL = 'https://szb.zeabur.app/webhook/3b143d91-370d-410d-841e-c6cfa40986d5';
     const MAX_FILES = 10;
     const ALLOWED_FILE_TYPES = ['.mp4'];
     const SESSION_DURATION = 60 * 60 * 1000; // 1小时
 
     let filesToUpload = [];
 
-    // --- 获取所有需要操作的HTML元素 ---
+    // --- 2. 获取所有HTML元素 ---
     const loginSection = document.getElementById('loginSection');
     const loginForm = document.getElementById('loginForm');
     const loginBtn = document.getElementById('loginBtn');
@@ -25,12 +27,59 @@ document.addEventListener('DOMContentLoaded', () => {
     const uploadError = document.getElementById('uploadError');
     const uploadBtn = document.getElementById('uploadBtn');
     const resetBtn = document.getElementById('resetBtn');
-    // ✨ NEW: 获取退出登录按钮
     const logoutBtn = document.getElementById('logoutBtn');
 
-    // ========================================================================
-    // 登录与会话管理函数
-    // ========================================================================
+    // --- 3. 初始化与事件监听 ---
+    checkLoginStatus(); 
+
+    loginForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        setButtonLoading(loginBtn, true);
+        hideMessage(loginError);
+        try {
+            const response = await fetch(LOGIN_WEBHOOK_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    username: document.getElementById('username').value,
+                    password: document.getElementById('password').value
+                }),
+            });
+            const data = await response.json();
+            if (response.ok && data.success) {
+                performLogin();
+            } else {
+                showMessage(loginError, data.message || '发生未知错误，请重试。');
+            }
+        } catch (error) {
+            showMessage(loginError, '无法连接到服务器，请检查网络。');
+        } finally {
+            setButtonLoading(loginBtn, false);
+        }
+    });
+
+    logoutBtn.addEventListener('click', logout);
+
+    // ✨ FIX 2: 优化移动端文件选择
+    // 为 <input> 的 accept 属性提供 MIME 类型 (video/mp4)，以极大地改善在手机浏览器（尤其是iOS）上的兼容性，确保可以正常打开视频文件选择器。
+    fileInput.setAttribute('accept', 'video/mp4,.mp4');
+
+    updateUploadability();
+    ['click', 'dragover', 'dragleave', 'drop'].forEach(eventName => uploadArea.addEventListener(eventName, e => e.preventDefault()));
+    uploadArea.addEventListener('click', () => { if (!uploadArea.classList.contains('disabled')) fileInput.click(); });
+    uploadArea.addEventListener('dragover', () => { if (!uploadArea.classList.contains('disabled')) uploadArea.classList.add('dragover'); });
+    uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
+    uploadArea.addEventListener('drop', e => {
+        if (!uploadArea.classList.contains('disabled')) {
+            uploadArea.classList.remove('dragover');
+            handleFileSelection(e.dataTransfer.files);
+        }
+    });
+    fileInput.addEventListener('change', () => handleFileSelection(fileInput.files));
+    uploadBtn.addEventListener('click', uploadAllFiles);
+    resetBtn.addEventListener('click', resetUploadState);
+
+    // --- 4. 登录与会话管理函数 ---
     function checkLoginStatus() {
         const sessionDataString = localStorage.getItem('userSession');
         if (!sessionDataString) return;
@@ -55,71 +104,19 @@ document.addEventListener('DOMContentLoaded', () => {
         uploadSection.classList.remove('hidden');
     }
 
-    // ✨ NEW: 创建一个统一的退出登录函数
     function logout() {
         localStorage.removeItem('userSession');
-        // 使用 location.reload() 可以确保所有状态都被重置
         location.reload();
     }
-
-
-    // --- 初始化与事件监听 ---
-    fileInput.setAttribute('accept', ALLOWED_FILE_TYPES.join(','));
-    updateUploadability();
-    checkLoginStatus(); 
-
-    // 登录表单提交
-    loginForm.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        setButtonLoading(loginBtn, true);
-        hideMessage(loginError);
-        try {
-            const response = await fetch(LOGIN_WEBHOOK_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    username: document.getElementById('username').value,
-                    password: document.getElementById('password').value
-                }),
-            });
-            const data = await response.json();
-            if (response.ok && data.success) {
-                performLogin(); // 调用登录函数
-            } else {
-                showMessage(loginError, data.message || '发生未知错误，请重试。');
-            }
-        } catch (error) {
-            showMessage(loginError, '无法连接到服务器，请检查网络。');
-        } finally {
-            setButtonLoading(loginBtn, false);
-        }
-    });
-
-    // ✨ NEW: 为退出登录按钮添加点击事件
-    logoutBtn.addEventListener('click', logout);
-
-    // 文件处理与上传交互
-    ['click', 'dragover', 'dragleave', 'drop'].forEach(eventName => uploadArea.addEventListener(eventName, e => e.preventDefault()));
-    uploadArea.addEventListener('click', () => { if (!uploadArea.classList.contains('disabled')) fileInput.click(); });
-    uploadArea.addEventListener('dragover', () => { if (!uploadArea.classList.contains('disabled')) uploadArea.classList.add('dragover'); });
-    uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
-    uploadArea.addEventListener('drop', e => {
-        if (!uploadArea.classList.contains('disabled')) {
-            uploadArea.classList.remove('dragover');
-            handleFileSelection(e.dataTransfer.files);
-        }
-    });
-    fileInput.addEventListener('change', () => handleFileSelection(fileInput.files));
-    uploadBtn.addEventListener('click', uploadAllFiles);
-    resetBtn.addEventListener('click', resetUploadState);
-
-    // --- 核心功能函数 (这部分代码保持不变) ---
+    
+    // --- 5. 文件选择与列表渲染函数 ---
     function handleFileSelection(selectedFiles) {
         hideMessage(uploadError);
         const validFiles = [];
         const invalidFileNames = [];
         const isFileTypeValid = (file) => {
             const fileNameLower = file.name.toLowerCase();
+            // 验证逻辑保持不变，确保上传的文件后缀仍是 .mp4
             return ALLOWED_FILE_TYPES.some(type => fileNameLower.endsWith(type));
         };
         for (const file of selectedFiles) {
@@ -183,26 +180,38 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- 6. 核心上传逻辑 ---
     async function uploadAllFiles() {
         setButtonLoading(uploadBtn, true);
         uploadBtn.classList.add("hidden");
         progressContainer.classList.remove("hidden");
         hideMessage(uploadError);
+
         let totalSize = filesToUpload.reduce((sum, file) => sum + file.size, 0);
         let uploadedSize = 0;
+        
+        progressFill.style.width = '0%';
+        progressText.textContent = `整体进度: 0% (0 Bytes / ${formatFileSize(totalSize)})`;
+
         const uploadPromises = filesToUpload.map(file => uploadSingleFile(file, (chunkSize) => {
             uploadedSize += chunkSize;
             const percentage = totalSize > 0 ? Math.round(uploadedSize / totalSize * 100) : 0;
             progressFill.style.width = `${percentage}%`;
             progressText.textContent = `整体进度: ${percentage}% (${formatFileSize(uploadedSize)} / ${formatFileSize(totalSize)})`;
         }));
+
         try {
-            const results = await Promise.all(uploadPromises);
-            renderSuccessResults(results);
+            const results = await Promise.allSettled(uploadPromises);
+            const successfulUploads = results.filter(r => r.status === 'fulfilled').map(r => r.value);
+            const failedUploads = results.filter(r => r.status === 'rejected').map(r => r.reason.message);
+            
+            renderSuccessResults(successfulUploads);
+
+            if (failedUploads.length > 0) {
+                showMessage(uploadError, `部分文件上传失败:\n- ${failedUploads.join('\n- ')}`);
+            }
         } catch (error) {
-            showMessage(uploadError, `上传失败: ${error.message || "未知错误"}`);
-            progressContainer.classList.add("hidden");
-            uploadBtn.classList.remove("hidden");
+            showMessage(uploadError, `发生意外错误: ${error.message}`);
         } finally {
             setButtonLoading(uploadBtn, false);
             resetBtn.classList.remove("hidden");
@@ -210,11 +219,38 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function uploadSingleFile(file, onProgress) {
+    async function uploadSingleFile(file, onProgress) {
+        let permissionData;
+        
+        try {
+            const response = await fetch(GCS_SIGN_REQUEST_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    fileName: file.name,
+                    contentType: file.type || 'application/octet-stream'
+                }),
+            });
+    
+            if (!response.ok) {
+                throw new Error(`服务器响应异常, 状态码: ${response.status}`);
+            }
+    
+            permissionData = await response.json();
+    
+            if (!permissionData.success || !permissionData.uploadUrl || !permissionData.finalUrl || !permissionData.originalFileName) {
+                throw new Error('从服务器获取的上传许可数据不完整。');
+            }
+        } catch (error) {
+            throw new Error(`文件 "${file.name}" 获取上传许可失败: ${error.message}`);
+        }
+    
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
-            const formData = new FormData();
-            formData.append("file0", file);
+            
+            xhr.open(permissionData.method, permissionData.uploadUrl, true);
+            xhr.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
+            
             let lastLoaded = 0;
             xhr.upload.onprogress = (event) => {
                 if (event.lengthComputable) {
@@ -223,31 +259,35 @@ document.addEventListener('DOMContentLoaded', () => {
                     onProgress(chunkLoaded);
                 }
             };
+            
             xhr.onload = () => {
                 if (xhr.status >= 200 && xhr.status < 300) {
-                    try {
-                        const response = JSON.parse(xhr.responseText);
-                        if (response.success && response.url) {
-                            resolve({ fileName: file.name, url: response.url });
-                        } else {
-                            reject(new Error(response.message || `文件 ${file.name} 上传成功但服务器返回错误`));
-                        }
-                    } catch (e) {
-                        reject(new Error(`文件 ${file.name} 的服务器响应解析失败`));
-                    }
+                    resolve({ 
+                        fileName: permissionData.originalFileName,
+                        url: permissionData.finalUrl
+                    });
                 } else {
-                    reject(new Error(`文件 ${file.name} 上传失败，状态码: ${xhr.status}`));
+                    reject(new Error(`文件 "${permissionData.originalFileName}" 上传至GCS失败, 状态: ${xhr.status}`));
                 }
             };
-            xhr.onerror = () => reject(new Error(`文件 ${file.name} 发生网络错误`));
-            xhr.open("POST", UPLOAD_WEBHOOK_URL, true);
-            xhr.send(formData);
+            
+            xhr.onerror = () => {
+                reject(new Error(`文件 "${permissionData.originalFileName}" 上传时发生网络错误`));
+            };
+            
+            xhr.send(file);
         });
     }
 
+    // --- 7. 结果渲染与状态重置函数 ---
     function renderSuccessResults(results) {
         progressContainer.classList.add("hidden");
         fileListContainer.innerHTML = "";
+        if (results.length === 0) {
+            fileListContainer.classList.add("hidden");
+            return;
+        }
+        fileListContainer.classList.remove("hidden");
         results.forEach(result => {
             const resultItem = document.createElement("div");
             resultItem.className = "result-item";
@@ -263,9 +303,7 @@ document.addEventListener('DOMContentLoaded', () => {
             copyBtn.onclick = () => {
                 navigator.clipboard.writeText(result.url).then(() => {
                     copyBtn.textContent = "已复制!";
-                    setTimeout(() => {
-                        copyBtn.textContent = "复制"
-                    }, 2000);
+                    setTimeout(() => { copyBtn.textContent = "复制" }, 2000);
                 });
             };
             resultItem.appendChild(link);
@@ -284,6 +322,7 @@ document.addEventListener('DOMContentLoaded', () => {
         resetBtn.classList.add("hidden");
     }
 
+    // --- 8. 辅助函数 ---
     function formatFileSize(bytes) {
         if (bytes === 0) return "0 Bytes";
         const k = 1024;
