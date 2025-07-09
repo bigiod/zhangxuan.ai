@@ -1,10 +1,11 @@
-// script.js (最终完整版)
+// script.js (已修正并优化)
 
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. 全局变量和配置 ---
     const LOGIN_WEBHOOK_URL = 'https://szb.zeabur.app/webhook/d4ba8fa0-45e9-4d1f-ad6d-9c3523ada543';
-    const GCS_SIGN_REQUEST_URL = 'https://szb.zeabur.app/webhook/request-gcs-upload-url'; // 确保这个URL正确
+    // ✅ 您的n8n GCS签名请求地址，已确认无误
+    const GCS_SIGN_REQUEST_URL = 'https://szb.zeabur.app/webhook/request-gcs-upload-url';
     const MAX_FILES = 10;
     const ALLOWED_FILE_TYPES = ['.mp4'];
     const SESSION_DURATION = 60 * 60 * 1000; // 1小时
@@ -30,14 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const logoutBtn = document.getElementById('logoutBtn');
 
     // --- 3. 初始化与事件监听 ---
-    // (这部分是之前缺失的关键代码)
-    
-    // 检查登录状态
     checkLoginStatus(); 
 
-    // 登录表单提交事件
     loginForm.addEventListener('submit', async (event) => {
-        event.preventDefault(); // <-- 这行代码至关重要，阻止页面刷新！
+        event.preventDefault();
         setButtonLoading(loginBtn, true);
         hideMessage(loginError);
         try {
@@ -62,10 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 退出登录按钮点击事件
     logoutBtn.addEventListener('click', logout);
 
-    // 文件处理与上传交互事件
     fileInput.setAttribute('accept', ALLOWED_FILE_TYPES.join(','));
     updateUploadability();
     ['click', 'dragover', 'dragleave', 'drop'].forEach(eventName => uploadArea.addEventListener(eventName, e => e.preventDefault()));
@@ -83,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
     resetBtn.addEventListener('click', resetUploadState);
 
     // --- 4. 登录与会话管理函数 ---
-    // (这部分是之前缺失的关键代码)
     function checkLoginStatus() {
         const sessionDataString = localStorage.getItem('userSession');
         if (!sessionDataString) return;
@@ -114,7 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // --- 5. 文件选择与列表渲染函数 ---
-    // (这部分是之前缺失的关键代码)
     function handleFileSelection(selectedFiles) {
         hideMessage(uploadError);
         const validFiles = [];
@@ -184,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- 6. 核心上传逻辑 (这是我们新升级的部分) ---
+    // --- 6. 核心上传逻辑 ---
     async function uploadAllFiles() {
         setButtonLoading(uploadBtn, true);
         uploadBtn.classList.add("hidden");
@@ -223,51 +216,75 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // ▼▼▼【核心修改部分】▼▼▼
     async function uploadSingleFile(file, onProgress) {
-        let signedUrlResponse;
+        let signedUrlData;
+        
+        // 第1步：向我们自己的服务器(n8n)请求上传许可
         try {
             const response = await fetch(GCS_SIGN_REQUEST_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     fileName: file.name,
-                    contentType: file.type || 'application/octet-stream'
+                    contentType: file.type || 'application/octet-stream' // 提供默认类型
                 }),
             });
-            if (!response.ok) throw new Error(`无法获取上传许可, 状态: ${response.status}`);
-            signedUrlResponse = await response.json();
-            if (!signedUrlResponse.success || !signedUrlResponse.uploadUrl) throw new Error('服务器返回的上传许可无效');
+            if (!response.ok) {
+                // 如果服务器返回非2xx状态码，直接抛出错误
+                throw new Error(`服务器响应异常, 状态码: ${response.status}`);
+            }
+            signedUrlData = await response.json();
+            // 检查n8n返回的数据是否符合预期
+            if (!signedUrlData || !signedUrlData.uploadUrl || !signedUrlData.method) {
+                throw new Error('服务器返回的上传许可数据格式不正确。');
+            }
         } catch (error) {
-            throw new Error(`文件 "${file.name}" 获取许可失败: ${error.message}`);
+            // 捕获fetch失败或JSON解析失败的错误
+            throw new Error(`文件 "${file.name}" 获取上传许可失败: ${error.message}`);
         }
 
+        // 第2步：使用获取到的许可，直接将文件上传到Google Cloud Storage
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
-            xhr.open(signedUrlResponse.method, signedUrlResponse.uploadUrl, true);
+            
+            // ✅ 使用从n8n获取的 method 和 uploadUrl
+            xhr.open(signedUrlData.method, signedUrlData.uploadUrl, true);
+            
+            // GCS要求PUT上传时必须携带此请求头
             xhr.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
+            
             let lastLoaded = 0;
             xhr.upload.onprogress = (event) => {
                 if (event.lengthComputable) {
                     const chunkLoaded = event.loaded - lastLoaded;
                     lastLoaded = event.loaded;
-                    onProgress(chunkLoaded);
+                    onProgress(chunkLoaded); // 调用回调更新总进度
                 }
             };
+            
             xhr.onload = () => {
                 if (xhr.status >= 200 && xhr.status < 300) {
-                    const finalUrl = signedUrlResponse.uploadUrl.split('?')[0];
+                    // 上传成功后，GCS的URL是签名URL中'?'之前的部分
+                    const finalUrl = signedUrlData.uploadUrl.split('?')[0];
                     resolve({ fileName: file.name, url: finalUrl });
                 } else {
+                    // 如果GCS返回错误状态码
                     reject(new Error(`文件 "${file.name}" 上传至GCS失败, 状态: ${xhr.status}`));
                 }
             };
-            xhr.onerror = () => reject(new Error(`文件 "${file.name}" 发生网络错误`));
+            
+            xhr.onerror = () => {
+                // 如果发生网络层面的错误，例如断网
+                reject(new Error(`文件 "${file.name}" 上传时发生网络错误`));
+            };
+            
             xhr.send(file);
         });
     }
+    // ▲▲▲【核心修改部分结束】▲▲▲
 
     // --- 7. 结果渲染与状态重置函数 ---
-    // (这部分是之前缺失的关键代码)
     function renderSuccessResults(results) {
         progressContainer.classList.add("hidden");
         fileListContainer.innerHTML = "";
@@ -311,7 +328,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 8. 辅助函数 ---
-    // (这部分是之前缺失的关键代码)
     function formatFileSize(bytes) {
         if (bytes === 0) return "0 Bytes";
         const k = 1024;
