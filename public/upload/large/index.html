@@ -25,7 +25,9 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            min-height: 100vh;
+            /* ✨ FIX 1: 使用 100dvh (动态视口高度) 替代 100vh */
+            /* 这解决了移动端浏览器初次加载时因地址栏出现/隐藏导致的布局计算错误问题 */
+            min-height: 100dvh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -158,7 +160,6 @@
         .loading-spinner { display: inline-block; width: 18px; height: 18px; border: 3px solid rgba(255, 255, 255, 0.3); border-top-color: #fff; border-radius: 50%; animation: spin 1s ease-in-out infinite; margin-right: 10px; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* ✨ NEW: 退出登录链接样式 */
         .logout-link {
             display: inline-block;
             margin-top: 25px;
@@ -228,7 +229,6 @@
             <button class="btn" id="uploadBtn" disabled>开始上传</button>
             <button class="btn hidden" id="resetBtn">继续上传文件</button>
 
-            <!-- ✨ NEW: 添加退出登录链接 -->
             <a id="logoutBtn" class="logout-link">退出登录</a>
 
         </div>

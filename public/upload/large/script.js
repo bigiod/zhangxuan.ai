@@ -4,8 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. 全局变量和配置 ---
     const LOGIN_WEBHOOK_URL = 'https://szb.zeabur.app/webhook/d4ba8fa0-45e9-4d1f-ad6d-9c3523ada543';
-    // ✅ 您的n8n GCS签名请求地址，已确认无误
-    const GCS_SIGN_REQUEST_URL = 'https://szb.zeabur.app/webhook/request-gcs-upload-url';
+    const GCS_SIGN_REQUEST_URL = 'https://szb.zeabur.app/webhook/3b143d91-370d-410d-841e-c6cfa40986d5';
     const MAX_FILES = 10;
     const ALLOWED_FILE_TYPES = ['.mp4'];
     const SESSION_DURATION = 60 * 60 * 1000; // 1小时
@@ -61,7 +60,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     logoutBtn.addEventListener('click', logout);
 
-    fileInput.setAttribute('accept', ALLOWED_FILE_TYPES.join(','));
+    // ✨ FIX 2: 优化移动端文件选择
+    // 为 <input> 的 accept 属性提供 MIME 类型 (video/mp4)，以极大地改善在手机浏览器（尤其是iOS）上的兼容性，确保可以正常打开视频文件选择器。
+    fileInput.setAttribute('accept', 'video/mp4,.mp4');
+
     updateUploadability();
     ['click', 'dragover', 'dragleave', 'drop'].forEach(eventName => uploadArea.addEventListener(eventName, e => e.preventDefault()));
     uploadArea.addEventListener('click', () => { if (!uploadArea.classList.contains('disabled')) fileInput.click(); });
@@ -114,6 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const invalidFileNames = [];
         const isFileTypeValid = (file) => {
             const fileNameLower = file.name.toLowerCase();
+            // 验证逻辑保持不变，确保上传的文件后缀仍是 .mp4
             return ALLOWED_FILE_TYPES.some(type => fileNameLower.endsWith(type));
         };
         for (const file of selectedFiles) {
@@ -216,42 +219,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ▼▼▼【核心修改部分】▼▼▼
     async function uploadSingleFile(file, onProgress) {
-        let signedUrlData;
+        let permissionData;
         
-        // 第1步：向我们自己的服务器(n8n)请求上传许可
         try {
             const response = await fetch(GCS_SIGN_REQUEST_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     fileName: file.name,
-                    contentType: file.type || 'application/octet-stream' // 提供默认类型
+                    contentType: file.type || 'application/octet-stream'
                 }),
             });
+    
             if (!response.ok) {
-                // 如果服务器返回非2xx状态码，直接抛出错误
                 throw new Error(`服务器响应异常, 状态码: ${response.status}`);
             }
-            signedUrlData = await response.json();
-            // 检查n8n返回的数据是否符合预期
-            if (!signedUrlData || !signedUrlData.uploadUrl || !signedUrlData.method) {
-                throw new Error('服务器返回的上传许可数据格式不正确。');
+    
+            permissionData = await response.json();
+    
+            if (!permissionData.success || !permissionData.uploadUrl || !permissionData.finalUrl || !permissionData.originalFileName) {
+                throw new Error('从服务器获取的上传许可数据不完整。');
             }
         } catch (error) {
-            // 捕获fetch失败或JSON解析失败的错误
             throw new Error(`文件 "${file.name}" 获取上传许可失败: ${error.message}`);
         }
-
-        // 第2步：使用获取到的许可，直接将文件上传到Google Cloud Storage
+    
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
             
-            // ✅ 使用从n8n获取的 method 和 uploadUrl
-            xhr.open(signedUrlData.method, signedUrlData.uploadUrl, true);
-            
-            // GCS要求PUT上传时必须携带此请求头
+            xhr.open(permissionData.method, permissionData.uploadUrl, true);
             xhr.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
             
             let lastLoaded = 0;
@@ -259,30 +256,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (event.lengthComputable) {
                     const chunkLoaded = event.loaded - lastLoaded;
                     lastLoaded = event.loaded;
-                    onProgress(chunkLoaded); // 调用回调更新总进度
+                    onProgress(chunkLoaded);
                 }
             };
             
             xhr.onload = () => {
                 if (xhr.status >= 200 && xhr.status < 300) {
-                    // 上传成功后，GCS的URL是签名URL中'?'之前的部分
-                    const finalUrl = signedUrlData.uploadUrl.split('?')[0];
-                    resolve({ fileName: file.name, url: finalUrl });
+                    resolve({ 
+                        fileName: permissionData.originalFileName,
+                        url: permissionData.finalUrl
+                    });
                 } else {
-                    // 如果GCS返回错误状态码
-                    reject(new Error(`文件 "${file.name}" 上传至GCS失败, 状态: ${xhr.status}`));
+                    reject(new Error(`文件 "${permissionData.originalFileName}" 上传至GCS失败, 状态: ${xhr.status}`));
                 }
             };
             
             xhr.onerror = () => {
-                // 如果发生网络层面的错误，例如断网
-                reject(new Error(`文件 "${file.name}" 上传时发生网络错误`));
+                reject(new Error(`文件 "${permissionData.originalFileName}" 上传时发生网络错误`));
             };
             
             xhr.send(file);
         });
     }
-    // ▲▲▲【核心修改部分结束】▲▲▲
 
     // --- 7. 结果渲染与状态重置函数 ---
     function renderSuccessResults(results) {
