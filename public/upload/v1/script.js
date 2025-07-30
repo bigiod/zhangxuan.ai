@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. 全局变量和配置 ---
     const LOGIN_WEBHOOK_URL = 'https://n8n.8x.world/webhook/d4ba8fa0-45e9-4d1f-ad6d-9c3523ada543';
-    const GCS_SIGN_REQUEST_URL = 'https://n8n.8x.world/webhook/3b143d91-370d-410d-841e-c6cfa40986d5';
+    const GCS_SIGN_REQUEST_URL = 'https://n8n.8x.world/webhook/fc57501d-95aa-4def-b56d-81bc7ff498ce';
     const MAX_FILES = 10;
     const ALLOWED_FILE_TYPES = ['.mp4'];
     const SESSION_DURATION = 60 * 60 * 1000; // 1小时
@@ -219,65 +219,110 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    async function uploadSingleFile(file, onProgress) {
-        let permissionData;
-        
-        try {
-            const response = await fetch(GCS_SIGN_REQUEST_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    fileName: file.name,
-                    contentType: file.type || 'application/octet-stream'
-                }),
-            });
+// 在现有的 uploadSingleFile 函数中添加上传完成回调
+async function uploadSingleFile(file, onProgress) {
+    let permissionData;
     
-            if (!response.ok) {
-                throw new Error(`服务器响应异常, 状态码: ${response.status}`);
-            }
-    
-            permissionData = await response.json();
-    
-            if (!permissionData.success || !permissionData.uploadUrl || !permissionData.finalUrl || !permissionData.originalFileName) {
-                throw new Error('从服务器获取的上传许可数据不完整。');
-            }
-        } catch (error) {
-            throw new Error(`文件 "${file.name}" 获取上传许可失败: ${error.message}`);
-        }
-    
-        return new Promise((resolve, reject) => {
-            const xhr = new XMLHttpRequest();
-            
-            xhr.open(permissionData.method, permissionData.uploadUrl, true);
-            xhr.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
-            
-            let lastLoaded = 0;
-            xhr.upload.onprogress = (event) => {
-                if (event.lengthComputable) {
-                    const chunkLoaded = event.loaded - lastLoaded;
-                    lastLoaded = event.loaded;
-                    onProgress(chunkLoaded);
-                }
-            };
-            
-            xhr.onload = () => {
-                if (xhr.status >= 200 && xhr.status < 300) {
-                    resolve({ 
-                        fileName: permissionData.originalFileName,
-                        url: permissionData.finalUrl
-                    });
-                } else {
-                    reject(new Error(`文件 "${permissionData.originalFileName}" 上传至GCS失败, 状态: ${xhr.status}`));
-                }
-            };
-            
-            xhr.onerror = () => {
-                reject(new Error(`文件 "${permissionData.originalFileName}" 上传时发生网络错误`));
-            };
-            
-            xhr.send(file);
+    try {
+        const response = await fetch(GCS_SIGN_REQUEST_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                fileName: file.name,
+                contentType: file.type || 'application/octet-stream'
+            }),
         });
+
+        if (!response.ok) {
+            throw new Error(`服务器响应异常, 状态码: ${response.status}`);
+        }
+
+        permissionData = await response.json();
+
+        if (!permissionData.success || !permissionData.uploadUrl || !permissionData.finalUrl || !permissionData.originalFileName) {
+            throw new Error('从服务器获取的上传许可数据不完整。');
+        }
+    } catch (error) {
+        throw new Error(`文件 "${file.name}" 获取上传许可失败: ${error.message}`);
     }
+
+    return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        
+        xhr.open(permissionData.method, permissionData.uploadUrl, true);
+        xhr.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
+        
+        let lastLoaded = 0;
+        xhr.upload.onprogress = (event) => {
+            if (event.lengthComputable) {
+                const chunkLoaded = event.loaded - lastLoaded;
+                lastLoaded = event.loaded;
+                onProgress(chunkLoaded);
+            }
+        };
+        
+        xhr.onload = async () => {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                // 🔥 新增：上传完成后通知n8n
+                try {
+                    await notifyUploadComplete(permissionData, file);
+                    console.log(`文件 ${permissionData.originalFileName} 上传完成通知已发送`);
+                } catch (notifyError) {
+                    console.warn('通知上传完成失败:', notifyError.message);
+                    // 不影响主流程，只是记录警告
+                }
+                
+                resolve({ 
+                    fileName: permissionData.originalFileName,
+                    url: permissionData.finalUrl,
+                    uploadTrackingId: permissionData.uploadTrackingId
+                });
+            } else {
+                reject(new Error(`文件 "${permissionData.originalFileName}" 上传至GCS失败, 状态: ${xhr.status}`));
+            }
+        };
+        
+        xhr.onerror = () => {
+            reject(new Error(`文件 "${permissionData.originalFileName}" 上传时发生网络错误`));
+        };
+        
+        xhr.send(file);
+    });
+}
+
+// 🔥 新增：通知n8n上传完成的函数
+async function notifyUploadComplete(permissionData, file) {
+    const callbackUrl = permissionData.callbackUrl || 'https://n8n.8x.world/webhook/upload-complete';
+    
+    try {
+        const response = await fetch(callbackUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                uploadTrackingId: permissionData.uploadTrackingId,
+                originalFileName: permissionData.originalFileName,
+                finalUrl: permissionData.finalUrl,
+                fileSize: file.size,
+                contentType: file.type,
+                uploadCompletedAt: new Date().toISOString(),
+                status: 'completed'
+            }),
+        });
+        
+        if (!response.ok) {
+            throw new Error(`回调失败: ${response.status}`);
+        }
+        
+        const result = await response.json();
+        console.log('上传完成回调响应:', result);
+        
+    } catch (error) {
+        throw new Error(`通知上传完成失败: ${error.message}`);
+    }
+}
+
+
+
 
     // --- 7. 结果渲染与状态重置函数 ---
     function renderSuccessResults(results) {
