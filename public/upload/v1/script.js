@@ -3,8 +3,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. 全局变量和配置 ---
-    const LOGIN_WEBHOOK_URL = 'https://n8n.8x.world/webhook/d4ba8fa0-45e9-4d1f-ad6d-9c3523ada543';
-    const GCS_SIGN_REQUEST_URL = 'https://n8n.8x.world/webhook/fc57501d-95aa-4def-b56d-81bc7ff498ce';
+    const LOGIN_WEBHOOK_URL = 'https://wn8n.8x.world/webhook/d4ba8fa0-45e9-4d1f-ad6d-9c3523ada543';
+    const GCS_SIGN_REQUEST_URL = 'https://wn8n.8x.world/webhook/fc57501d-95aa-4def-b56d-81bc7ff498ce';
     const MAX_FILES = 10;
     const ALLOWED_FILE_TYPES = ['.mp4'];
     const SESSION_DURATION = 60 * 60 * 1000; // 1小时
