@@ -24,7 +24,7 @@
   <div class="flex items-center justify-between">
 
 
-  {{/* Copyright */}}
+ /* {{/* Copyright */}}
     {{ if .Site.Params.footer.showCopyright | default true }}
     <p class="text-sm text-neutral-500 dark:text-neutral-400">
       {{- with replace .Site.Params.copyright "{ year }" now.Year  }}
@@ -37,7 +37,48 @@
     </p>
     
   {{ end }}
+  
+ */
  
+ {{/* Copyright */}}
+	{{ if .Site.Params.footer.showCopyright | default true }}
+	<p class="text-sm text-neutral-500 dark:text-neutral-400">
+	{{- with replace .Site.Params.copyright "{ year }" now.Year  }}
+	{{ . | markdownify }}
+	{{- else }}
+	&copy;
+	{{ now.Format "2006" }}
+	{{ .Site.Author.name | markdownify }}
+
+	{{/* ICP information placeholders */}}
+	<span id="icp-true-top" style="display: none;"> · <a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2023019233号-1</a></span>
+	<span id="icp-zhangxuan-cn" style="display: none;"> · <a href="https://beian.miit.gov.cn/" target="_blank">京ICP备14009107号-2</a></span>
+
+	{{- end }}
+	</p>
+
+<script>
+// This script runs on the client-side after the page loads
+document.addEventListener('DOMContentLoaded', function() {
+const hostname = window.location.hostname;
+const icpTrueTop = document.getElementById('icp-true-top');
+const icpZhangxuanCn = document.getElementById('icp-zhangxuan-cn');
+
+// Hide all by default (already hidden by style="display: none;")
+// if (icpTrueTop) icpTrueTop.style.display = 'none';
+// if (icpZhangxuanCn) icpZhangxuanCn.style.display = 'none';
+
+if (hostname === 'true.top' || hostname === 'www.true.top') {
+if (icpTrueTop) icpTrueTop.style.display = 'inline';
+} else if (hostname === 'zhangxuan.cn' || hostname === 'www.zhangxuan.cn') {
+if (icpZhangxuanCn) icpZhangxuanCn.style.display = 'inline';
+}
+// For zhangxuan.ai or any other domain, both remain hidden.
+});
+</script>
+
+{{ end }}
+
 
     {{/* Theme attribution */}}
     {{ if .Site.Params.footer.showThemeAttribution | default true }}
