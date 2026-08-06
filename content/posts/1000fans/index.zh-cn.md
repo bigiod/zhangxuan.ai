@@ -63,7 +63,7 @@ With other shortcodes
 
 {{< /timeline >}}
 
-{{< music url="/music/Wavelength.mp3" name=Wavelength artist=oldmanyoung cover="feature.jpg" >}}
+{{< music url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/Wavelength.mp3" name=Wavelength artist=oldmanyoung cover="feature.jpg" >}}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non magna ex. Donec sollicitudin ut lorem quis lobortis. Nam ac ipsum libero. Sed a ex eget ipsum tincidunt venenatis quis sed nisl. Pellentesque sed urna vel odio consequat tincidunt id ut purus. Nam sollicitudin est sed dui interdum rhoncus. 
 
@@ -71,7 +71,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non magna ex. D
 
 
 {{< aplayer fixed=false mini=false autoplay=false theme="#448aff" loop="all" order="list" preload="auto" volume=1.0 mutex=true lrcType=3 listFolded=false listMaxHeight="" storageName="aplayer-setting" >}}
-    {{< audio name="AI数字身份" artist="MetaX" url="/music/aiidentity.mp3" lrc="/music/aiidentity.lrc" cover="feature.jpg" />}}    
-    {{< audio name="数字孪生" artist="MetaX" url="/music/digitaltwin.mp3" lrc="/music/digitaltwin.lrc" cover="feature.jpg" />}}
-    {{< audio name="Digital Twin" artist="MetaX" url="/music/digitaltwin.mp3" lrc="/music/digitaltwin.lrc" cover="feature.jpg" />}}
+    {{< audio name="AI数字身份" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/second-me/ai-identity.mp3" lrc="/music/second-me/ai-identity.lrc" cover="feature.jpg" />}}    
+    {{< audio name="数字孪生" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/second-me/digital-twin.mp3" lrc="/music/second-me/digital-twin.lrc" cover="feature.jpg" />}}
+    {{< audio name="Digital Twin" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/second-me/digital-twin.mp3" lrc="/music/second-me/digital-twin.lrc" cover="feature.jpg" />}}
 {{< /aplayer >}}

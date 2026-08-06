@@ -1,0 +1,4 @@
+
+# 音频移COS,站内不存mp3
+static/music/**/*.mp3
+assets/music/*.mp3

@@ -17,18 +17,18 @@ summary: "一张穿梭于虚实边界的音乐叙事集，12首作品以氛围�
 《虚实之境》是一张探索虚实交融的音乐叙事专辑，12首作品以氛围感为基调，融合暗黑美学的深邃与浪漫主义的诗意，旨在引领听众穿梭于现实与虚幻的边界，感受时空交错的情感共鸣。通过Lofi噪点与独立民谣的纯净，构建听觉迷宫，从电子脉冲的冰冷到吉他弦音的温暖，每曲如时间裂缝中的低语，或飘散如柳絮，或凝固似星尘，最终以流行旋律收尾，为漂泊灵魂带来片刻栖息与内心的宁静。
 
 {{< aplayer fixed=false mini=false autoplay=false theme="#448aff" loop="all" order="list" preload="auto" volume=0.8 mutex=true lrcType=3 listFolded=false listMaxHeight="700px" storageName="aplayer-setting" >}}
-    {{< audio name="絮语回响 / Whispered Echoes" artist="MetaX" url="/music/softmusic/1902524837855760384.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902524837855760384.png" />}}    
-    {{< audio name="虚空絮语 / Whispers in the Void" artist="MetaX" url="/music/softmusic/1902527489880625152.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902527489880625152.png" />}} 
-    {{< audio name="永恒相拥 / Eternal Embrace" artist="MetaX" url="/music/softmusic/1902531163172376576.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902531163172376576.png" />}} 
-    {{< audio name="漫游者之歌 / Wandering Souls" artist="MetaX" url="/music/softmusic/1902535353718280192.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902535353718280192.png" />}} 
-    {{< audio name="云絮低语 / Drifting Clouds" artist="MetaX" url="/music/softmusic/1902537451470065664.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902537451470065664.png" />}}
-    {{< audio name="晴空行迹 / Sunny Horizons" artist="MetaX" url="/music/softmusic/1902542017922076672.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902542017922076672.png" />}}
-    {{< audio name="破晓启程 / Rise Like the Dawn" artist="MetaX" url="/music/softmusic/1902543881744945152.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902543881744945152.png" />}}
-    {{< audio name="电涌心跳 / Electric Heartbeat" artist="MetaX" url="/music/softmusic/1902544825605951488.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902544825605951488.png" />}}    
-    {{< audio name="回响纪元 / Rise of the Echoes" artist="MetaX" url="/music/softmusic/1902547359460495360.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902547359460495360.png" />}}
-    {{< audio name="疗愈密语 / Healing Whisper" artist="MetaX" url="/music/softmusic/1902549141540573184.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902549141540573184.png" />}}
-    {{< audio name="静默诗篇 / Whispers of Serenity" artist="MetaX" url="/music/softmusic/1902549171781505024.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902549171781505024.png" />}}
-    {{< audio name="弦上誓约 / Eternal Serenade" artist="MetaX" url="/music/softmusic/1902553850867355648.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902553850867355648.png" />}}           
+    {{< audio name="絮语回响 / Whispered Echoes" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/softmusic/1902524837855760384.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902524837855760384.png" />}}    
+    {{< audio name="虚空絮语 / Whispers in the Void" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/softmusic/1902527489880625152.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902527489880625152.png" />}} 
+    {{< audio name="永恒相拥 / Eternal Embrace" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/softmusic/1902531163172376576.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902531163172376576.png" />}} 
+    {{< audio name="漫游者之歌 / Wandering Souls" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/softmusic/1902535353718280192.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902535353718280192.png" />}} 
+    {{< audio name="云絮低语 / Drifting Clouds" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/softmusic/1902537451470065664.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902537451470065664.png" />}}
+    {{< audio name="晴空行迹 / Sunny Horizons" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/softmusic/1902542017922076672.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902542017922076672.png" />}}
+    {{< audio name="破晓启程 / Rise Like the Dawn" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/softmusic/1902543881744945152.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902543881744945152.png" />}}
+    {{< audio name="电涌心跳 / Electric Heartbeat" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/softmusic/1902544825605951488.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902544825605951488.png" />}}    
+    {{< audio name="回响纪元 / Rise of the Echoes" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/softmusic/1902547359460495360.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902547359460495360.png" />}}
+    {{< audio name="疗愈密语 / Healing Whisper" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/softmusic/1902549141540573184.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902549141540573184.png" />}}
+    {{< audio name="静默诗篇 / Whispers of Serenity" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/softmusic/1902549171781505024.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902549171781505024.png" />}}
+    {{< audio name="弦上誓约 / Eternal Serenade" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/softmusic/1902553850867355648.mp3" lrc="/music/nolrc.lrc" cover="/music/softmusic/1902553850867355648.png" />}}           
 {{< /aplayer >}}
 
 ## 絮语回响 / Whispered Echoes

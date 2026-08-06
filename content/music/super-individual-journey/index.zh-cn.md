@@ -23,26 +23,26 @@ summary: "一张充满力量与希望的纯音乐专辑，让听众踏上一段�
 - 第18-20首：以庄严与空灵收尾，传递永恒与圆满，留给听众对未来的无限遐想。
 
 {{< aplayer fixed=false mini=false autoplay=false theme="#448aff" loop="all" order="list" preload="auto" volume=0.8 mutex=true lrcType=3 listFolded=false listMaxHeight="1000px" storageName="aplayer-setting" >}}
-    {{< audio name="希望的旋律" artist="MetaX" url="/music/super-individual-journey/1910330625349390336.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910330625349390336.png" />}}    
-    {{< audio name="光明彼岸" artist="MetaX" url="/music/super-individual-journey/1910333168976662528.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910333168976662528.png" />}}
-    {{< audio name="信念崛起" artist="MetaX" url="/music/super-individual-journey/1910342773341425664.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910342773341425664.png" />}}
-    {{< audio name="科技意志" artist="MetaX" url="/music/super-individual-journey/1910346871520366592.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910346871520366592.png" />}}
-    {{< audio name="信念之光" artist="MetaX" url="/music/super-individual-journey/1910328374279016448.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910328374279016448.png" />}}  
-    {{< audio name="数字生命" artist="MetaX" url="/music/super-individual-journey/1910543995365232640.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910543995365232640.png" />}}  
-    {{< audio name="数字新生" artist="MetaX" url="/music/super-individual-journey/1910339386419974144.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910339386419974144.png" />}}
-    {{< audio name="数字之光" artist="MetaX" url="/music/super-individual-journey/1910334182274371584.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910334182274371584.png" />}}    
-    {{< audio name="无限可能" artist="MetaX" url="/music/super-individual-journey/1910336268416323584.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910336268416323584.png" />}}
-    {{< audio name="数字旅途" artist="MetaX" url="/music/super-individual-journey/1910347767729885184.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910347767729885184.png" />}}
-    {{< audio name="潜能觉醒" artist="MetaX" url="/music/super-individual-journey/1910329362083745792.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910329362083745792.png" />}}
-    {{< audio name="数字脉动" artist="MetaX" url="/music/super-individual-journey/1910344626485596160.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910344626485596160.png" />}}
-    {{< audio name="数字分身之梦" artist="MetaX" url="/music/super-individual-journey/1910352592479719425.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910352592479719425.png" />}}
-    {{< audio name="未来之光" artist="MetaX" url="/music/super-individual-journey/1910349688184246272.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910349688184246272.png" />}}
-    {{< audio name="超个体觉醒" artist="MetaX" url="/music/super-individual-journey/1910534580603981824.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910534580603981824.png" />}}
-    {{< audio name="超越自我" artist="MetaX" url="/music/super-individual-journey/1910338028153344000.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910338028153344000.png" />}}
-    {{< audio name="无畏征程" artist="MetaX" url="/music/super-individual-journey/1910331369720909824.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910331369720909824.png" />}}
-    {{< audio name="无尽信念" artist="MetaX" url="/music/super-individual-journey/1910348662110687232.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910348662110687232.png" />}}    
-    {{< audio name="数字永生" artist="MetaX" url="/music/super-individual-journey/1910350460007485440.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910350460007485440.png" />}}
-    {{< audio name="超越时间的光" artist="MetaX" url="/music/super-individual-journey/1910341636131393536.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910341636131393536.png" />}}
+    {{< audio name="希望的旋律" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/super-individual-journey/1910330625349390336.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910330625349390336.png" />}}    
+    {{< audio name="光明彼岸" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/super-individual-journey/1910333168976662528.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910333168976662528.png" />}}
+    {{< audio name="信念崛起" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/super-individual-journey/1910342773341425664.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910342773341425664.png" />}}
+    {{< audio name="科技意志" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/super-individual-journey/1910346871520366592.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910346871520366592.png" />}}
+    {{< audio name="信念之光" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/super-individual-journey/1910328374279016448.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910328374279016448.png" />}}  
+    {{< audio name="数字生命" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/super-individual-journey/1910543995365232640.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910543995365232640.png" />}}  
+    {{< audio name="数字新生" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/super-individual-journey/1910339386419974144.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910339386419974144.png" />}}
+    {{< audio name="数字之光" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/super-individual-journey/1910334182274371584.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910334182274371584.png" />}}    
+    {{< audio name="无限可能" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/super-individual-journey/1910336268416323584.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910336268416323584.png" />}}
+    {{< audio name="数字旅途" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/super-individual-journey/1910347767729885184.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910347767729885184.png" />}}
+    {{< audio name="潜能觉醒" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/super-individual-journey/1910329362083745792.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910329362083745792.png" />}}
+    {{< audio name="数字脉动" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/super-individual-journey/1910344626485596160.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910344626485596160.png" />}}
+    {{< audio name="数字分身之梦" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/super-individual-journey/1910352592479719425.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910352592479719425.png" />}}
+    {{< audio name="未来之光" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/super-individual-journey/1910349688184246272.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910349688184246272.png" />}}
+    {{< audio name="超个体觉醒" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/super-individual-journey/1910534580603981824.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910534580603981824.png" />}}
+    {{< audio name="超越自我" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/super-individual-journey/1910338028153344000.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910338028153344000.png" />}}
+    {{< audio name="无畏征程" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/super-individual-journey/1910331369720909824.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910331369720909824.png" />}}
+    {{< audio name="无尽信念" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/super-individual-journey/1910348662110687232.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910348662110687232.png" />}}    
+    {{< audio name="数字永生" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/super-individual-journey/1910350460007485440.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910350460007485440.png" />}}
+    {{< audio name="超越时间的光" artist="MetaX" url="https://gz-1319491126.cos.ap-guangzhou.myqcloud.com/music/super-individual-journey/1910341636131393536.mp3" lrc="/music/nolrc.lrc" cover="/music/super-individual-journey/1910341636131393536.png" />}}
 {{< /aplayer >}}
 
 **专辑介绍**
